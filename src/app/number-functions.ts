@@ -1,7 +1,7 @@
 const allLetters = ['', 'k', 'M', 'B', 'T'];
 
 export function formatNumberShort(value: number): string {
-  let exponent = Math.ceil(Math.log10(value));
+  let exponent = value !== 0 ? Math.ceil(Math.log10(value)) : 0;
   let engineerExponentLevel = Math.floor(exponent / 3);
   let engineerExponent = engineerExponentLevel * 3;
   let letter = allLetters[engineerExponentLevel];
