@@ -1,6 +1,16 @@
-<p>
-  player-estimator works!
-</p>
+<div>
+  <h2>left</h2>
+  <textarea [(ngModel)]="input" placeholder="playernames" [rows]="rows(input)"></textarea>
+
+  <app-player-group-list [characters]="characters"></app-player-group-list>
+</div>
+<div>
+  <h2>right</h2>
+
+  <app-player-list [characters]="characters"></app-player-list>
+</div>
+
+<h1>debug</h1>
 <pre>
-  {{ character | json }}
+  {{ characters | json }}
 </pre>

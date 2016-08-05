@@ -1,0 +1,40 @@
+<table>
+  <thead>
+    <tr>
+      <th> Name </th>
+      <th> Ships </th>
+      <th> Points </th>
+      <th> ISK </th>
+      <th> Alli </th>
+      <th> Corp </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let character of sorted(characters)">
+      <td>
+        {{ character.info.name }}
+      </td>
+      <td>
+        {{ character.shipsDestroyed | shortnumber }}
+        <br /> {{ character.shipsPercentage | percent:percentFormat }}
+        <br /> {{ character.shipsLost | shortnumber }}
+      </td>
+      <td>
+        {{ character.pointsDestroyed | shortnumber }}
+        <br /> {{ character.pointsPercentage | percent:percentFormat }}
+        <br /> {{ character.pointsLost | shortnumber }}
+      </td>
+      <td>
+        {{ character.iskDestroyed | shortnumber }}
+        <br /> {{ character.iskPercentage | percent:percentFormat }}
+        <br /> {{ character.iskLost | shortnumber }}
+      </td>
+      <td *ngIf="character.info.allianceID" class="icon">
+        <img [src]="'//image.eveonline.com/Alliance/'+ character.info.allianceID +'_64.png'" />
+      </td>
+      <td *ngIf="character.info.corporationID" class="icon">
+        <img [src]="'//image.eveonline.com/Corporation/'+ character.info.corporationID +'_64.png'" />
+      </td>
+    </tr>
+  </tbody>
+</table>

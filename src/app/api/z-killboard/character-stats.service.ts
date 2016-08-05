@@ -10,7 +10,10 @@ export class CharacterStatsService {
 
   get(characterID: number) {
     // https://zkillboard.com/api/stats/characterID/91572014/
-    return Promise.resolve(DummyCharacterStats[0]);
+    let json = DummyCharacterStats.find(char => char.id === characterID);
+    let obj = new CharacterStats(json);
+
+    return Promise.resolve(obj);
   }
 
 }

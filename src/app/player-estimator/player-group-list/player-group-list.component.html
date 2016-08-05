@@ -1,0 +1,20 @@
+<table>
+  <tbody>
+    <tr *ngFor="let elem of getCounts(characters)">
+      <td>
+        {{ elem.count }}x
+      </td>
+      <td *ngIf="elem.allianceID" class="icon">
+        <img [src]="'//image.eveonline.com/Alliance/'+ elem.allianceID +'_64.png'" />
+      </td>
+      <td *ngIf="elem.corporationID" class="icon">
+        <img [src]="'//image.eveonline.com/Corporation/'+ elem.corporationID +'_64.png'" />
+      </td>
+      <td>
+        {{ elem.allianceID }}
+        {{ elem.corporationID }}
+        <-- imagine this is a name
+      </td>
+    </tr>
+  </tbody>
+</table>
