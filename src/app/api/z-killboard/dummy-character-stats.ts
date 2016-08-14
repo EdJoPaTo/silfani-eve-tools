@@ -11,6 +11,9 @@ export const DummyCharacterStats: CharacterStats[] = [
     pointsDestroyed: 204,
     iskDestroyed: 89926322390,
     sequence: 32865649,
+    shipsPercentage: -1,
+    pointsPercentage: -1,
+    iskPercentage: -1,
     info: {
       allianceID: 1783407081,
       corporationID: 610914338,
@@ -30,6 +33,9 @@ export const DummyCharacterStats: CharacterStats[] = [
     shipsDestroyed: 0,
     pointsDestroyed: 0,
     iskDestroyed: 0,
+    shipsPercentage: -1,
+    pointsPercentage: -1,
+    iskPercentage: -1,
     sequence: 32045779,
     info: {
       allianceID: 0,
