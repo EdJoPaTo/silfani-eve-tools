@@ -26,11 +26,6 @@ export class PlayerEstimatorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // let characterNames = ['Rell Silfani', 'Karnis Delvari', 'Jatsu Enaka'];
-    // let characterIDs = [91572014, 90419497]; // TODO: dynamic
-
-    // TODO: characterID -> 0 ignore
-
     this.searchTerms
       .debounceTime(300)        // wait for 300ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous
@@ -41,6 +36,7 @@ export class PlayerEstimatorComponent implements OnInit {
 
         return this.statsOfNames(names);
       })
+      .map(result => result.filter(char => char))
       .subscribe(result => this.characters = result as CharacterStats[]);
 
     this.input = 'Rell Silfani\nKarnis Delvari\n';
@@ -49,9 +45,7 @@ export class PlayerEstimatorComponent implements OnInit {
 
   statsOfName(name: string): Observable<CharacterStats> {
     return this.characterIdService.get(name)
-      .flatMap(id => {
-        return this.characterStatsService.get(id);
-      });
+      .flatMap(id => id ? this.characterStatsService.get(id) : Observable.of<CharacterStats>(null));
   }
 
   statsOfNames(names: string[]): Observable<CharacterStats[]> {
