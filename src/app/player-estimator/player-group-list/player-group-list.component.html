@@ -14,6 +14,13 @@
         {{ elem.allianceID }}
         {{ elem.corporationID }}
         <-- imagine this is a name
+        <br />
+        <span *ngIf="elem.corporationID">
+          <a [href]="'https://zkillboard.com/corporation/'+ elem.corporationID +'/'" target="_blank">zK</a>
+        </span>
+        <span *ngIf="elem.allianceID">
+          <a [href]="'https://zkillboard.com/alliance/'+ elem.allianceID +'/'" target="_blank">zK</a>
+        </span>
       </td>
     </tr>
   </tbody>

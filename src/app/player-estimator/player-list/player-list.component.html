@@ -17,6 +17,9 @@
       </td>
       <td>
         {{ character.info.name }}
+        <br />
+        <a [href]="'https://zkillboard.com/character/'+ character.id +'/'" target="_blank">zK</a>
+        <a [href]="'http://eve-hunt.net/hunt/'+ character.info.name +'/'" target="_blank">Hunt</a>
       </td>
       <td>
         {{ character.shipsDestroyed | shortnumber }}
