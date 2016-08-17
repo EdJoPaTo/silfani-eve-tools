@@ -6,7 +6,6 @@ import { PlayerListComponent } from './player-list';
 import { PlayerGroupListComponent } from './player-group-list';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-player-estimator',
   templateUrl: 'player-estimator.component.html',
   styleUrls: ['player-estimator.component.css'],

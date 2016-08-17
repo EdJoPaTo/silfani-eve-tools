@@ -4,7 +4,6 @@ import { CharacterStats } from '../../api/z-killboard/character-stats';
 import { ShortnumberPipe } from '../../shortnumber.pipe';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-player-list',
   templateUrl: 'player-list.component.html',
   styleUrls: ['player-list.component.css'],

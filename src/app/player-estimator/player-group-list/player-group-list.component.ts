@@ -13,7 +13,6 @@ function orderByDesc(obj, selector) {
 }
 
 @Component({
-  moduleId: module.id,
   selector: 'app-player-group-list',
   templateUrl: 'player-group-list.component.html',
   styleUrls: ['player-group-list.component.css']
