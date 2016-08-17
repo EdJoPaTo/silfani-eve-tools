@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>  </th>
       <th> Name </th>
       <th> Ships </th>
       <th> Points </th>
@@ -11,6 +12,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let character of sorted(characters)">
+      <td>
+        <img [src]="'//image.eveonline.com/Character/'+ character.id +'_64.jpg'" />
+      </td>
       <td>
         {{ character.info.name }}
       </td>
