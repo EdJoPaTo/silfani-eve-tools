@@ -1,6 +1,6 @@
 <div>
   <h2>left</h2>
-  <textarea [(ngModel)]="input" placeholder="playernames" [rows]="rows(input)"></textarea>
+  <textarea [(ngModel)]="input" placeholder="playernames" [rows]="rows(input)" #searchBox id="search-box" (keyup)="search(searchBox.value)" ></textarea>
 
   <app-player-group-list [characters]="characters"></app-player-group-list>
 </div>
@@ -11,6 +11,7 @@
 </div>
 
 <h1>debug</h1>
+characters
 <pre>
   {{ characters | json }}
 </pre>

@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 import { CharacterStats } from './character-stats';
-import { DummyCharacterStats } from './dummy-character-stats';
 
 @Injectable()
 export class CharacterStatsService {
 
-  constructor() { }
+  constructor(
+    private http: Http
+  ) { }
 
-  get(characterID: number) {
+  get(characterID: number): Observable<CharacterStats> {
     // https://zkillboard.com/api/stats/characterID/91572014/
-    let json = DummyCharacterStats.find(char => char.id === characterID);
-    let obj = new CharacterStats(json);
-
-    return Promise.resolve(obj);
+    return this.http
+      .get(`https://zkillboard.com/api/stats/characterID/${characterID}/`)
+      .map((r: Response) => new CharacterStats(r.json()));
   }
 
 }

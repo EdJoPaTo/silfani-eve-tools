@@ -26,6 +26,7 @@ export class PlayerGroupListComponent implements OnInit {
   }
 
   getCounts(characters: CharacterStats[]) {
+    if (!characters) { return []; }
     let counts = {};
 
     characters
