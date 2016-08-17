@@ -32,7 +32,7 @@ export class PlayerGroupListComponent implements OnInit {
     characters
       .map(char => char.info)
       .forEach(info => {
-        if (info.allianceID !== 0) {
+        if (info.allianceID) {
           if (!counts['a' + info.allianceID]) {
             counts['a' + info.allianceID] = { allianceID: info.allianceID, count: 0 };
           }
