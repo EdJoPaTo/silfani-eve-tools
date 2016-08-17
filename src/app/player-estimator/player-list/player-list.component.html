@@ -6,8 +6,8 @@
       <th> Ships </th>
       <th> Points </th>
       <th> ISK </th>
-      <th> Alli </th>
       <th> Corp </th>
+      <th> Alli </th>
     </tr>
   </thead>
   <tbody>
@@ -33,11 +33,11 @@
         <br /> {{ iskPercentage(character) | percent:percentFormat }}
         <br /> {{ character.iskLost | shortnumber }}
       </td>
-      <td *ngIf="character.info.allianceID" class="icon">
-        <img [src]="'//image.eveonline.com/Alliance/'+ character.info.allianceID +'_64.png'" />
-      </td>
       <td *ngIf="character.info.corporationID" class="icon">
         <img [src]="'//image.eveonline.com/Corporation/'+ character.info.corporationID +'_64.png'" />
+      </td>
+      <td *ngIf="character.info.allianceID" class="icon">
+        <img [src]="'//image.eveonline.com/Alliance/'+ character.info.allianceID +'_64.png'" />
       </td>
     </tr>
   </tbody>
