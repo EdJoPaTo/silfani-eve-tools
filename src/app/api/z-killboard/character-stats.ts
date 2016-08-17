@@ -51,8 +51,4 @@ export class CharacterStats {
       type: json.info.type
     };
   }
-
-  get shipsPercentage(): number { return percentage(this.shipsDestroyed, this.shipsLost); };
-  get pointsPercentage(): number { return percentage(this.pointsDestroyed, this.pointsLost); };
-  get iskPercentage(): number { return percentage(this.iskDestroyed, this.iskLost); };
 }

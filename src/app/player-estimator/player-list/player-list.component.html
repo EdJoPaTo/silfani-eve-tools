@@ -16,17 +16,17 @@
       </td>
       <td>
         {{ character.shipsDestroyed | shortnumber }}
-        <br /> {{ character.shipsPercentage | percent:percentFormat }}
+        <br /> {{ shipPercentage(character) | percent:percentFormat }}
         <br /> {{ character.shipsLost | shortnumber }}
       </td>
       <td>
         {{ character.pointsDestroyed | shortnumber }}
-        <br /> {{ character.pointsPercentage | percent:percentFormat }}
+        <br /> {{ pointPercentage(character) | percent:percentFormat }}
         <br /> {{ character.pointsLost | shortnumber }}
       </td>
       <td>
         {{ character.iskDestroyed | shortnumber }}
-        <br /> {{ character.iskPercentage | percent:percentFormat }}
+        <br /> {{ iskPercentage(character) | percent:percentFormat }}
         <br /> {{ character.iskLost | shortnumber }}
       </td>
       <td *ngIf="character.info.allianceID" class="icon">
