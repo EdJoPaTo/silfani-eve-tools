@@ -1,6 +1,6 @@
 import { CharacterStats } from './character-stats';
 
-export const DummyCharacterStats: CharacterStats[] = [
+export const DummyCharacterStats: any[] = [
   {
     type: "characterID",
     id: 90419497,
