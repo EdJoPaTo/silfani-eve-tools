@@ -1,11 +1,10 @@
-<div>
-  <h2>left</h2>
-  <textarea [(ngModel)]="input" placeholder="playernames" [rows]="rows(input)" #searchBox id="search-box" (keyup)="search(searchBox.value)" ></textarea>
+<div class="columns is-desktop is-tablet">
+  <div class="column is-narrow">
+    <textarea [(ngModel)]="input" placeholder="playernames" [rows]="rows(input)" #searchBox id="search-box" (keyup)="search(searchBox.value)"></textarea>
 
-  <app-player-group-list [characters]="characters"></app-player-group-list>
-</div>
-<div>
-  <h2>right</h2>
-
-  <app-player-list [characters]="characters"></app-player-list>
+    <app-player-group-list [characters]="characters"></app-player-group-list>
+  </div>
+  <div class="column">
+    <app-player-list [characters]="characters"></app-player-list>
+  </div>
 </div>

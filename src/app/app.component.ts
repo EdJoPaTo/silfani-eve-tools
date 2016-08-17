@@ -8,5 +8,5 @@ import { PlayerEstimatorComponent } from './player-estimator';
   directives: [PlayerEstimatorComponent]
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'EVE Angular2 Tools';
 }

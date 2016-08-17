@@ -1,0 +1,10 @@
+img.icon {
+  height: 64px;
+  width: 64px;
+  min-width: 64px;
+}
+
+table tbody tr td {
+  text-align: center;
+  vertical-align: middle;
+}

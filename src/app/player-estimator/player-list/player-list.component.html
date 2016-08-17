@@ -1,7 +1,7 @@
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>  </th>
+      <th> </th>
       <th> Name </th>
       <th> Ships </th>
       <th> Points </th>
@@ -13,7 +13,7 @@
   <tbody>
     <tr *ngFor="let character of sorted(characters)">
       <td>
-        <img [src]="'//image.eveonline.com/Character/'+ character.id +'_64.jpg'" />
+        <img class="icon character" [src]="'//image.eveonline.com/Character/'+ character.id +'_256.jpg'" />
       </td>
       <td>
         {{ character.info.name }}
@@ -33,11 +33,13 @@
         <br /> {{ iskPercentage(character) | percent:percentFormat }}
         <br /> {{ character.iskLost | shortnumber }}
       </td>
-      <td *ngIf="character.info.corporationID" class="icon">
-        <img [src]="'//image.eveonline.com/Corporation/'+ character.info.corporationID +'_64.png'" />
+      <td>
+        <img class="icon corporation" [src]="'//image.eveonline.com/Corporation/'+ character.info.corporationID +'_256.png'" />
       </td>
-      <td *ngIf="character.info.allianceID" class="icon">
-        <img [src]="'//image.eveonline.com/Alliance/'+ character.info.allianceID +'_64.png'" />
+      <td>
+        <div *ngIf="character.info.allianceID">
+          <img class="icon alliance" [src]="'//image.eveonline.com/Alliance/'+ character.info.allianceID +'_128.png'" />
+        </div>
       </td>
     </tr>
   </tbody>
