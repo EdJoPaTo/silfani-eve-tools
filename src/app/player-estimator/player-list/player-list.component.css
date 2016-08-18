@@ -4,7 +4,7 @@ img.icon {
   min-width: 64px;
 }
 
-table tbody tr td {
+table tbody tr td, table thead tr, th {
   text-align: center;
   vertical-align: middle;
 }
