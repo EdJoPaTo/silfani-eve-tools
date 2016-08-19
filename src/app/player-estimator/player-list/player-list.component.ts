@@ -51,7 +51,7 @@ export class PlayerListComponent implements OnInit {
   }
 
   sorted(characters: CharacterStats[]): CharacterStats[] {
-    // TODO: sort
+    characters.sort((a, b) => b.iskDestroyed - a.iskDestroyed);
     return characters;
   }
 }
