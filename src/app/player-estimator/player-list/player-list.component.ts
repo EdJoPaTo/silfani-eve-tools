@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { CharacterStats } from '../../api/z-killboard/character-stats';
+import { Hovered } from '../hovered';
 import { ShortnumberPipe } from '../../shortnumber.pipe';
 
 function percentage(destroyed, lost) {
@@ -19,11 +20,22 @@ function percentage(destroyed, lost) {
 })
 export class PlayerListComponent implements OnInit {
   @Input() characters: CharacterStats[];
+  @Input() hovered: Hovered;
   percentFormat = '1.1-1';
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  mouseenter(character: CharacterStats) {
+    this.hovered.corporationID = character.info.corporationID;
+    this.hovered.allianceID = character.info.allianceID || null;
+  }
+
+  mouseleave(character: CharacterStats) {
+    this.hovered.corporationID = null;
+    this.hovered.allianceID = null;
   }
 
   shipPercentage(character: CharacterStats) {

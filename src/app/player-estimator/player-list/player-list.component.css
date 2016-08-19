@@ -8,3 +8,19 @@ table tbody tr td, table thead tr th {
   text-align: center;
   vertical-align: middle;
 }
+
+tr.samecorp {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+
+tr.samecorp:hover {
+  background-color: rgba(0, 255, 0, 0.4);
+}
+
+tr.samealli {
+  background-color: rgba(255, 255, 0, 0.2);
+}
+
+tr.samealli:hover {
+  background-color: rgba(255, 255, 0, 0.4);
+}

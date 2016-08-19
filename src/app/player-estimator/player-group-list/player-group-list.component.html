@@ -1,6 +1,9 @@
 <table class="table">
   <tbody>
-    <tr *ngFor="let elem of getCounts(characters)">
+    <tr *ngFor="let elem of getCounts(characters)"
+    [class.samecorp]="elem.corporationID === hovered.corporationID && elem.corporationID"
+    [class.samealli]="elem.allianceID === hovered.allianceID && elem.allianceID"
+    >
       <td>
         {{ elem.count }}x
       </td>

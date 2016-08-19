@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/Subject';
 import { CharacterIdService } from '../api/eve-xml-api/character-id.service';
 import { CharacterStats } from '../api/z-killboard/character-stats';
 import { CharacterStatsService } from '../api/z-killboard/character-stats.service';
+import { Hovered } from './hovered';
 import { PlayerListComponent } from './player-list';
 import { PlayerGroupListComponent } from './player-group-list';
 
@@ -19,6 +20,7 @@ export class PlayerEstimatorComponent implements OnInit {
   characters: CharacterStats[] = [];
   input: string;
   private searchTerms = new Subject<string>();
+  hovered: Hovered = new Hovered();
 
   constructor(
     private characterStatsService: CharacterStatsService,

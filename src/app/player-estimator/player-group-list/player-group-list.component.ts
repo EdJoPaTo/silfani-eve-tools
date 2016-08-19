@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { CharacterStats } from '../../api/z-killboard/character-stats';
+import { Hovered } from '../hovered';
 
 function orderByDesc(obj, selector) {
   let tmp = JSON.parse(JSON.stringify(obj));
@@ -19,6 +21,7 @@ function orderByDesc(obj, selector) {
 })
 export class PlayerGroupListComponent implements OnInit {
   @Input() characters: CharacterStats[];
+  @Input() hovered: Hovered;
 
   constructor() { }
 
