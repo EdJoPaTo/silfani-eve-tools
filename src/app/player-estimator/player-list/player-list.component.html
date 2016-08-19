@@ -51,7 +51,10 @@
         <img class="icon corporation" [src]="'//imageserver.eveonline.com/Corporation/'+ character.info.corporationID +'_256.png'" />
       </td>
       <td>
-        <img *ngIf="character.info.allianceID" class="icon alliance" [src]="'//imageserver.eveonline.com/Alliance/'+ character.info.allianceID +'_128.png'" />
+        <div class="alliance" *ngIf="character.info.allianceID">
+          <img class="icon" [src]="'//imageserver.eveonline.com/Alliance/'+ character.info.allianceID +'_128.png'" />
+          <div class="shortName">{{ allianceTag(character.info.allianceID) }}</div>
+        </div>
       </td>
     </tr>
   </tbody>

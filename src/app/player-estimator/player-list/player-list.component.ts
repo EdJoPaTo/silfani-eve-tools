@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { CharacterStats } from '../../api/z-killboard/character-stats';
+import { AllianceInformationService } from '../../api/eve-crest/alliance-information.service';
 import { Hovered } from '../hovered';
 import { ShortnumberPipe } from '../../shortnumber.pipe';
 
@@ -23,7 +24,9 @@ export class PlayerListComponent implements OnInit {
   @Input() hovered: Hovered;
   percentFormat = '1.1-1';
 
-  constructor() { }
+  constructor(
+    private allianceInformationService: AllianceInformationService
+  ) { }
 
   ngOnInit() {
   }
@@ -48,6 +51,10 @@ export class PlayerListComponent implements OnInit {
 
   iskPercentage(character: CharacterStats) {
     return percentage(character.iskDestroyed, character.iskLost);
+  }
+
+  allianceTag(allianceID: number): string {
+    return this.allianceInformationService.getTag(allianceID);
   }
 
   sorted(characters: CharacterStats[]): CharacterStats[] {

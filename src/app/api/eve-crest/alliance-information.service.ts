@@ -30,4 +30,9 @@ export class AllianceInformationService {
     let result = this.getCached(allianceID);
     return result ? result.name : 'loading...';
   }
+
+  getTag(allianceID: number): string {
+    let result = this.getCached(allianceID);
+    return result ? result.shortName : 'loading...';
+  }
 }
