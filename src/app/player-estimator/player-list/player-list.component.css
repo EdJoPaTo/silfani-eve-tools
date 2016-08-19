@@ -15,6 +15,11 @@ table tbody tr td, table thead tr th {
   vertical-align: middle;
 }
 
+table tbody tr td {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .destroyed {
   color: green;
 }
