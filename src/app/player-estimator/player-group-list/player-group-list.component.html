@@ -12,9 +12,13 @@
         <img *ngIf="elem.corporationID" class="icon corporation" [src]="'//imageserver.eveonline.com/Corporation/'+ elem.corporationID +'_256.png'" />
       </td>
       <td>
-        {{ elem.allianceID }}
-        {{ elem.corporationID }}
-        <-- imagine this is a name
+        <span *ngIf="elem.corporationID">
+          {{ elem.corporationID }}
+          <-- imagine this is a name
+        </span>
+        <span *ngIf="elem.allianceID">
+          {{ allianceName(elem.allianceID) }}
+        </span>
         <br />
         <span *ngIf="elem.corporationID">
           <a [href]="'https://zkillboard.com/corporation/'+ elem.corporationID +'/'" target="_blank">zK</a>

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { CharacterStats } from '../../api/z-killboard/character-stats';
+import { AllianceInformationService } from '../../api/eve-crest/alliance-information.service';
 import { Hovered } from '../hovered';
 
 function orderByDesc(obj, selector) {
@@ -23,7 +24,9 @@ export class PlayerGroupListComponent implements OnInit {
   @Input() characters: CharacterStats[];
   @Input() hovered: Hovered;
 
-  constructor() { }
+  constructor(
+    private allianceInformationService: AllianceInformationService
+  ) { }
 
   ngOnInit() {
   }
@@ -50,5 +53,9 @@ export class PlayerGroupListComponent implements OnInit {
 
     let countsArr = Object.keys(counts).map(key => counts[key]);
     return orderByDesc(countsArr, i => i.count);
+  }
+
+  allianceName(allianceID: number): string {
+    return this.allianceInformationService.getName(allianceID);
   }
 }
