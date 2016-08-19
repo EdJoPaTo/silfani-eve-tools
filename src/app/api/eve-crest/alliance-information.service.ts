@@ -18,17 +18,16 @@ export class AllianceInformationService {
   }
 
   private getCached(allianceID: number): any {
-    if (this.allianceDict[allianceID]) {
-      return this.allianceDict[allianceID];
+    if (this.allianceDict[allianceID] !== null && !this.allianceDict[allianceID]) {
+      this.allianceDict[allianceID] = null;
+      this.get(allianceID)
+        .subscribe(json => this.allianceDict[allianceID] = json);
     }
-    this.get(allianceID)
-      .subscribe(json => this.allianceDict[allianceID] = json);
-    return null;
+    return this.allianceDict[allianceID];
   }
 
   getName(allianceID: number): string {
     let result = this.getCached(allianceID);
-
     return result ? result.name : 'loading...';
   }
 }
