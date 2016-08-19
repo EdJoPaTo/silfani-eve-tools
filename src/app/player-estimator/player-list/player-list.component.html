@@ -4,7 +4,6 @@
       <th> </th>
       <th> Name </th>
       <th> Ships </th>
-      <th> Points </th>
       <th> ISK </th>
       <th> Corporation </th>
       <th> Alliance </th>
@@ -30,11 +29,6 @@
         {{ character.shipsDestroyed | shortnumber }}
         <br /> {{ shipPercentage(character) | percent:percentFormat }}
         <br /> {{ character.shipsLost | shortnumber }}
-      </td>
-      <td>
-        {{ character.pointsDestroyed | shortnumber }}
-        <br /> {{ pointPercentage(character) | percent:percentFormat }}
-        <br /> {{ character.pointsLost | shortnumber }}
       </td>
       <td>
         {{ character.iskDestroyed | shortnumber }}
