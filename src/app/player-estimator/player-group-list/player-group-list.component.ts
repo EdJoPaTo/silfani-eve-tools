@@ -28,6 +28,18 @@ export class PlayerGroupListComponent implements OnInit {
   ngOnInit() {
   }
 
+  mouseenter(obj: any) {
+    this.hovered.corporationID = obj.corporationID || null;
+    this.hovered.allianceID = obj.allianceID || null;
+    // console.log('enter', obj, this.hovered);
+  }
+
+  mouseleave(obj: any) {
+    this.hovered.corporationID = null;
+    this.hovered.allianceID = null;
+    // console.log('leave', obj);
+  }
+
   getCounts(characters: CharacterStats[]) {
     if (!characters) { return []; }
     let counts = {};
