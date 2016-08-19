@@ -3,3 +3,7 @@
   height: 64px;
   min-width: 64px;
 }
+
+table tbody tr td, table thead tr th {
+  vertical-align: middle;
+}

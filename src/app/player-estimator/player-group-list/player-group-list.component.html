@@ -1,14 +1,12 @@
-<table>
+<table class="table">
   <tbody>
     <tr *ngFor="let elem of getCounts(characters)">
       <td>
         {{ elem.count }}x
       </td>
-      <td *ngIf="elem.allianceID">
-        <img class="icon alliance" [src]="'//image.eveonline.com/Alliance/'+ elem.allianceID +'_128.png'" />
-      </td>
-      <td *ngIf="elem.corporationID">
-        <img class="icon corporation" [src]="'//image.eveonline.com/Corporation/'+ elem.corporationID +'_256.png'" />
+      <td>
+        <img *ngIf="elem.allianceID" class="icon alliance" [src]="'//image.eveonline.com/Alliance/'+ elem.allianceID +'_128.png'" />
+        <img *ngIf="elem.corporationID" class="icon corporation" [src]="'//image.eveonline.com/Corporation/'+ elem.corporationID +'_256.png'" />
       </td>
       <td>
         {{ elem.allianceID }}
