@@ -16,8 +16,7 @@ export class CharacterStatsService {
     return this.http
       .get(`https://zkillboard.com/api/stats/characterID/${characterID}/`)
       .map((r: Response) => r.json())
-      .filter(json => json && json.info)
-      .map(json => new CharacterStats(json));
+      .map(json => json && json.info ? new CharacterStats(json) : null);
   }
 
 }
