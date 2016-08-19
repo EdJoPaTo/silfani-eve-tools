@@ -29,13 +29,8 @@ export class PlayerEstimatorComponent implements OnInit {
     this.searchTerms
       .debounceTime(300)        // wait for 300ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous
-      .switchMap(text => {
-        let names = text
-          .split('\n')
-          .filter(str => str);
-
-        return this.statsOfNames(names);
-      })
+      .map(text => text.split('\n').filter(str => str))
+      .flatMap(names => this.statsOfNames(names))
       .map(result => result.filter(char => char))
       .subscribe(result => this.characters = result as CharacterStats[]);
 
