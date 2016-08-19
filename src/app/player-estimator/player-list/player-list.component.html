@@ -22,18 +22,30 @@
       <td>
         {{ character.info.name }}
         <br />
-        <a [href]="'https://zkillboard.com/character/'+ character.id +'/'" target="_blank">zK</a>
-        <a [href]="'http://eve-hunt.net/hunt/'+ character.info.name +'/'" target="_blank">Hunt</a>
+        <a [href]="'https://zkillboard.com/character/'+ character.id +'/'" target="_blank" title="zKillboard">zK</a>
+        <a [href]="'http://eve-hunt.net/hunt/'+ character.info.name +'/'" target="_blank" title="EVE Hunt">Hunt</a>
       </td>
       <td>
-        {{ character.shipsDestroyed | shortnumber }}
-        <br /> {{ shipPercentage(character) | percent:percentFormat }}
-        <br /> {{ character.shipsLost | shortnumber }}
+        <div class="destroyed" title="ships destroyed">
+          {{ character.shipsDestroyed | shortnumber }}
+        </div>
+        <div>
+          {{ shipPercentage(character) | percent:percentFormat }}
+        </div>
+        <div class="lost" title="ships lost">
+          {{ character.shipsLost | shortnumber }}
+        </div>
       </td>
       <td>
-        {{ character.iskDestroyed | shortnumber }}
-        <br /> {{ iskPercentage(character) | percent:percentFormat }}
-        <br /> {{ character.iskLost | shortnumber }}
+        <div class="destroyed" title="ISK destroyed">
+          {{ character.iskDestroyed | shortnumber }}
+        </div>
+        <div>
+          {{ iskPercentage(character) | percent:percentFormat }}
+        </div>
+        <div class="lost" title="ISK lost">
+          {{ character.iskLost | shortnumber }}
+        </div>
       </td>
       <td>
         <img class="icon corporation" [src]="'//image.eveonline.com/Corporation/'+ character.info.corporationID +'_256.png'" />

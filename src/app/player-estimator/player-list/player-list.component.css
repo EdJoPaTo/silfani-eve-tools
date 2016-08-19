@@ -9,6 +9,14 @@ table tbody tr td, table thead tr th {
   vertical-align: middle;
 }
 
+.destroyed {
+  color: green;
+}
+
+.lost {
+  color: red;
+}
+
 tr.samecorp {
   background-color: rgba(0, 255, 0, 0.2);
 }
