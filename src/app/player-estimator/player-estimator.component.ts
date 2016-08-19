@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/Subject';
 import { CharacterIdService } from '../api/eve-xml-api/character-id.service';
 import { CharacterStats } from '../api/z-killboard/character-stats';
 import { CharacterStatsService } from '../api/z-killboard/character-stats.service';
+import { AllianceInformationService } from '../api/eve-crest/alliance-information.service';
 import { Hovered } from './hovered';
 import { PlayerListComponent } from './player-list';
 import { PlayerGroupListComponent } from './player-group-list';
@@ -14,7 +15,7 @@ import { PlayerGroupListComponent } from './player-group-list';
   templateUrl: 'player-estimator.component.html',
   styleUrls: ['player-estimator.component.css'],
   directives: [PlayerGroupListComponent, PlayerListComponent],
-  providers: [CharacterIdService, CharacterStatsService]
+  providers: [CharacterIdService, CharacterStatsService, AllianceInformationService]
 })
 export class PlayerEstimatorComponent implements OnInit {
   characters: CharacterStats[] = [];

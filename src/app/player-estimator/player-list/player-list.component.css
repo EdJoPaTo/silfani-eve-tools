@@ -4,9 +4,28 @@ img.icon {
   min-width: 64px;
 }
 
+.alliance .icon {
+  height: 44px;
+  width: 44px;
+  min-width: 44px;
+}
+
 table tbody tr td, table thead tr th {
   text-align: center;
   vertical-align: middle;
+}
+
+table tbody tr td {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.destroyed {
+  color: green;
+}
+
+.lost {
+  color: red;
 }
 
 tr.samecorp {
