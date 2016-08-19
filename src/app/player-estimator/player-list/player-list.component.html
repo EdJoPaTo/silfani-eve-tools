@@ -17,7 +17,7 @@
     [class.samealli]="character.info.allianceID === hovered.allianceID"
     >
       <td>
-        <img class="icon character" [src]="'//image.eveonline.com/Character/'+ character.id +'_256.jpg'" />
+        <img class="icon character" [src]="'//imageserver.eveonline.com/Character/'+ character.id +'_256.jpg'" />
       </td>
       <td>
         {{ character.info.name }}
@@ -48,10 +48,10 @@
         </div>
       </td>
       <td>
-        <img class="icon corporation" [src]="'//image.eveonline.com/Corporation/'+ character.info.corporationID +'_256.png'" />
+        <img class="icon corporation" [src]="'//imageserver.eveonline.com/Corporation/'+ character.info.corporationID +'_256.png'" />
       </td>
       <td>
-        <img *ngIf="character.info.allianceID" class="icon alliance" [src]="'//image.eveonline.com/Alliance/'+ character.info.allianceID +'_128.png'" />
+        <img *ngIf="character.info.allianceID" class="icon alliance" [src]="'//imageserver.eveonline.com/Alliance/'+ character.info.allianceID +'_128.png'" />
       </td>
     </tr>
   </tbody>
