@@ -1,11 +1,3 @@
-function percentage(destroyed, lost) {
-  if (destroyed + lost > 0) {
-    return destroyed / (destroyed + lost);
-  } else {
-    return 0;
-  }
-}
-
 export class CharacterStats {
   type: string;
   id: number;
