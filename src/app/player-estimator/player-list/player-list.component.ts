@@ -16,7 +16,7 @@ function percentage(destroyed, lost) {
 @Component({
   selector: 'app-player-list',
   templateUrl: 'player-list.component.html',
-  styleUrls: ['player-list.component.css'],
+  styleUrls: ['player-list.component.scss'],
   pipes: [ShortnumberPipe]
 })
 export class PlayerListComponent implements OnInit {

@@ -18,7 +18,7 @@ function orderByDesc(obj, selector) {
 @Component({
   selector: 'app-player-group-list',
   templateUrl: 'player-group-list.component.html',
-  styleUrls: ['player-group-list.component.css']
+  styleUrls: ['player-group-list.component.scss']
 })
 export class PlayerGroupListComponent implements OnInit {
   @Input() characters: CharacterStats[];
