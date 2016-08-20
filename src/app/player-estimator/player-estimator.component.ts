@@ -53,8 +53,4 @@ export class PlayerEstimatorComponent implements OnInit {
   }
 
   search(term: string) { this.searchTerms.next(term); }
-
-  rows(input: string): number {
-    return input.split('\n').length + 4;
-  }
 }
