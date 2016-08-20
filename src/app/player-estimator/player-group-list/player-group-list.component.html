@@ -5,6 +5,7 @@
     (mouseleave)='mouseleave(elem)'
     [class.samecorp]="elem.corporationID === hovered.corporationID && elem.corporationID"
     [class.samealli]="elem.allianceID === hovered.allianceID && elem.allianceID"
+    [class.small]="characters.length > 20"
     >
       <td>
         {{ elem.count }}x

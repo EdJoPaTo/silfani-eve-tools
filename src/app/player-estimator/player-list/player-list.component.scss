@@ -43,3 +43,17 @@ tr.samealli {
 tr.samealli:hover {
   background-color: rgba(255, 255, 0, 0.4);
 }
+
+.small {
+  font-size: 80%;
+  img.icon {
+    height: 44px;
+    width: 44px;
+    min-width: 44px;
+  }
+  .alliance .icon {
+    height: 24px;
+    width: 24px;
+    min-width: 24px;
+  }
+}

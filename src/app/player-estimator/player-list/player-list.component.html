@@ -15,6 +15,7 @@
     (mouseleave)='mouseleave(character)'
     [class.samecorp]="character.info.corporationID === hovered.corporationID"
     [class.samealli]="character.info.allianceID === hovered.allianceID"
+    [class.small]="characters.length > 20"
     >
       <td>
         <img class="icon character" [src]="'//imageserver.eveonline.com/Character/'+ character.id +'_256.jpg'" />
