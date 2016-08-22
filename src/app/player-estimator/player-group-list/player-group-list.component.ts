@@ -44,6 +44,8 @@ export class PlayerGroupListComponent implements OnInit {
   }
 
   getCounts(characters: CharacterStats[]) {
+    // TODO: als Pipe umsetzen -> change detection wird damit vllt umgangen
+
     if (!characters) { return []; }
     let counts = {};
 
