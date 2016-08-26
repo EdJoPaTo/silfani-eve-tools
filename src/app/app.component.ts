@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { PlayerEstimatorComponent } from './player-estimator';
+import { PilotAnalyzerComponent } from './pilot-analyzer';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  directives: [PlayerEstimatorComponent]
+  directives: [PilotAnalyzerComponent]
 })
 export class AppComponent {
   title = 'EVE Angular2 Tools';

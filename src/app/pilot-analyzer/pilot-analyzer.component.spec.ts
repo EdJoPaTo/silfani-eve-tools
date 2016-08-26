@@ -3,11 +3,11 @@
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { addProviders, async, inject } from '@angular/core/testing';
-import { PlayerEstimatorComponent } from './player-estimator.component';
+import { PilotAnalyzerComponent } from './pilot-analyzer.component';
 
-describe('Component: PlayerEstimator', () => {
+describe('Component: PilotAnalyzer', () => {
   it('should create an instance', () => {
-    //let component = new PlayerEstimatorComponent();
+    //let component = new PilotAnalyzerComponent();
     //expect(component).toBeTruthy();
   });
 });

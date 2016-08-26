@@ -11,13 +11,13 @@ import { PilotListComponent } from './pilot-list';
 import { PilotGroupListComponent } from './pilot-group-list';
 
 @Component({
-  selector: 'app-player-estimator',
-  templateUrl: 'player-estimator.component.html',
-  styleUrls: ['player-estimator.component.css'],
+  selector: 'app-pilot-analyzer',
+  templateUrl: 'pilot-analyzer.component.html',
+  styleUrls: ['pilot-analyzer.component.css'],
   directives: [PilotGroupListComponent, PilotListComponent],
   providers: [AutocompleteService, CharacterStatsService, AllianceInformationService]
 })
-export class PlayerEstimatorComponent implements OnInit {
+export class PilotAnalyzerComponent implements OnInit {
   characters: CharacterStats[] = [];
   input: string;
   private searchTerms = new Subject<string>();

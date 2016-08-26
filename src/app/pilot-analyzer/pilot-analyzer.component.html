@@ -1,6 +1,6 @@
 <div class="columns is-desktop is-tablet">
   <div class="column is-narrow">
-    <textarea [(ngModel)]="input" placeholder="playernames" rows="6" #searchBox id="search-box" autocorrect="off" autocapitalize="off" autocomplete="off" (keyup)="search(searchBox.value)"></textarea>
+    <textarea [(ngModel)]="input" placeholder="pilot names" rows="6" #searchBox id="search-box" autocorrect="off" autocapitalize="off" autocomplete="off" (keyup)="search(searchBox.value)"></textarea>
 
     <app-pilot-group-list [characters]="characters" [hovered]="hovered"></app-pilot-group-list>
   </div>
