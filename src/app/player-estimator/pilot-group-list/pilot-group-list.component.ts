@@ -6,12 +6,12 @@ import { Hovered } from '../hovered';
 import { GroupcountPipe } from './groupcount.pipe';
 
 @Component({
-  selector: 'app-player-group-list',
-  templateUrl: 'player-group-list.component.html',
-  styleUrls: ['player-group-list.component.scss'],
+  selector: 'app-pilot-group-list',
+  templateUrl: 'pilot-group-list.component.html',
+  styleUrls: ['pilot-group-list.component.scss'],
   pipes: [GroupcountPipe]
 })
-export class PlayerGroupListComponent implements OnInit {
+export class PilotGroupListComponent implements OnInit {
   @Input() characters: CharacterStats[];
   @Input() hovered: Hovered;
 

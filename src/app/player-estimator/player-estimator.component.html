@@ -2,7 +2,7 @@
   <div class="column is-narrow">
     <textarea [(ngModel)]="input" placeholder="playernames" rows="6" #searchBox id="search-box" autocorrect="off" autocapitalize="off" autocomplete="off" (keyup)="search(searchBox.value)"></textarea>
 
-    <app-player-group-list [characters]="characters" [hovered]="hovered"></app-player-group-list>
+    <app-pilot-group-list [characters]="characters" [hovered]="hovered"></app-pilot-group-list>
   </div>
   <div class="column">
     <app-pilot-list [characters]="characters" [hovered]="hovered"></app-pilot-list>

@@ -3,11 +3,11 @@
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { addProviders, async, inject } from '@angular/core/testing';
-import { PlayerGroupListComponent } from './player-group-list.component';
+import { PilotGroupListComponent } from './pilot-group-list.component';
 
-describe('Component: PlayerGroupList', () => {
+describe('Component: PilotGroupList', () => {
   it('should create an instance', () => {
-    let component = new PlayerGroupListComponent();
+    let component = new PilotGroupListComponent();
     expect(component).toBeTruthy();
   });
 });
