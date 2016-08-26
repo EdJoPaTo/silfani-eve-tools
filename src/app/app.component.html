@@ -1,4 +1,17 @@
-<h1>
-  {{title}}
-</h1>
-<app-pilot-analyzer></app-pilot-analyzer>
+<app-navbar [title]="title"></app-navbar>
+<div class="content">
+  <router-outlet></router-outlet>
+  <div class="footer">
+    <hr />
+    <div class="columns">
+      <div class="column has-text-left">
+        All <a routerLink="/legal">EVE related materials</a> are property of <a href="//ccpgames.com" target="_blank">CCP Games</a><br>
+        <a routerLink="/legal">CCP Copyright Notice</a><br> german page, german "<a routerLink="/impressum">Impressum</a>"
+      </div>
+      <div class="column has-text-right">
+        <a routerLink="/about">About</a><br>
+        <a href="//github.com/EdJoPaTo/eve-angular2" target="_blank">GitHub</a><br> hosted by <a href="//skilled-minority.de" target="_blank">Skilled-Minority</a>
+      </div>
+    </div>
+  </div>
+</div>

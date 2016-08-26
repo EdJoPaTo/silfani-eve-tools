@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { PilotAnalyzerComponent } from './pilot-analyzer';
+import { NavbarComponent } from './navbar';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css'],
-  directives: [PilotAnalyzerComponent]
+  styleUrls: ['app.component.scss'],
+  directives: [NavbarComponent]
 })
 export class AppComponent {
   title = 'EVE Angular2 Tools';
