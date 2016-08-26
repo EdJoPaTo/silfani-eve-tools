@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { CharacterIdService } from '../api/eve-xml-api/character-id.service';
+import { AutocompleteService } from '../api/z-killboard/autocomplete.service';
 import { CharacterStats } from '../api/z-killboard/character-stats';
 import { CharacterStatsService } from '../api/z-killboard/character-stats.service';
 import { AllianceInformationService } from '../api/eve-crest/alliance-information.service';
@@ -15,7 +15,7 @@ import { PlayerGroupListComponent } from './player-group-list';
   templateUrl: 'player-estimator.component.html',
   styleUrls: ['player-estimator.component.css'],
   directives: [PlayerGroupListComponent, PlayerListComponent],
-  providers: [CharacterIdService, CharacterStatsService, AllianceInformationService]
+  providers: [AutocompleteService, CharacterStatsService, AllianceInformationService]
 })
 export class PlayerEstimatorComponent implements OnInit {
   characters: CharacterStats[] = [];
@@ -25,7 +25,7 @@ export class PlayerEstimatorComponent implements OnInit {
 
   constructor(
     private characterStatsService: CharacterStatsService,
-    private characterIdService: CharacterIdService
+    private zKautocompleteService: AutocompleteService
   ) { }
 
   ngOnInit() {
@@ -42,7 +42,8 @@ export class PlayerEstimatorComponent implements OnInit {
   }
 
   statsOfName(name: string): Observable<CharacterStats> {
-    return this.characterIdService.get(name)
+    return this.zKautocompleteService.characterID(name)
+      .map(ids => ids[0] ? ids[0] : null)
       .flatMap(id => id ? this.characterStatsService.get(id) : Observable.of<CharacterStats>(null));
   }
 
