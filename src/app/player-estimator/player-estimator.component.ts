@@ -7,14 +7,14 @@ import { CharacterStats } from '../api/z-killboard/character-stats';
 import { CharacterStatsService } from '../api/z-killboard/character-stats.service';
 import { AllianceInformationService } from '../api/eve-crest/alliance-information.service';
 import { Hovered } from './hovered';
-import { PlayerListComponent } from './player-list';
+import { PilotListComponent } from './pilot-list';
 import { PlayerGroupListComponent } from './player-group-list';
 
 @Component({
   selector: 'app-player-estimator',
   templateUrl: 'player-estimator.component.html',
   styleUrls: ['player-estimator.component.css'],
-  directives: [PlayerGroupListComponent, PlayerListComponent],
+  directives: [PlayerGroupListComponent, PilotListComponent],
   providers: [AutocompleteService, CharacterStatsService, AllianceInformationService]
 })
 export class PlayerEstimatorComponent implements OnInit {

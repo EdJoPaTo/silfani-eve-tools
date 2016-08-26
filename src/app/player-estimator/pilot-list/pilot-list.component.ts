@@ -14,12 +14,12 @@ function percentage(destroyed, lost) {
 }
 
 @Component({
-  selector: 'app-player-list',
-  templateUrl: 'player-list.component.html',
-  styleUrls: ['player-list.component.scss'],
+  selector: 'app-pilot-list',
+  templateUrl: 'pilot-list.component.html',
+  styleUrls: ['pilot-list.component.scss'],
   pipes: [ShortnumberPipe]
 })
-export class PlayerListComponent implements OnInit {
+export class PilotListComponent implements OnInit {
   @Input() characters: CharacterStats[];
   @Input() hovered: Hovered;
   percentFormat = '1.1-1';
