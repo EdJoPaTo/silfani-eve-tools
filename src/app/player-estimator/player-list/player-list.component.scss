@@ -57,3 +57,23 @@ tr.samealli:hover {
     min-width: 24px;
   }
 }
+
+@media (max-width: 979px) {
+  img.icon {
+    height: 44px;
+    width: 44px;
+    min-width: 44px;
+  }
+  .alliance .icon {
+    height: 24px;
+    width: 24px;
+    min-width: 24px;
+  }
+  tr {
+    font-size: 80%;
+  }
+  td {
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+}

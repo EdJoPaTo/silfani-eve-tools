@@ -37,3 +37,14 @@ tr.samealli:hover {
     min-width: 44px;
   }
 }
+
+@media (max-width: 979px) {
+  .icon {
+    height: 44px;
+    width: 44px;
+    min-width: 44px;
+  }
+  tr {
+    font-size: 80%;
+  }
+}
