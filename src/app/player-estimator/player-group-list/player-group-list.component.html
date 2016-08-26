@@ -1,6 +1,6 @@
 <table class="table">
   <tbody>
-    <tr *ngFor="let elem of getCounts(characters)"
+    <tr *ngFor="let elem of characters | groupcount"
     (mouseenter)='mouseenter(elem)'
     (mouseleave)='mouseleave(elem)'
     [class.samecorp]="elem.corporationID === hovered.corporationID && elem.corporationID"
