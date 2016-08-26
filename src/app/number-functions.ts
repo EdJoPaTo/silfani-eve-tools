@@ -2,12 +2,12 @@ const allLetters = ['', 'k', 'M', 'B', 'T'];
 
 export function formatNumberShort(value: number): string {
   let exponent = value !== 0 ? Math.ceil(Math.log10(value)) : 0;
-  let engineerExponentLevel = Math.floor(exponent / 3);
+  let engineerExponentLevel = Math.max(0, Math.floor((exponent - 1) / 3));
   let engineerExponent = engineerExponentLevel * 3;
   let letter = allLetters[engineerExponentLevel];
   let shortValue = value / Math.pow(10, engineerExponent);
 
-  let fractionDigits = Math.min(2, 3 - exponent % 3);
+  let fractionDigits = Math.min(2, 3 - (exponent - engineerExponent));
 
   let valueString = shortValue.toFixed(fractionDigits);
   return valueString + letter;
