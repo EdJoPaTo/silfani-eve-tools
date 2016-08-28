@@ -1,0 +1,45 @@
+<h1>Security Agent Missions</h1>
+{{ missions.length }} missions loaded<span *ngIf="filtered.length">, {{ filtered.length }} found</span>.
+
+<input type="text" placeholder="Search..." #filterBox autocorrect="off" autocapitalize="off" autocomplete="off" tabindex="1" autofocus (keyup)="filter(filterBox.value)">
+
+<table class="table" *ngIf="filtered.length">
+  <thead>
+    <tr>
+      <th> Name (english) </th>
+      <th> Name (deutsch) </th>
+      <th> Infos </th>
+      <th> Warning ?! </th>
+      <th> EVE-Survival </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mission of filtered">
+      <td>
+        {{ mission.name.en }}
+      </td>
+      <td>
+        {{ mission.name.de }}
+      </td>
+      <td>
+        <span *ngFor="let info of mission.infos">
+            <img *ngIf="info | detailedinfo | infoicon" class="infoicon" [src]="info | detailedinfo | infoicon" [title]="info | detailedinfo | infotitle" />
+          <span *ngIf="!info | detailedinfo | infoicon">
+            {{ info | detailedinfo | infotitle }}
+          </span>
+        </span>
+      </td>
+      <td>
+        {{ mission.warn }}
+      </td>
+      <td>
+        <div *ngIf="mission.blitz">
+          <a [href]="mission.blitz" target="_blank">Blitz Information</a>
+        </div>
+        <div *ngFor="let level of [1,2,3,4,5]">
+          <a *ngIf="mission.level[level]" [href]="mission.level[level]" target="_blank">Level {{ level }}</a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

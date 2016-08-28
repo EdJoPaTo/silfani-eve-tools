@@ -13,12 +13,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { PilotAnalyzerComponent } from './pilot-analyzer';
 import { OverviewComponent } from './overview/overview.component';
+import { MissionsComponent } from './missions/missions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PilotAnalyzerComponent,
     OverviewComponent,
+    PilotAnalyzerComponent,
+    MissionsComponent,
     AboutComponent,
     ImpressumComponent,
     LegalComponent,
