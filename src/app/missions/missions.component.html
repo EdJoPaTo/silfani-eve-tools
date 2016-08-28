@@ -1,5 +1,5 @@
 <h1>Security Agent Missions</h1>
-{{ missions.length }} missions loaded<span *ngIf="filtered.length">, {{ filtered.length }} found</span>.
+{{ missions.length }} missions loaded<span *ngIf="filtered.length && filtered.length != missions.length">, {{ filtered.length }} found</span>.
 
 <input type="text" placeholder="Search..." #filterBox autocorrect="off" autocapitalize="off" autocomplete="off" tabindex="1" autofocus (keyup)="filter(filterBox.value)">
 
