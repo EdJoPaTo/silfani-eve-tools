@@ -18,6 +18,7 @@ export class MissionsComponent implements OnInit {
   private missions = [];
   private filterTerms = new Subject<string>();
   private filtered = [];
+  private maxElements = 30;
 
   constructor(
     private missionService: MissionService
@@ -57,5 +58,4 @@ export class MissionsComponent implements OnInit {
       }
     });
   }
-
 }

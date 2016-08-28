@@ -1,5 +1,5 @@
 <h1>Security Agent Missions</h1>
-{{ missions.length }} missions loaded<span *ngIf="filtered.length && filtered.length != missions.length">, {{ filtered.length }} found</span>.
+{{ missions.length }} missions loaded<span *ngIf="missions.length && filtered.length !== missions.length">, {{ filtered.length }} found</span><span *ngIf="filtered.length > maxElements">, only {{ maxElements }} shown</span>.
 
 <input type="text" placeholder="Search..." #filterBox autocorrect="off" autocapitalize="off" autocomplete="off" tabindex="1" autofocus (keyup)="filter(filterBox.value)">
 
@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let mission of filtered">
+    <tr *ngFor="let mission of filtered.slice(0, maxElements)">
       <td>
         {{ mission.name.en }}
       </td>
@@ -42,3 +42,6 @@
     </tr>
   </tbody>
 </table>
+<div *ngIf="filtered.length && filtered.length > maxElements" class="has-text-centered">
+  there are more missions... please specify your filter to get a closer result.
+</div>
