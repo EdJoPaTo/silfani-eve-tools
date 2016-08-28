@@ -8,5 +8,5 @@ import { NavbarComponent } from './navbar';
   directives: [NavbarComponent]
 })
 export class AppComponent {
-  title = 'EVE Angular2 Tools';
+  title = 'Silfani EVE Tools';
 }
