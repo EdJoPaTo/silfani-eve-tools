@@ -1,9 +1,18 @@
-<nav class="level">
-  <div class="level-left">
-    <a class="level-item main" routerLink="/">
+<nav class="nav">
+  <div class="nav-left">
+    <a class="nav-item is-brand" routerLink="/">
       {{title}}
     </a>
-    <a class="level-item toggle link" routerLink="/pilot-analyzer" routerLinkActive="active">Pilot Analyzer</a>
-    <a class="level-item toggle link" routerLink="/missions" routerLinkActive="active">Missions</a>
+  </div>
+
+  <span [class.nav-toggle]="!navopen" (click)="navopen = !navopen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+
+  <div class="nav-right" [class.nav-menu]="!navopen" (click)="navopen = false">
+    <a class="nav-item is-tab" routerLink="/pilot-analyzer" routerLinkActive="is-active">Pilot Analyzer</a>
+    <a class="nav-item is-tab" routerLink="/missions" routerLinkActive="is-active">Missions</a>
   </div>
 </nav>
