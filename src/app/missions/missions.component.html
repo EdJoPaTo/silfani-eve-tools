@@ -9,7 +9,6 @@
       <th> Name (english) </th>
       <th> Name (deutsch) </th>
       <th> Infos </th>
-      <th> Warning ?! </th>
       <th> EVE-Survival </th>
     </tr>
   </thead>
@@ -23,18 +22,18 @@
       </td>
       <td>
         <span *ngFor="let info of mission.infos">
-            <img *ngIf="info | detailedinfo | infoicon" class="infoicon" [src]="info | detailedinfo | infoicon" [title]="info | detailedinfo | infotitle" />
+          <img *ngIf="info | detailedinfo | infoicon" class="infoicon" [src]="info | detailedinfo | infoicon" [title]="info | detailedinfo | infotitle" />
           <span *ngIf="!info | detailedinfo | infoicon">
             {{ info | detailedinfo | infotitle }}
           </span>
         </span>
       </td>
       <td>
-        {{ mission.warn }}
-      </td>
-      <td>
+        <div *ngIf="mission.warn" title="lose of faction standing!">
+          Against Empire!
+        </div>
         <div *ngIf="mission.blitz">
-          <a [href]="mission.blitz" target="_blank">Blitz Information</a>
+          <a [href]="mission.blitz" target="_blank">Blitz</a>
         </div>
         <div *ngFor="let level of [1,2,3,4,5]">
           <a *ngIf="mission.level[level]" [href]="mission.level[level]" target="_blank">Level {{ level }}</a>
