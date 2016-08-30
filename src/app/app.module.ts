@@ -15,11 +15,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PilotAnalyzerComponent } from './pilot-analyzer';
 import { OverviewComponent } from './overview/overview.component';
 import { MissionsComponent } from './missions/missions.component';
+import { MiningComponent } from './mining/mining.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OverviewComponent,
+    MiningComponent,
     PilotAnalyzerComponent,
     MissionsComponent,
     AboutComponent,

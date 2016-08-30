@@ -1,0 +1,15 @@
+<h1>Mining Overview</h1>
+<div class="columns">
+  <div class="column">
+    <app-mineable-table></app-mineable-table>
+    <app-mineral-table></app-mineral-table>
+  </div>
+  <div class="column is-narrow" *ngIf="item.id">
+    <div>
+      <div class="notification">
+        <button class="delete" (click)="closeDetails()"></button>
+        <app-details [item]=item></app-details>
+      </div>
+    </div>
+  </div>
+</div>

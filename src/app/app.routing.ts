@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { OverviewComponent } from './overview';
+import { MiningComponent } from './mining';
 import { PilotAnalyzerComponent } from './pilot-analyzer';
 import { MissionsComponent } from './missions';
 
@@ -11,6 +12,7 @@ import { PageNotFoundComponent } from './page-not-found';
 
 const appRoutes: Routes = [
   { path: '', component: OverviewComponent },
+  { path: 'mining', component: MiningComponent },
   { path: 'pilot-analyzer', component: PilotAnalyzerComponent },
   { path: 'missions', component: MissionsComponent },
   { path: 'about', component: AboutComponent },
