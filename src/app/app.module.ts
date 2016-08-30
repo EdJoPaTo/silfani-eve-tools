@@ -10,6 +10,7 @@ import { AboutComponent } from './about/about.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { LegalComponent } from './legal/legal.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { PilotAnalyzerComponent } from './pilot-analyzer';
 import { OverviewComponent } from './overview/overview.component';
@@ -24,7 +25,8 @@ import { MissionsComponent } from './missions/missions.component';
     AboutComponent,
     ImpressumComponent,
     LegalComponent,
-    NavbarComponent
+    NavbarComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
