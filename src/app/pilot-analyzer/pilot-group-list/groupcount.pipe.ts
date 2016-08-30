@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { CharacterStats } from '../../api/z-killboard/character-stats';
+import { ZKillStats } from '../../api/z-killboard/z-kill-stats';
 
 function orderByDesc(obj, selector) {
   let tmp = JSON.parse(JSON.stringify(obj));
@@ -18,7 +18,7 @@ function orderByDesc(obj, selector) {
 })
 export class GroupcountPipe implements PipeTransform {
 
-  transform(characters: CharacterStats[], args?: any): any[] {
+  transform(characters: ZKillStats[], args?: any): any[] {
     if (!characters) { return []; }
     let counts = {};
 
