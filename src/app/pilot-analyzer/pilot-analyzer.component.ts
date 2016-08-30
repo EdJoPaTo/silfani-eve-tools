@@ -50,7 +50,7 @@ export class PilotAnalyzerComponent implements OnInit {
   statsOfNames(names: string[]): Observable<CharacterStats[]> {
     return Observable.forkJoin(
       names.map(name => this.statsOfName(name))
-    );
+    ) as Observable<CharacterStats[]>;
   }
 
   search(term: string) { this.searchTerms.next(term); }
