@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { ItemnameComponent } from './itemname';
 import { PricetableComponent } from './pricetable';
+import { ReprocesstableComponent } from './reprocesstable';
 
 import { Item } from '../item';
 
@@ -11,7 +12,8 @@ import { Item } from '../item';
   styleUrls: ['details.component.scss'],
   directives: [
     ItemnameComponent,
-    PricetableComponent
+    PricetableComponent,
+    ReprocesstableComponent
   ]
 })
 export class DetailsComponent implements OnInit {

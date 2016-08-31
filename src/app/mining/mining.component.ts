@@ -8,13 +8,15 @@ import { DetailsComponent } from './details';
 
 import { Item } from './item';
 import { FuzzworkMarketService } from '../api/fuzzwork-market.service';
+import { StackPriceService } from './stack-price.service';
 
 @Component({
   selector: 'app-mining',
   templateUrl: 'mining.component.html',
   styleUrls: ['mining.component.scss'],
   providers: [
-    FuzzworkMarketService
+    FuzzworkMarketService,
+    StackPriceService
   ],
   directives: [
     MineableTableComponent,
