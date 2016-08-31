@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { ItemnameComponent } from './itemname';
 import { PricetableComponent } from './pricetable';
 
 import { Item } from '../item';
@@ -9,6 +10,7 @@ import { Item } from '../item';
   templateUrl: 'details.component.html',
   styleUrls: ['details.component.scss'],
   directives: [
+    ItemnameComponent,
     PricetableComponent
   ]
 })
