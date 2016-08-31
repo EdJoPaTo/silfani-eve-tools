@@ -32,10 +32,23 @@ export class PilotAnalyzerComponent implements OnInit {
     this.searchTerms
       .debounceTime(300)        // wait for 300ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous
-      .map(text => text.split('\n').filter(str => str))
-      .flatMap(names => this.statsOfNames(names))
-      .map(result => result.filter(char => char))
-      .subscribe(result => this.characters = result as ZKillStats[]);
+      .map(input => input.split('\n').filter(str => str))
+      .subscribe(names => {
+        let clear = true;
+        Observable.of<string[]>(names)
+          .flatMap(a => this.statsOfNames(a))
+          .flatMap(a => a)
+          .subscribe(stats => {
+            if (clear) {
+              clear = false;
+              this.characters = [];
+            }
+            if (stats) {
+              this.characters = this.characters.concat([stats]);
+            }
+          }
+          );
+      });
 
     this.input = 'Rell Silfani\nKarnis Delvari\n';
     this.search(this.input);
@@ -47,10 +60,8 @@ export class PilotAnalyzerComponent implements OnInit {
       .flatMap(id => id ? this.zKillStatsService.character(id) : Observable.of<ZKillStats>(null));
   }
 
-  statsOfNames(names: string[]): Observable<ZKillStats[]> {
-    return Observable.forkJoin(
-      names.map(name => this.statsOfName(name))
-    ) as Observable<ZKillStats[]>;
+  statsOfNames(names: string[]): Observable<ZKillStats>[] {
+    return names.map(name => this.statsOfName(name));
   }
 
   search(term: string) { this.searchTerms.next(term); }
