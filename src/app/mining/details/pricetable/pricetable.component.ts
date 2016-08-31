@@ -10,8 +10,8 @@ import { FuzzworkMarketService } from '../../../api/fuzzwork-market.service';
 export class PricetableComponent implements OnInit {
   @Input() id: number;
   @Input() amount: number;
+  @Input() myAmount: number;
   price: any;
-  myAmount = 1;
 
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService

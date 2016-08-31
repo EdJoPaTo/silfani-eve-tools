@@ -14,6 +14,7 @@ import { Item } from '../item';
 })
 export class DetailsComponent implements OnInit {
   @Input() item: Item;
+  myAmount = 1;
 
   constructor() { }
 
