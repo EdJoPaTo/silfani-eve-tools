@@ -11,6 +11,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let character of sorted(characters)"
+    (touch)='mouseenter(character)'
     (mouseenter)='mouseenter(character)'
     (mouseleave)='mouseleave(character)'
     [class.samecorp]="character.info.corporationID === hovered.corporationID"
