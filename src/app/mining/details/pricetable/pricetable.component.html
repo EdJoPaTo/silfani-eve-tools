@@ -2,42 +2,42 @@
   <thead>
 
     <tr>
-      <th> Items </th>
+      <th> Amount </th>
       <th> Sell </th>
       <th> Buy </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
+      <td class="has-text-right">
         1
       </td>
-      <td>
+      <td class="has-text-right">
         {{ price.sell.percentile | number: '1.2-2' }} ISK
       </td>
-      <td>
+      <td class="has-text-right">
         {{ price.buy.percentile | number: '1.2-2' }} ISK
       </td>
     </tr>
     <tr *ngIf="amount !== 1">
-      <td>
+      <td class="has-text-right">
         {{ amount }}
       </td>
-      <td>
+      <td class="has-text-right">
         {{ amount * price.sell.percentile | number: '1.2-2' }} ISK
       </td>
-      <td>
+      <td class="has-text-right">
         {{ amount * price.buy.percentile | number: '1.2-2' }} ISK
       </td>
     </tr>
     <tr>
-      <td>
+      <td class="has-text-right">
         <input [(ngModel)]="myAmount" type="number" step="1" min="1" max="999999999" />
       </td>
-      <td>
+      <td class="has-text-right">
         {{ myAmount * price.sell.percentile | number: '1.2-2' }} ISK
       </td>
-      <td>
+      <td class="has-text-right">
         {{ myAmount * price.buy.percentile | number: '1.2-2' }} ISK
       </td>
     </tr>
