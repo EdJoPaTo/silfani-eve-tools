@@ -7,11 +7,15 @@ import { MineralTableComponent } from './mineral-table';
 import { DetailsComponent } from './details';
 
 import { Item } from './item';
+import { FuzzworkMarketService } from '../api/fuzzwork-market.service';
 
 @Component({
   selector: 'app-mining',
   templateUrl: 'mining.component.html',
   styleUrls: ['mining.component.scss'],
+  providers: [
+    FuzzworkMarketService
+  ],
   directives: [
     MineableTableComponent,
     MineralTableComponent,
