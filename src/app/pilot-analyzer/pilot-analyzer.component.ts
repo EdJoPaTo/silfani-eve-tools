@@ -19,6 +19,7 @@ import { PilotGroupListComponent } from './pilot-group-list';
 })
 export class PilotAnalyzerComponent implements OnInit {
   characters: ZKillStats[] = [];
+  charactersWithoutKills = 0;
   input: string;
   private searchTerms = new Subject<string>();
   hovered: Hovered = new Hovered();
@@ -42,9 +43,12 @@ export class PilotAnalyzerComponent implements OnInit {
             if (clear) {
               clear = false;
               this.characters = [];
+              this.charactersWithoutKills = 0;
             }
             if (stats) {
               this.characters = this.characters.concat([stats]);
+            } else {
+              this.charactersWithoutKills++;
             }
           }
           );

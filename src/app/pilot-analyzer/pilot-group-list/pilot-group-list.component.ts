@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { ZKillStats } from '../../api/z-killboard/z-kill-stats';
+import { ZKillStatsService } from '../../api/z-killboard/z-kill-stats.service';
 import { AllianceInformationService } from '../../api/eve-crest/alliance-information.service';
 import { Hovered } from '../hovered';
 import { GroupcountPipe } from './groupcount.pipe';
@@ -16,6 +18,7 @@ export class PilotGroupListComponent implements OnInit {
   @Input() hovered: Hovered;
 
   constructor(
+    private zKillStatsService: ZKillStatsService,
     private allianceInformationService: AllianceInformationService
   ) { }
 
@@ -34,5 +37,11 @@ export class PilotGroupListComponent implements OnInit {
 
   allianceName(allianceID: number): string {
     return this.allianceInformationService.getName(allianceID);
+  }
+
+  corpName(corporationID: number): Observable<string> {
+    // TODO: must have cache
+    return this.zKillStatsService.corporation(corporationID)
+      .map(stats => stats.info.name);
   }
 }

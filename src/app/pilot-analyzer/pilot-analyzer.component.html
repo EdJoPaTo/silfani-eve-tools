@@ -3,9 +3,13 @@
   <div class="column is-narrow">
     <textarea [(ngModel)]="input" placeholder="pilot names" rows="6" #searchBox id="search-box" autocorrect="off" autocapitalize="off" autocomplete="off" (keyup)="search(searchBox.value)"></textarea>
 
-    <progress *ngIf="characters.length !== namesOfInput(input).length" class="progress is-primary" [value]="characters.length" [max]="namesOfInput(input).length">loading characters</progress>
+    <progress *ngIf="characters.length + charactersWithoutKills !== namesOfInput(input).length" class="progress is-primary" [value]="characters.length + charactersWithoutKills" [max]="namesOfInput(input).length">loading characters</progress>
 
     <app-pilot-group-list [characters]="characters" [hovered]="hovered"></app-pilot-group-list>
+
+    <div *ngIf="charactersWithoutKills" class="notification is-warning">
+      {{ charactersWithoutKills }} character{{charactersWithoutKills > 1 ? 's' : ''}} without kills on zKillboard!
+    </div>
   </div>
   <div class="column">
     <app-pilot-list [characters]="characters" [hovered]="hovered"></app-pilot-list>
