@@ -32,7 +32,7 @@ export class PilotAnalyzerComponent implements OnInit {
     this.searchTerms
       .debounceTime(300)        // wait for 300ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous
-      .map(input => input.split('\n').filter(str => str))
+      .map(this.namesOfInput)
       .subscribe(names => {
         let clear = true;
         Observable.of<string[]>(names)
@@ -52,6 +52,10 @@ export class PilotAnalyzerComponent implements OnInit {
 
     this.input = 'Rell Silfani\nKarnis Delvari\n';
     this.search(this.input);
+  }
+
+  namesOfInput(input: string): string[] {
+    return input.split('\n').filter(str => str);
   }
 
   statsOfName(name: string): Observable<ZKillStats> {
