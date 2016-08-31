@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { CharacterStats } from '../../api/z-killboard/character-stats';
+import { ZKillStats } from '../../api/z-killboard/z-kill-stats';
 import { AllianceInformationService } from '../../api/eve-crest/alliance-information.service';
 import { Hovered } from '../hovered';
 import { GroupcountPipe } from './groupcount.pipe';
@@ -12,7 +12,7 @@ import { GroupcountPipe } from './groupcount.pipe';
   pipes: [GroupcountPipe]
 })
 export class PilotGroupListComponent implements OnInit {
-  @Input() characters: CharacterStats[];
+  @Input() characters: ZKillStats[];
   @Input() hovered: Hovered;
 
   constructor(

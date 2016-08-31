@@ -1,4 +1,4 @@
-export class CharacterStats {
+export class ZKillStats {
   type: string;
   id: number;
   shipsLost: number;
