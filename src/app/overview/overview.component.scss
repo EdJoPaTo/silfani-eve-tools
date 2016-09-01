@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.logo {
+  width: 30vmin;
+  height: auto;
+}
+
+.logo * {
+  fill: #69707a;
+  -webkit-transition: fill 1s ease-out;
+  transition: fill 1s ease-out;
+}
+
+.logo *:hover {
+  fill: #222324;
+}
+
 .hoverimage {
   -webkit-transition: -webkit-filter 1s ease;
   transition: -webkit-filter 1s ease, filter 1s ease;
