@@ -2,7 +2,6 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <title>Silfani EVE Tools</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,11 +11,13 @@
   <meta name="apple-mobile-web-app-title" content="Silfani">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="keywords" content="eve online, tool, mining, ice, ore, veldspar, pyroxeres, price, prices, calculation, helper">
-  <meta property="og:site_name" content="Silfani">
+  <meta property="og:site_name" content="Silfani.de">
   <meta property="og:title" content="EVE Tools">
   <meta property="og:description" content="A set of tools related to EVE Online">
+  <link rel="dns-prefetch" href="//static.silfani.de">
   <link rel="dns-prefetch" href="//crest-tq.eveonline.com">
   <link rel="dns-prefetch" href="//zkillboard.com">
+  <link rel="dns-prefetch" href="//market.fuzzwork.co.uk">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.1.2/css/bulma.min.css">
   <style>
@@ -25,26 +26,58 @@
       height: 100%;
       width: 100%;
     }
+
     .initialloading {
       display: table;
       width: 100%;
       height: 100%;
     }
-    .initialloading h1 {
+
+    .initialloading div {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
-      font-size: 4vw;
+      font-size: 6vmin;
+    }
+
+    @keyframes logorotate {
+      0% {
+        -webkit-transform: rotateY(0deg) rotateX(10deg);
+        transform: rotateY(0deg) rotateX(10deg);
+      }
+      100% {
+        -webkit-transform: rotateY(360deg) rotateX(10deg);
+        transform: rotateY(360deg) rotateX(10deg);
+      }
+    }
+
+    .initialloading svg {
+      width: 25vmin;
+      height: 25vmin;
+      animation-name: logorotate;
+      animation-duration: 2s;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease;
+    }
+
+    .initialloading svg * {
+      fill: #69707a;
     }
   </style>
 </head>
 <body>
   <app-root>
     <div class="initialloading">
-      <h1>
+      <div>
+        <svg viewBox="0 0 1000 1000">
+          <polygon class="top" points="75,75 925,75 925,215 215,215 215,355 75,355" />
+          <rect class="middle" width="850" height="140" x="75" y="430"/>
+          <polygon class="bottom" points="75,925 925,925 925,645 785,645 785,785 75,785" />
+        </svg><br />
         Brace yourself!<br />
         Something epic is loading...
-      </h1>
+      </div>
     </div>
   </app-root>
 </body>
