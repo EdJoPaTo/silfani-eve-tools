@@ -27,26 +27,58 @@
       height: 100%;
       width: 100%;
     }
+
     .initialloading {
       display: table;
       width: 100%;
       height: 100%;
     }
-    .initialloading h1 {
+
+    .initialloading div {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
-      font-size: 4vw;
+      font-size: 6vmin;
+    }
+
+    @keyframes logorotate {
+      0% {
+        -webkit-transform: rotateY(0deg) rotateX(10deg);
+        transform: rotateY(0deg) rotateX(10deg);
+      }
+      100% {
+        -webkit-transform: rotateY(360deg) rotateX(10deg);
+        transform: rotateY(360deg) rotateX(10deg);
+      }
+    }
+
+    .initialloading svg {
+      width: 25vmin;
+      height: 25vmin;
+      animation-name: logorotate;
+      animation-duration: 4s;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease;
+    }
+
+    .initialloading svg * {
+      fill: #69707a;
     }
   </style>
 </head>
 <body>
   <app-root>
     <div class="initialloading">
-      <h1>
+      <div>
+        <svg viewBox="0 0 1000 1000">
+          <polygon class="top" points="75,75 925,75 925,215 215,215 215,355 75,355" />
+          <rect class="middle" width="850" height="140" x="75" y="430"/>
+          <polygon class="bottom" points="75,925 925,925 925,645 785,645 785,785 75,785" />
+        </svg><br />
         Brace yourself!<br />
         Something epic is loading...
-      </h1>
+      </div>
     </div>
   </app-root>
 </body>
