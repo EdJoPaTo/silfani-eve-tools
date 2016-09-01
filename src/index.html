@@ -11,20 +11,35 @@
   <meta name="apple-mobile-web-app-title" content="Silfani">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="keywords" content="eve online, tool, mining, ice, ore, veldspar, pyroxeres, price, prices, calculation, helper">
+  <meta property="og:url" content="https://silfani.de">
   <meta property="og:site_name" content="Silfani.de">
   <meta property="og:title" content="EVE Tools">
   <meta property="og:description" content="A set of tools related to EVE Online">
+  <meta property="og:image" content="appicon/512.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
   <link rel="dns-prefetch" href="//static.silfani.de">
   <link rel="dns-prefetch" href="//crest-tq.eveonline.com">
   <link rel="dns-prefetch" href="//zkillboard.com">
   <link rel="dns-prefetch" href="//market.fuzzwork.co.uk">
+  <link href="appicon/512.png" title="Silfani.de" rel="fluid-icon">
+  <link href="appicon/152.png" sizes="152x152" rel="apple-touch-icon-precomposed">
+  <link href="appicon/144.png" sizes="144x144" rel="apple-touch-icon-precomposed">
+  <link href="appicon/76.png" sizes="76x76" rel="apple-touch-icon-precomposed">
+  <link href="appicon/72.png" sizes="72x72" rel="apple-touch-icon-precomposed">
+  <link href="appicon/180.png" sizes="120x120" rel="apple-touch-icon-precomposed">
+  <link href="appicon/114.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+  <link href="appicon/57.png" sizes="57x57" rel="apple-touch-icon-precomposed">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="mask-icon" href="logo.svg" color="#69707a">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.1.2/css/bulma.min.css">
   <style>
     html,
     body {
       height: 100%;
       width: 100%;
+      -webkit-text-size-adjust: 100%;
     }
 
     .initialloading {
@@ -42,18 +57,18 @@
 
     @keyframes logorotate {
       0% {
-        -webkit-transform: rotateY(0deg) rotateX(10deg);
-        transform: rotateY(0deg) rotateX(10deg);
+        -webkit-transform: rotateY(0deg) rotateX(-10deg);
+        transform: rotateY(0deg) rotateX(-10deg);
       }
       100% {
-        -webkit-transform: rotateY(360deg) rotateX(10deg);
-        transform: rotateY(360deg) rotateX(10deg);
+        -webkit-transform: rotateY(360deg) rotateX(-10deg);
+        transform: rotateY(360deg) rotateX(-10deg);
       }
     }
 
     .initialloading svg {
-      width: 25vmin;
-      height: 25vmin;
+      width: 35vmin;
+      height: 35vmin;
       animation-name: logorotate;
       animation-duration: 2s;
       animation-delay: 0s;
@@ -70,10 +85,10 @@
   <app-root>
     <div class="initialloading">
       <div>
-        <svg viewBox="0 0 1000 1000">
-          <polygon class="top" points="75,75 925,75 925,215 215,215 215,355 75,355" />
-          <rect class="middle" width="850" height="140" x="75" y="430"/>
-          <polygon class="bottom" points="75,925 925,925 925,645 785,645 785,785 75,785" />
+        <svg viewBox="4 4 12 12">
+          <polygon class="top" points="4,4 16,4 16,6 6,6 6,8 4,8" />
+          <rect class="middle" width="12" height="2" x="4" y="9"/>
+          <polygon class="bottom" points="4,16 16,16 16,12 14,12 14,14 4,14" />
         </svg><br />
         Brace yourself!<br />
         Something epic is loading...

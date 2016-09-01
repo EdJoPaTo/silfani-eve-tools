@@ -1,2 +1,22 @@
-nav {
+svg * {
+  fill: #69707a;
+}
+@keyframes logorotate {
+  0% {
+    -webkit-transform: rotateY(0deg) rotateX(-10deg);
+    transform: rotateY(0deg) rotateX(-10deg);
+  }
+
+  100% {
+    -webkit-transform: rotateY(360deg) rotateX(-10deg);
+    transform: rotateY(360deg) rotateX(-10deg);
+  }
+}
+
+.single-rotation {
+  animation-name: logorotate;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
 }

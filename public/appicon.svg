@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+  <style type="text/css">
+    * {
+      fill: #69707a;
+    }
+    .bg {
+      fill: #f5f7fa;
+    }
+
+  </style>
+  <rect class="bg" width="100%" height="100%"/>
+  <polygon class="top" points="4,4 16,4 16,6 6,6 6,8 4,8" />
+  <rect class="middle" width="12" height="2" x="4" y="9"/>
+  <polygon class="bottom" points="4,16 16,16 16,12 14,12 14,14 4,14" />
+</svg>
