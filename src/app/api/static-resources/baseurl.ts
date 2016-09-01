@@ -1,1 +1,1 @@
-export const BASEURL = 'http://eve-static.xmas2014.3t0.de/';
+export const BASEURL = 'https://static.silfani.de/';
