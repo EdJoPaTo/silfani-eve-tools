@@ -6,6 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
+import { IskPipe } from './isk.pipe';
+import { ShortnumberPipe } from './shortnumber.pipe';
+import { VolumePipe } from './volume.pipe';
+
 import { AboutComponent } from './about/about.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { LegalComponent } from './legal/legal.component';
@@ -22,6 +26,9 @@ import { MissionsComponent } from './missions/missions.component';
     OverviewComponent,
     PilotAnalyzerComponent,
     MissionsComponent,
+    IskPipe,
+    ShortnumberPipe,
+    VolumePipe,
     AboutComponent,
     ImpressumComponent,
     LegalComponent,

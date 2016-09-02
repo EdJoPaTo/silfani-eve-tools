@@ -16,8 +16,7 @@ function percentage(destroyed, lost) {
 @Component({
   selector: 'app-pilot-list',
   templateUrl: 'pilot-list.component.html',
-  styleUrls: ['pilot-list.component.scss'],
-  pipes: [ShortnumberPipe]
+  styleUrls: ['pilot-list.component.scss']
 })
 export class PilotListComponent implements OnInit {
   @Input() characters: ZKillStats[];
