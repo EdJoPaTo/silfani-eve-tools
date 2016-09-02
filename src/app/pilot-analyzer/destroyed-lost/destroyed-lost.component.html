@@ -1,0 +1,9 @@
+<div class="destroyed" [title]="title+' destroyed'">
+  {{ destroyed | shortnumber }}
+</div>
+<div>
+  {{ percentage(destroyed, lost) | percent:percentFormat }}
+</div>
+<div class="lost" [title]="title+' lost'">
+  {{ lost | shortnumber }}
+</div>
