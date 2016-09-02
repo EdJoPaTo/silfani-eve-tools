@@ -17,11 +17,11 @@
       </td>
       <td>
         <span *ngIf="elem.corporationID">
-          {{ elem.corporationID }}
-          <-- imagine this is a name
+          {{ corpName(elem.corporationID) }}
         </span>
         <span *ngIf="elem.allianceID">
           {{ allianceName(elem.allianceID) }}
+          [{{ allianceTag(elem.allianceID) }}]
         </span>
         <br />
         <span *ngIf="elem.corporationID">

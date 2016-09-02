@@ -36,12 +36,16 @@ export class PilotGroupListComponent implements OnInit {
   }
 
   allianceName(allianceID: number): string {
-    return this.allianceInformationService.getName(allianceID);
+    let stats = this.zKillStatsService.allianceCached(allianceID);
+    return stats ? stats.info.name : 'loading...';
   }
 
-  corpName(corporationID: number): Observable<string> {
-    // TODO: must have cache
-    return this.zKillStatsService.corporation(corporationID)
-      .map(stats => stats.info.name);
+  allianceTag(allianceID: number): string {
+    return this.allianceInformationService.getTag(allianceID);
+  }
+
+  corpName(corporationID: number): string {
+    let stats = this.zKillStatsService.corporationCached(corporationID);
+    return stats ? stats.info.name : 'loading...';
   }
 }
