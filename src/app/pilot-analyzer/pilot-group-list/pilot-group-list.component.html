@@ -26,6 +26,7 @@
         <br />
         <span *ngIf="elem.corporationID">
           <a [href]="'https://zkillboard.com/corporation/'+ elem.corporationID +'/'" target="_blank">zK</a>
+          <a [href]="'http://eve-hunt.net/hunt/'+ corpName(elem.corporationID) +'/'" target="_blank" title="EVE Hunt">Hunt</a>
         </span>
         <span *ngIf="elem.allianceID">
           <a [href]="'https://zkillboard.com/alliance/'+ elem.allianceID +'/'" target="_blank">zK</a>
