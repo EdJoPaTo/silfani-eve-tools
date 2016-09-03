@@ -4,6 +4,11 @@
   min-width: 64px;
 }
 
+table thead th.has-text-centered {
+  // workaround while the bulma bug is there: https://github.com/jgthms/bulma/issues/293
+  text-align: center;
+}
+
 table tbody tr td, table thead tr th {
   vertical-align: middle;
 }

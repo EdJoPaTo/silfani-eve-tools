@@ -35,8 +35,12 @@ export class PilotGroupListComponent implements OnInit {
     this.hovered.allianceID = null;
   }
 
+  allianceStats(allianceID: number): ZKillStats {
+    return this.zKillStatsService.allianceCached(allianceID);
+  }
+
   allianceName(allianceID: number): string {
-    let stats = this.zKillStatsService.allianceCached(allianceID);
+    let stats = this.allianceStats(allianceID);
     return stats ? stats.info.name : 'loading...';
   }
 
@@ -44,8 +48,12 @@ export class PilotGroupListComponent implements OnInit {
     return this.allianceInformationService.getTag(allianceID);
   }
 
+  corpStats(corporationID: number): ZKillStats {
+    return this.zKillStatsService.corporationCached(corporationID);
+  }
+
   corpName(corporationID: number): string {
-    let stats = this.zKillStatsService.corporationCached(corporationID);
+    let stats = this.corpStats(corporationID);
     return stats ? stats.info.name : 'loading...';
   }
 }
