@@ -12,26 +12,26 @@
               {{ missions.length }} missions loaded
             </label>
             <label class="panel-block">
-              <input type="text" placeholder="filter..." [(ngModel)]="namefilter" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" tabindex="1" autofocus>
+              <input type="text" placeholder="filter..." [(ngModel)]="namefilter" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" tabindex="1" autofocus (keyup)="updateUrl(level1.checked, level2.checked, level3.checked, level4.checked, level5.checked)">
             </label>
             <label class="panel-block">
-              <input type="checkbox" [(ngModel)]="level1enabled">
+              <input type="checkbox" #level1 [(ngModel)]="level1enabled" (click)="updateUrl(level1.checked, level2.checked, level3.checked, level4.checked, level5.checked)">
               Level 1
             </label>
             <label class="panel-block">
-              <input type="checkbox" [(ngModel)]="level2enabled">
+              <input type="checkbox" #level2 [(ngModel)]="level2enabled" (click)="updateUrl(level1.checked, level2.checked, level3.checked, level4.checked, level5.checked)">
               Level 2
             </label>
             <label class="panel-block">
-              <input type="checkbox" [(ngModel)]="level3enabled">
+              <input type="checkbox" #level3 [(ngModel)]="level3enabled" (click)="updateUrl(level1.checked, level2.checked, level3.checked, level4.checked, level5.checked)">
               Level 3
             </label>
             <label class="panel-block">
-              <input type="checkbox" [(ngModel)]="level4enabled">
+              <input type="checkbox" #level4 [(ngModel)]="level4enabled" (click)="updateUrl(level1.checked, level2.checked, level3.checked, level4.checked, level5.checked)">
               Level 4
             </label>
             <label class="panel-block">
-              <input type="checkbox" [(ngModel)]="level5enabled">
+              <input type="checkbox" #level5 [(ngModel)]="level5enabled" (click)="updateUrl(level1.checked, level2.checked, level3.checked, level4.checked, level5.checked)">
               Level 5
             </label>
             <div class="panel-block">

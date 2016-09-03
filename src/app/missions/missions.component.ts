@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 import { MissionService } from '../api/static-resources/mission.service';
 import { MissionListComponent } from './mission-list';
@@ -25,16 +27,19 @@ import { InfotitlePipe } from './infotitle.pipe';
   ],
   providers: [MissionService]
 })
-export class MissionsComponent implements OnInit {
+export class MissionsComponent implements OnInit, OnDestroy {
+  private sub: Subscription;
   private missions = [];
-  namefilter = '';
-  level1enabled = true;
-  level2enabled = true;
-  level3enabled = true;
-  level4enabled = true;
-  level5enabled = false;
+  namefilter: string;
+  level1enabled: boolean;
+  level2enabled: boolean;
+  level3enabled: boolean;
+  level4enabled: boolean;
+  level5enabled: boolean;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private missionService: MissionService
   ) { }
 
@@ -43,6 +48,29 @@ export class MissionsComponent implements OnInit {
       .subscribe(json => {
         this.missions = json;
       });
+    this.sub = this.route.params.subscribe(params => {
+      this.level1enabled = !params['noL1'];
+      this.level2enabled = !params['noL2'];
+      this.level3enabled = !params['noL3'];
+      this.level4enabled = !params['noL4'];
+      this.level5enabled = params['L5'];
+      this.namefilter = params['namefilter'] ? params['namefilter'] : '';
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  updateUrl(level1: boolean, level2: boolean, level3: boolean, level4: boolean, level5: boolean) {
+    let params: any = {};
+    if (!level1) { params.noL1 = true; }
+    if (!level2) { params.noL2 = true; }
+    if (!level3) { params.noL3 = true; }
+    if (!level4) { params.noL4 = true; }
+    if (level5) { params.L5 = true; }
+    if (this.namefilter) { params.namefilter = this.namefilter; }
+    this.router.navigate([params]);
   }
 
   resetAllFilters() {
