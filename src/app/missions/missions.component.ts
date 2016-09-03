@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 import { MissionService } from '../api/static-resources/mission.service';
+import { MissionListComponent } from './mission-list';
 
 import { DetailedinfoPipe } from './detailedinfo.pipe';
 import { InfoiconPipe } from './infoicon.pipe';
@@ -11,6 +12,9 @@ import { InfotitlePipe } from './infotitle.pipe';
   selector: 'app-missions',
   templateUrl: 'missions.component.html',
   styleUrls: ['missions.component.scss'],
+  directives: [
+    MissionListComponent
+  ],
   pipes: [DetailedinfoPipe, InfoiconPipe, InfotitlePipe],
   providers: [MissionService]
 })
@@ -18,7 +22,6 @@ export class MissionsComponent implements OnInit {
   private missions = [];
   private filterTerms = new Subject<string>();
   private filtered = [];
-  private maxElements = 30;
 
   constructor(
     private missionService: MissionService
