@@ -4,7 +4,7 @@
       <h1>Security Agent Missions</h1>
       {{ missions.length }} missions loaded.
 
-      <input type="text" placeholder="filter..." [(ngModel)]="namefilter" autocorrect="off" autocapitalize="off" autocomplete="off" tabindex="1" autofocus>
+      <input type="text" placeholder="filter..." [(ngModel)]="namefilter" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" tabindex="1" autofocus>
 
       <app-mission-list *ngIf="missions" [missions]="missions | nameFilter: namefilter" [maxElements]="25"></app-mission-list>
     </div>
