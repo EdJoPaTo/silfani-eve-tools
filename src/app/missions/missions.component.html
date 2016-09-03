@@ -2,11 +2,49 @@
   <div class="container">
     <div class="content">
       <h1>Security Agent Missions</h1>
-      {{ missions.length }} missions loaded.
-
-      <input type="text" placeholder="filter..." [(ngModel)]="namefilter" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" tabindex="1" autofocus>
-
-      <app-mission-list *ngIf="missions" [missions]="missions | nameFilter: namefilter" [maxElements]="25"></app-mission-list>
+      <div class="columns">
+        <div class="column is-narrow">
+          <nav class="panel">
+            <p class="panel-heading">
+              Filter
+            </p>
+            <label class="panel-block">
+              {{ missions.length }} missions loaded
+            </label>
+            <label class="panel-block">
+              <input type="text" placeholder="filter..." [(ngModel)]="namefilter" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" tabindex="1" autofocus>
+            </label>
+            <label class="panel-block">
+              <input type="checkbox" [(ngModel)]="level1enabled">
+              Level 1
+            </label>
+            <label class="panel-block">
+              <input type="checkbox" [(ngModel)]="level2enabled">
+              Level 2
+            </label>
+            <label class="panel-block">
+              <input type="checkbox" [(ngModel)]="level3enabled">
+              Level 3
+            </label>
+            <label class="panel-block">
+              <input type="checkbox" [(ngModel)]="level4enabled">
+              Level 4
+            </label>
+            <label class="panel-block">
+              <input type="checkbox" [(ngModel)]="level5enabled">
+              Level 5
+            </label>
+            <div class="panel-block">
+              <button class="button is-primary is-outlined is-fullwidth" (click)="resetAllFilters()">
+                Reset all filters
+              </button>
+            </div>
+          </nav>
+        </div>
+        <div class="column">
+          <app-mission-list *ngIf="missions" [missions]="missions | levelFilter: [level1enabled, level2enabled, level3enabled, level4enabled, level5enabled] | nameFilter: namefilter" [maxElements]="25"></app-mission-list>
+        </div>
+      </div>
     </div>
   </div>
 </div>
