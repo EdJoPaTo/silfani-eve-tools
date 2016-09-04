@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['mineral-table.component.scss']
 })
 export class MineralTableComponent implements OnInit {
+  // market groups
+  // minerals 1857
+  // ice products 1033
 
   constructor(
     private router: Router
