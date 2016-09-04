@@ -3,8 +3,25 @@
     <div class="content">
       <h1>Mining Overview</h1>
       <div class="columns">
+        <div class="column is-narrow">
+          <nav class="panel">
+            <p class="panel-heading">
+              Raw Materials
+            </p>
+            <label class="panel-block" *ngFor="let kind of mineables" [class.included]="enabled[kind.id]" [class.excluded]="!enabled[kind.id]" (click)="enable(kind.id)">
+              {{ kind.name }}
+              <span *ngIf="!kind.deepcore && kind.maxsecurity >= 0" class="hint">< {{ kind.maxsecurity | number: '1.1-1'}}</span>
+              <span *ngIf="kind.deepcore" class="hint">Deepcore</span>
+            </label>
+            <div class="panel-block">
+              <button class="button is-primary is-outlined is-fullwidth" (click)="resetFilter()">
+                Reset filter
+              </button>
+            </div>
+          </nav>
+        </div>
         <div class="column">
-          <app-mineable-table></app-mineable-table>
+          <app-mineable-table [pricearea]="60003760" [items]="items | isIncluded: enabled"></app-mineable-table>
           <app-mineral-table></app-mineral-table>
         </div>
         <div class="column is-narrow" *ngIf="item.id">
@@ -16,6 +33,18 @@
           </div>
         </div>
       </div>
+      <h2>Enabled</h2>
+      <pre>
+{{ enabled | json }}
+      </pre>
+      <h2>Test</h2>
+      <pre>
+{{ mineables | json }}
+      </pre>
+      <h2>Items</h2>
+      <pre>
+{{ items | isIncluded: enabled | json }}
+      </pre>
     </div>
   </div>
 </div>
