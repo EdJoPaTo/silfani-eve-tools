@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { CompressedPipe } from './compressed.pipe';
 
 @Component({
   selector: 'app-mineable-table',
   templateUrl: 'mineable-table.component.html',
-  styleUrls: ['mineable-table.component.scss']
+  styleUrls: ['mineable-table.component.scss'],
+  pipes: [
+    CompressedPipe
+  ]
 })
 export class MineableTableComponent implements OnInit {
   // market groups
@@ -14,6 +19,8 @@ export class MineableTableComponent implements OnInit {
   // ice 1855
   // gas 983
   // whgas 1859
+  @Input() items: any[];
+  @Input() pricearea: number;
 
   constructor(
     private router: Router

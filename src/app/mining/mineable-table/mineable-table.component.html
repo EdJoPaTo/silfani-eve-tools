@@ -1,29 +1,47 @@
 <table class="table">
   <thead>
     <tr>
+      <th> </th>
       <th>
         Raw Material
       </th>
-      <th>
-        Price
+      <th class="has-text-centered">
+        1 item
+        <br /> Sell ISK
+        <br /> Buy ISK
       </th>
     </tr>
   </thead>
   <tbody>
     <tr (click)="select(1230)">
+      <td> </td>
       <td>
         Veldspar
       </td>
-      <td>
+      <td class="has-text-centered">
         42 ISK
+        <br /> 44 ISK
       </td>
     </tr>
     <tr (click)="select(1224,42)">
+      <td> </td>
       <td>
         Pyroxeres
       </td>
-      <td>
+      <td class="has-text-centered">
         666 ISK
+        <br /> 667 ISK
+      </td>
+    </tr>
+    <tr *ngFor="let item of items | compressed: false" (click)="select(item.id)">
+      <td>
+        <img class="icon is-48x48" [src]="'//imageserver.eveonline.com/Type/'+ item.id +'_64.png'" [alt]="item.name" />
+      </td>
+      <td>
+        {{ item.name }}
+      </td>
+      <td class="has-text-centered">
+        {{ item.id }}
       </td>
     </tr>
   </tbody>
