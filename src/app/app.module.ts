@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { PathsService } from './api/eve-crest/paths.service';
+import { ItemService } from './api/eve-crest/item.service';
 
 import { IskPipe } from './isk.pipe';
 import { ShortnumberPipe } from './shortnumber.pipe';
@@ -44,7 +45,8 @@ import { MissionsComponent } from './missions/missions.component';
   ],
   providers: [
     appRoutingProviders,
-    PathsService
+    PathsService,
+    ItemService
   ],
   bootstrap: [
     AppComponent
