@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, DoCheck } from '@angular/core';
 
 import { FuzzworkMarketService } from '../../../api/fuzzwork-market.service';
 
@@ -7,7 +7,8 @@ import { FuzzworkMarketService } from '../../../api/fuzzwork-market.service';
   templateUrl: 'pricetable.component.html',
   styleUrls: ['pricetable.component.scss']
 })
-export class PricetableComponent implements OnInit {
+export class PricetableComponent implements OnInit, DoCheck {
+  private idPriceLoadedFor: number;
   @Input() id: number;
   @Input() amount: number;
   @Input() myAmount: number;
@@ -18,6 +19,17 @@ export class PricetableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loadPrice();
+  }
+
+  ngDoCheck() {
+    if (this.id !== this.idPriceLoadedFor) {
+      this.loadPrice();
+    }
+  }
+
+  private loadPrice() {
+    this.idPriceLoadedFor = this.id;
     this.fuzzworkMarketService.get([this.id])
       .map(data => data[this.id])
       .subscribe(data => this.price = data);

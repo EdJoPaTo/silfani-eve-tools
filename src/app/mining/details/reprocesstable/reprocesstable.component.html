@@ -12,10 +12,10 @@
         <app-itemname [id]="item.id" [amount]="item.amount" [small]="true"></app-itemname>
       </td>
       <td class="has-text-right">
-        <span *ngIf="prices">{{ prices[item.id].sell.percentile * item.amount | number: '1.2-2' }} ISK</span>
+        <span *ngIf="prices && prices[item.id]">{{ prices[item.id].sell.percentile * item.amount | number: '1.2-2' }} ISK</span>
       </td>
       <td class="has-text-right">
-        <span *ngIf="prices">{{ prices[item.id].buy.percentile * item.amount | number: '1.2-2' }} ISK</span>
+        <span *ngIf="prices && prices[item.id]">{{ prices[item.id].buy.percentile * item.amount | number: '1.2-2' }} ISK</span>
       </td>
     </tr>
     <tr>
