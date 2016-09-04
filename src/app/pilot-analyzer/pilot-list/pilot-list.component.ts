@@ -16,13 +16,11 @@ function percentage(destroyed, lost) {
 @Component({
   selector: 'app-pilot-list',
   templateUrl: 'pilot-list.component.html',
-  styleUrls: ['pilot-list.component.scss'],
-  pipes: [ShortnumberPipe]
+  styleUrls: ['pilot-list.component.scss']
 })
 export class PilotListComponent implements OnInit {
   @Input() characters: ZKillStats[];
   @Input() hovered: Hovered;
-  percentFormat = '1.1-1';
 
   constructor(
     private allianceInformationService: AllianceInformationService
@@ -39,18 +37,6 @@ export class PilotListComponent implements OnInit {
   mouseleave(character: ZKillStats) {
     this.hovered.corporationID = null;
     this.hovered.allianceID = null;
-  }
-
-  shipPercentage(character: ZKillStats) {
-    return percentage(character.shipsDestroyed, character.shipsLost);
-  }
-
-  pointPercentage(character: ZKillStats) {
-    return percentage(character.pointsDestroyed, character.pointsLost);
-  }
-
-  iskPercentage(character: ZKillStats) {
-    return percentage(character.iskDestroyed, character.iskLost);
   }
 
   allianceTag(allianceID: number): string {

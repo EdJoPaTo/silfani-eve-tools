@@ -2,18 +2,21 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
+import { PathsService } from './paths.service';
+
 @Injectable()
 export class AllianceInformationService {
   private allianceDict = {};
 
   constructor(
-    private http: Http
+    private http: Http,
+    private paths: PathsService
   ) { }
 
   get(allianceID: number): Observable<any> {
-    // https://crest-tq.eveonline.com/alliances/1783407081/
-    return this.http
-      .get(`https://crest-tq.eveonline.com/alliances/${allianceID}/`)
+    return this.paths.service('alliances')
+      .map(info => info.href)
+      .flatMap(url => this.http.get(`${url}${allianceID}/`))
       .map((r: Response) => r.json());
   }
 

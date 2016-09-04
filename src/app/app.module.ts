@@ -6,6 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
+import { PathsService } from './api/eve-crest/paths.service';
+import { ItemService } from './api/eve-crest/item.service';
+
+import { IskPipe } from './isk.pipe';
+import { ShortnumberPipe } from './shortnumber.pipe';
+import { VolumePipe } from './volume.pipe';
+
 import { AboutComponent } from './about/about.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { LegalComponent } from './legal/legal.component';
@@ -24,6 +31,9 @@ import { MiningComponent } from './mining/mining.component';
     MiningComponent,
     PilotAnalyzerComponent,
     MissionsComponent,
+    IskPipe,
+    ShortnumberPipe,
+    VolumePipe,
     AboutComponent,
     ImpressumComponent,
     LegalComponent,
@@ -36,7 +46,9 @@ import { MiningComponent } from './mining/mining.component';
     routing
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    PathsService,
+    ItemService
   ],
   bootstrap: [
     AppComponent

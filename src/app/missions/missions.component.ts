@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 import { MissionService } from '../api/static-resources/mission.service';
+import { MissionListComponent } from './mission-list';
 
+import { NameFilterPipe } from './name-filter.pipe';
+import { LevelFilterPipe } from './level-filter.pipe';
 import { DetailedinfoPipe } from './detailedinfo.pipe';
 import { InfoiconPipe } from './infoicon.pipe';
 import { InfotitlePipe } from './infotitle.pipe';
@@ -11,16 +15,31 @@ import { InfotitlePipe } from './infotitle.pipe';
   selector: 'app-missions',
   templateUrl: 'missions.component.html',
   styleUrls: ['missions.component.scss'],
-  pipes: [DetailedinfoPipe, InfoiconPipe, InfotitlePipe],
+  directives: [
+    MissionListComponent
+  ],
+  pipes: [
+    NameFilterPipe,
+    LevelFilterPipe,
+    DetailedinfoPipe,
+    InfoiconPipe,
+    InfotitlePipe
+  ],
   providers: [MissionService]
 })
-export class MissionsComponent implements OnInit {
+export class MissionsComponent implements OnInit, OnDestroy {
+  private sub: Subscription;
   private missions = [];
-  private filterTerms = new Subject<string>();
-  private filtered = [];
-  private maxElements = 30;
+  namefilter: string;
+  level1enabled: boolean;
+  level2enabled: boolean;
+  level3enabled: boolean;
+  level4enabled: boolean;
+  level5enabled: boolean;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private missionService: MissionService
   ) { }
 
@@ -28,34 +47,38 @@ export class MissionsComponent implements OnInit {
     this.missionService.get()
       .subscribe(json => {
         this.missions = json;
-        this.filter('');
       });
-
-    this.filterTerms
-      .debounceTime(300)        // wait for 300ms pause in events
-      .distinctUntilChanged()   // ignore if next search term is same as previous
-      .map(term => this.getMissionsBasedOnTerm(term))
-      .subscribe(result => this.filtered = result);
-  }
-
-  filter(term: string) {
-    if (this.missions.length === 0) {
-      return;
-    }
-    this.filterTerms.next(term);
-  }
-
-  getMissionsBasedOnTerm(term: string): any[] {
-    term = term.toLowerCase();
-    if (!this.missions) { return []; }
-
-    return this.missions.filter(mission => {
-      if (mission.name.en.toLowerCase().indexOf(term) >= 0) {
-        return true;
-      }
-      if (mission.name.de.toLowerCase().indexOf(term) >= 0) {
-        return true;
-      }
+    this.sub = this.route.params.subscribe(params => {
+      this.level1enabled = !params['noL1'];
+      this.level2enabled = !params['noL2'];
+      this.level3enabled = !params['noL3'];
+      this.level4enabled = !params['noL4'];
+      this.level5enabled = params['L5'];
+      this.namefilter = params['namefilter'] ? params['namefilter'] : '';
     });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  updateUrl(level1: boolean, level2: boolean, level3: boolean, level4: boolean, level5: boolean) {
+    let params: any = {};
+    if (!level1) { params.noL1 = true; }
+    if (!level2) { params.noL2 = true; }
+    if (!level3) { params.noL3 = true; }
+    if (!level4) { params.noL4 = true; }
+    if (level5) { params.L5 = true; }
+    if (this.namefilter) { params.namefilter = this.namefilter; }
+    this.router.navigate([params]);
+  }
+
+  resetAllFilters() {
+    this.namefilter = '';
+    this.level1enabled = true;
+    this.level2enabled = true;
+    this.level3enabled = true;
+    this.level4enabled = true;
+    this.level5enabled = false;
   }
 }

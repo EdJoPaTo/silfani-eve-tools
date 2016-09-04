@@ -1,4 +1,19 @@
 <table class="table">
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+      <th>
+        Name ({{ (characters | groupcount).length | number }})
+      </th>
+      <th class="has-text-centered">
+        Ships
+      </th>
+      <th class="has-text-centered">
+        ISK
+      </th>
+    </tr>
+  </thead>
   <tbody>
     <tr *ngFor="let elem of characters | groupcount"
     (touch)='mouseenter(elem)'
@@ -17,19 +32,28 @@
       </td>
       <td>
         <span *ngIf="elem.corporationID">
-          {{ elem.corporationID }}
-          <-- imagine this is a name
+          {{ corpName(elem.corporationID) }}
         </span>
         <span *ngIf="elem.allianceID">
           {{ allianceName(elem.allianceID) }}
+          [{{ allianceTag(elem.allianceID) }}]
         </span>
         <br />
         <span *ngIf="elem.corporationID">
           <a [href]="'https://zkillboard.com/corporation/'+ elem.corporationID +'/'" target="_blank">zK</a>
+          <a [href]="'http://eve-hunt.net/hunt/'+ corpName(elem.corporationID) +'/'" target="_blank" title="EVE Hunt">Hunt</a>
         </span>
         <span *ngIf="elem.allianceID">
           <a [href]="'https://zkillboard.com/alliance/'+ elem.allianceID +'/'" target="_blank">zK</a>
         </span>
+      </td>
+      <td class="has-text-centered">
+        <app-destroyed-lost *ngIf="elem.corporationID && corpStats(elem.corporationID)" [destroyed]="corpStats(elem.corporationID).shipsDestroyed" [lost]="corpStats(elem.corporationID).shipsLost" [title]="ships"></app-destroyed-lost>
+        <app-destroyed-lost *ngIf="elem.allianceID && allianceStats(elem.allianceID)" [destroyed]="allianceStats(elem.allianceID).shipsDestroyed" [lost]="allianceStats(elem.allianceID).shipsLost" [title]="ships"></app-destroyed-lost>
+      </td>
+      <td class="has-text-centered">
+        <app-destroyed-lost *ngIf="elem.corporationID && corpStats(elem.corporationID)" [destroyed]="corpStats(elem.corporationID).iskDestroyed" [lost]="corpStats(elem.corporationID).iskLost" [title]="ISK"></app-destroyed-lost>
+        <app-destroyed-lost *ngIf="elem.allianceID && allianceStats(elem.allianceID)" [destroyed]="allianceStats(elem.allianceID).iskDestroyed" [lost]="allianceStats(elem.allianceID).iskLost" [title]="ISK"></app-destroyed-lost>
       </td>
     </tr>
   </tbody>

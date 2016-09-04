@@ -35,13 +35,25 @@ export class PilotGroupListComponent implements OnInit {
     this.hovered.allianceID = null;
   }
 
-  allianceName(allianceID: number): string {
-    return this.allianceInformationService.getName(allianceID);
+  allianceStats(allianceID: number): ZKillStats {
+    return this.zKillStatsService.allianceCached(allianceID);
   }
 
-  corpName(corporationID: number): Observable<string> {
-    // TODO: must have cache
-    return this.zKillStatsService.corporation(corporationID)
-      .map(stats => stats.info.name);
+  allianceName(allianceID: number): string {
+    let stats = this.allianceStats(allianceID);
+    return stats ? stats.info.name : 'loading...';
+  }
+
+  allianceTag(allianceID: number): string {
+    return this.allianceInformationService.getTag(allianceID);
+  }
+
+  corpStats(corporationID: number): ZKillStats {
+    return this.zKillStatsService.corporationCached(corporationID);
+  }
+
+  corpName(corporationID: number): string {
+    let stats = this.corpStats(corporationID);
+    return stats ? stats.info.name : 'loading...';
   }
 }

@@ -19,6 +19,7 @@ import 'zone.js/dist/zone';
 
 // Observable class extensions
 import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/range';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/forkJoin';
 // Observable operators

@@ -1,0 +1,45 @@
+<div *ngIf="missions.length">
+  {{ missions.length }} mission<span *ngIf="missions.length > 1">s</span> found on your criteria<span *ngIf="missions.length > maxElements">, only {{ maxElements }} shown</span>.
+</div>
+<table class="table" *ngIf="missions.length">
+  <thead>
+    <tr>
+      <th> Name (english) </th>
+      <th> Name (deutsch) </th>
+      <th> Infos </th>
+      <th> EVE-Survival </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mission of missions.slice(0, maxElements)">
+      <td>
+        {{ mission.name.en }}
+      </td>
+      <td>
+        {{ mission.name.de }}
+      </td>
+      <td>
+        <span *ngFor="let info of mission.infos">
+          <img *ngIf="info | detailedinfo | infoicon" class="infoicon" [src]="info | detailedinfo | infoicon" [title]="info | detailedinfo | infotitle" />
+          <span *ngIf="!info | detailedinfo | infoicon">
+            {{ info | detailedinfo | infotitle }}
+          </span>
+        </span>
+      </td>
+      <td>
+        <div *ngIf="mission.warn" title="lose of faction standing!">
+          Against Empire!
+        </div>
+        <div *ngIf="mission.blitz">
+          <a [href]="mission.blitz" target="_blank">Blitz</a>
+        </div>
+        <div *ngFor="let level of [1,2,3,4,5]">
+          <a *ngIf="mission.level[level]" [href]="mission.level[level]" target="_blank">Level {{ level }}</a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="missions.length && missions.length > maxElements" class="has-text-centered">
+  there are more missions... please specify your filter to get a closer result.
+</div>
