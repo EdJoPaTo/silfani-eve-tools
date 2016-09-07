@@ -1,6 +1,9 @@
 <div *ngIf="missions.length">
   {{ missions.length }} mission<span *ngIf="missions.length > 1">s</span> found on your criteria<span *ngIf="missions.length > maxElements">, only {{ maxElements }} shown</span>.
 </div>
+<div *ngIf="!missions.length" class="notification is-warning">
+  No missions found with your criteria!
+</div>
 <table class="table" *ngIf="missions.length">
   <thead>
     <tr>
@@ -11,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let mission of missions.slice(0, maxElements)">
+    <tr *ngFor="let mission of missions | slice: 0: maxElements">
       <td>
         {{ mission.name.en }}
       </td>
@@ -40,6 +43,6 @@
     </tr>
   </tbody>
 </table>
-<div *ngIf="missions.length && missions.length > maxElements" class="has-text-centered">
+<div *ngIf="missions.length > maxElements" class="has-text-centered">
   there are more missions... please specify your filter to get a closer result.
 </div>
