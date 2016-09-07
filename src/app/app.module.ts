@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ApplicationRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
@@ -38,6 +38,7 @@ import { MissionsComponent } from './missions';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     routing
   ],
   providers: [
@@ -47,6 +48,4 @@ import { MissionsComponent } from './missions';
     AppComponent
   ]
 })
-export class AppModule {
-
-}
+export class AppModule { }
