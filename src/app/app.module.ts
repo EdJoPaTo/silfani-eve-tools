@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ApplicationRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
@@ -43,6 +43,7 @@ import { MiningComponent } from './mining';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     routing
   ],
   providers: [
@@ -54,6 +55,4 @@ import { MiningComponent } from './mining';
     AppComponent
   ]
 })
-export class AppModule {
-
-}
+export class AppModule { }
