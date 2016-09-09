@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import { ActivatedRoute, Router }       from '@angular/router';
 import { Subscription }          from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -6,8 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { MineableTableComponent } from './mineable-table';
 import { MineralTableComponent } from './mineral-table';
 import { DetailsComponent } from './details';
-
-import { IsIncludedPipe } from './is-included.pipe';
 
 import { MarketGroupsService } from './../api/eve-crest/market-groups.service';
 import { Item } from './item';
@@ -26,7 +24,6 @@ import { StackPriceService } from './stack-price.service';
     StackPriceService
   ],
   pipes: [
-    IsIncludedPipe
   ],
   directives: [
     MineableTableComponent,
@@ -34,12 +31,14 @@ import { StackPriceService } from './stack-price.service';
     DetailsComponent
   ]
 })
-export class MiningComponent implements OnInit, OnDestroy {
+export class MiningComponent implements OnInit, OnDestroy, DoCheck {
   item = new Item();
   private sub: Subscription;
   mineables: any[];
   items: any = {};
   enabled = {};
+
+  enabledItems: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -72,6 +71,17 @@ export class MiningComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  ngDoCheck() {
+    // TODO: only when changed
+    if (this.items && this.enabled) {
+      let ids = Object.keys(this.items);
+      let filteredIds = ids.filter(i => this.enabled[i]);
+      this.enabledItems = filteredIds.reduce((all, cur) => all.concat(this.items[cur]), []);
+    } else {
+      this.enabledItems = [];
+    }
   }
 
   enable(id: number): void {

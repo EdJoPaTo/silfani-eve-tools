@@ -21,7 +21,7 @@
           </nav>
         </div>
         <div class="column">
-          <app-mineable-table [pricearea]="60003760" [items]="items | isIncluded: enabled"></app-mineable-table>
+          <app-mineable-table [pricearea]="60003760" [items]="enabledItems"></app-mineable-table>
           <app-mineral-table></app-mineral-table>
         </div>
         <div class="column is-narrow" *ngIf="item.id">
@@ -33,18 +33,6 @@
           </div>
         </div>
       </div>
-      <h2>Enabled</h2>
-      <pre>
-{{ enabled | json }}
-      </pre>
-      <h2>Test</h2>
-      <pre>
-{{ mineables | json }}
-      </pre>
-      <h2>Items</h2>
-      <pre>
-{{ items | isIncluded: enabled | json }}
-      </pre>
     </div>
   </div>
 </div>
