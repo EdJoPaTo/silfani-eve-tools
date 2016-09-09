@@ -3,15 +3,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ZKillStats } from '../../api/z-killboard/z-kill-stats';
 import { AllianceInformationService } from '../../api/eve-crest/alliance-information.service';
 import { Hovered } from '../hovered';
-import { ShortnumberPipe } from '../../shortnumber.pipe';
-
-function percentage(destroyed, lost) {
-  if (destroyed + lost > 0) {
-    return destroyed / (destroyed + lost);
-  } else {
-    return 0;
-  }
-}
 
 @Component({
   selector: 'app-pilot-list',
