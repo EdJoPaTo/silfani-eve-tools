@@ -6,6 +6,9 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
+import { PathsService } from './api/eve-crest/paths.service';
+import { ItemService } from './api/eve-crest/item.service';
+
 import { IskPipe } from './isk.pipe';
 import { ShortnumberPipe } from './shortnumber.pipe';
 import { VolumePipe } from './volume.pipe';
@@ -42,7 +45,9 @@ import { MissionsComponent } from './missions';
     routing
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    PathsService,
+    ItemService
   ],
   bootstrap: [
     AppComponent
