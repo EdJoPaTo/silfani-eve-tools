@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { Item } from '../item';
 import { CompressedPipe } from './compressed.pipe';
 
 @Component({
@@ -21,6 +22,7 @@ export class MineableTableComponent implements OnInit {
   // whgas 1859
   @Input() items: any[];
   @Input() pricearea: number;
+  @Output() onSelect = new EventEmitter<Item>();
 
   constructor(
     private router: Router
@@ -30,12 +32,6 @@ export class MineableTableComponent implements OnInit {
   }
 
   select(id: number, amount = 1) {
-    let routeParams: any = {id: id};
-
-    if (amount !== 1) {
-      routeParams.amount = amount;
-    }
-
-    this.router.navigate([routeParams]);
+    this.onSelect.emit({ id: id, amount: amount });
   }
 }

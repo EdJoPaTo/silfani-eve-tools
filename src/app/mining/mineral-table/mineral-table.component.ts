@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { Item } from '../item';
 
 @Component({
   selector: 'app-mineral-table',
@@ -7,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['mineral-table.component.scss']
 })
 export class MineralTableComponent implements OnInit {
+  @Output() onSelect = new EventEmitter<Item>();
   // market groups
   // minerals 1857
   // ice products 1033
@@ -19,12 +22,6 @@ export class MineralTableComponent implements OnInit {
   }
 
   select(id: number, amount = 1) {
-    let routeParams: any = {id: id};
-
-    if (amount !== 1) {
-      routeParams.amount = amount;
-    }
-
-    this.router.navigate([routeParams]);
+    this.onSelect.emit({ id: id, amount: amount });
   }
 }

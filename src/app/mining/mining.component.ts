@@ -88,6 +88,16 @@ export class MiningComponent implements OnInit, OnDestroy, DoCheck {
     this.enabled[id] = !this.enabled[id];
   }
 
+  openDetails(item: Item) {
+    let routeParams: any = {id: item.id};
+
+    if (item.amount !== 1) {
+      routeParams.amount = item.amount;
+    }
+
+    this.router.navigate([routeParams]);
+  }
+
   closeDetails() {
     this.router.navigate([{}]);
   }
