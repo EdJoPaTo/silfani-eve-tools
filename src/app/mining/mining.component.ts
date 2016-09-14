@@ -36,7 +36,8 @@ export class MiningComponent implements OnInit, OnDestroy, DoCheck {
   private sub: Subscription;
   mineables: any[];
   allItems: any = {};
-  enabled = {};
+  defaultItems = [515, 516, 518, 519];
+  enabled: any = {};
 
   enabledItems: any[] = [];
 
@@ -52,6 +53,17 @@ export class MiningComponent implements OnInit, OnDestroy, DoCheck {
       .subscribe(params => {
         this.detailsItem.id = +params['id'];
         this.detailsItem.amount = params['amount'] ? +params['amount'] : 1;
+        let paramKeys = Object.keys(params);
+        let enabled = {};
+        this.defaultItems.forEach(defaultItem => enabled[defaultItem] = true);
+        paramKeys.forEach(param => {
+          if (param === 'id' || param === 'amount') {
+            // already handled
+          } else {
+            enabled[param] = String(params[param]) === 'true';
+          }
+        });
+        this.enabled = enabled;
       });
 
     this.mineableService.get()
@@ -82,19 +94,39 @@ export class MiningComponent implements OnInit, OnDestroy, DoCheck {
 
   enable(id: number): void {
     this.enabled[id] = !this.enabled[id];
+    this.changeRoute(this.detailsItem, this.enabled);
   }
 
-  openDetails(item: Item) {
-    let routeParams: any = {id: item.id};
+  changeRoute(item: Item, enabled: any) {
+    let routeParams: any = {};
 
-    if (item.amount !== 1) {
-      routeParams.amount = item.amount;
+    if (item) {
+      if (item.id) {
+        routeParams.id = item.id;
+      }
+
+      if (item.amount !== 1) {
+        routeParams.amount = item.amount;
+      }
     }
+
+    Object.keys(enabled)
+      .map(enabledId => +enabledId)
+      .forEach(enabledId => {
+        let isDefault = this.defaultItems.indexOf(enabledId) >= 0;
+        if ((enabled[enabledId] && !isDefault) || (!enabled[enabledId] && isDefault)) {
+          routeParams[enabledId] = enabled[enabledId];
+        }
+      });
 
     this.router.navigate([routeParams]);
   }
 
+  openDetails(item: Item) {
+    this.changeRoute(item, this.enabled);
+  }
+
   closeDetails() {
-    this.router.navigate([{}]);
+    this.openDetails(null);
   }
 }
