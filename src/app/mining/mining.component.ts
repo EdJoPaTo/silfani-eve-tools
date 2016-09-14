@@ -32,10 +32,10 @@ import { StackPriceService } from './stack-price.service';
   ]
 })
 export class MiningComponent implements OnInit, OnDestroy, DoCheck {
-  item = new Item();
+  detailsItem = new Item();
   private sub: Subscription;
   mineables: any[];
-  items: any = {};
+  allItems: any = {};
   enabled = {};
 
   enabledItems: any[] = [];
@@ -50,8 +50,8 @@ export class MiningComponent implements OnInit, OnDestroy, DoCheck {
   ngOnInit() {
     this.sub = this.route.params
       .subscribe(params => {
-        this.item.id = +params['id'];
-        this.item.amount = params['amount'] ? +params['amount'] : 1;
+        this.detailsItem.id = +params['id'];
+        this.detailsItem.amount = params['amount'] ? +params['amount'] : 1;
       });
 
     this.mineableService.get()
@@ -60,11 +60,7 @@ export class MiningComponent implements OnInit, OnDestroy, DoCheck {
         Observable.of<number[]>(infos.map(i => i.id))
           .flatMap(ids => ids)
           .subscribe(id => this.marketGroupsService.directSubTypes(id)
-            .subscribe(items => {
-              // TODO: does this trigger the update?
-              console.log(id, items);
-              this.items[id] = items;
-            })
+            .subscribe(items => this.allItems[id] = items)
           );
       });
   }
@@ -75,10 +71,10 @@ export class MiningComponent implements OnInit, OnDestroy, DoCheck {
 
   ngDoCheck() {
     // TODO: only when changed
-    if (this.items && this.enabled) {
-      let ids = Object.keys(this.items);
+    if (this.allItems && this.enabled) {
+      let ids = Object.keys(this.allItems);
       let filteredIds = ids.filter(i => this.enabled[i]);
-      this.enabledItems = filteredIds.reduce((all, cur) => all.concat(this.items[cur]), []);
+      this.enabledItems = filteredIds.reduce((all, cur) => all.concat(this.allItems[cur]), []);
     } else {
       this.enabledItems = [];
     }

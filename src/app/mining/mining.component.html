@@ -24,11 +24,11 @@
           <app-mineable-table [pricearea]="60003760" [items]="enabledItems" (onSelect)="openDetails($event)"></app-mineable-table>
           <app-mineral-table (onSelect)="openDetails($event)"></app-mineral-table>
         </div>
-        <div class="column is-narrow" *ngIf="item.id">
+        <div class="column is-narrow" *ngIf="detailsItem.id">
           <div>
             <div class="notification">
               <button class="delete" (click)="closeDetails()"></button>
-              <app-details [item]=item></app-details>
+              <app-details [item]=detailsItem></app-details>
             </div>
           </div>
         </div>
