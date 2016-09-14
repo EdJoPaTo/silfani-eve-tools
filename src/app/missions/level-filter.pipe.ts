@@ -13,14 +13,14 @@ export class LevelFilterPipe implements PipeTransform {
   private isMissionIncluded(mission: any, levelEnabledArray: boolean[]): boolean {
     if (!mission.level) { return true; } // Include Blitz Missions
     let levels = Object.keys(mission.level).map(num => Number.parseInt(num));
-
+    if (levels.length === 0) { return true; } // Include Blitz Missions
     for (let level of levels) {
       let isLevelEnabled = levelEnabledArray[level - 1];
-      if (!isLevelEnabled) {
-        return false;
+      if (isLevelEnabled) {
+        return true;
       }
     }
 
-    return true;
+    return false;
   }
 }
