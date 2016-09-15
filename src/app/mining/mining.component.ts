@@ -34,6 +34,7 @@ import { StackPriceService } from './stack-price.service';
 export class MiningComponent implements OnInit, OnDestroy, DoCheck {
   detailsItem = new Item();
   private sub: Subscription;
+  marketOrderType: string = 'buy';
   mineables: any[];
   allItems: any = {};
   defaultItems = [515, 516, 518, 519];
