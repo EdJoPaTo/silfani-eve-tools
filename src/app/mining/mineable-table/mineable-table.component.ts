@@ -1,5 +1,4 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Item } from '../item';
 import { CompressedPipe } from './compressed.pipe';
@@ -25,7 +24,6 @@ export class MineableTableComponent implements OnInit {
   @Output() onSelect = new EventEmitter<Item>();
 
   constructor(
-    private router: Router
   ) { }
 
   ngOnInit() {
