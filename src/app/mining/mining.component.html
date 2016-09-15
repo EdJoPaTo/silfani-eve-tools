@@ -37,10 +37,10 @@
         <h2>Settings</h2>
         <p class="control">
           <label class="radio">
-            <input type="radio" name="rbsell" (click)="marketOrderType='sell'"> Place Sell Order
+            <input type="radio" name="rbsell" (click)="setMarketOrderType('sell')" [checked]="marketOrderType==='sell'"> Place Sell Order
           </label>
           <label class="radio">
-            <input type="radio" name="rbsell" (click)="marketOrderType='buy'" checked> Accept Buy Order
+            <input type="radio" name="rbsell" (click)="setMarketOrderType('buy')" [checked]="marketOrderType!=='sell'"> Accept Buy Order
           </label>
         </p>
       </div>

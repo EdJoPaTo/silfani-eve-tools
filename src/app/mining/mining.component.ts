@@ -54,11 +54,12 @@ export class MiningComponent implements OnInit, OnDestroy, DoCheck {
       .subscribe(params => {
         this.detailsItem.id = +params['id'];
         this.detailsItem.amount = params['amount'] ? +params['amount'] : 1;
+        this.marketOrderType = params['order'] === 'sell' ? 'sell' : 'buy';
         let paramKeys = Object.keys(params);
         let enabled = {};
         this.defaultItems.forEach(defaultItem => enabled[defaultItem] = true);
         paramKeys.forEach(param => {
-          if (param === 'id' || param === 'amount') {
+          if (param === 'id' || param === 'amount' || param === 'order') {
             // already handled
           } else {
             enabled[param] = String(params[param]) === 'true';
@@ -95,10 +96,14 @@ export class MiningComponent implements OnInit, OnDestroy, DoCheck {
 
   enable(id: number): void {
     this.enabled[id] = !this.enabled[id];
-    this.changeRoute(this.detailsItem, this.enabled);
+    this.changeRoute(this.detailsItem, this.enabled, this.marketOrderType);
   }
 
-  changeRoute(item: Item, enabled: any) {
+  setMarketOrderType(type: string) {
+    this.changeRoute(this.detailsItem, this.enabled, type);
+  }
+
+  changeRoute(item: Item, enabled: any, marketOrderType: string) {
     let routeParams: any = {};
 
     if (item) {
@@ -120,11 +125,15 @@ export class MiningComponent implements OnInit, OnDestroy, DoCheck {
         }
       });
 
+    if (marketOrderType === 'sell') {
+      routeParams.order = 'sell';
+    }
+
     this.router.navigate([routeParams]);
   }
 
   openDetails(item: Item) {
-    this.changeRoute(item, this.enabled);
+    this.changeRoute(item, this.enabled, this.marketOrderType);
   }
 
   closeDetails() {
