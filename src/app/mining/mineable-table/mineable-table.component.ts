@@ -4,17 +4,11 @@ import { ItemTypesService } from '../../api/eve-crest/item-types.service';
 import { FuzzworkMarketService } from '../../api/fuzzwork-market.service';
 
 import { Item } from '../item';
-import { CompressedPipe } from './compressed.pipe';
-import { OrderPipe } from './order.pipe';
 
 @Component({
   selector: 'app-mineable-table',
   templateUrl: 'mineable-table.component.html',
-  styleUrls: ['mineable-table.component.scss'],
-  pipes: [
-    CompressedPipe,
-    OrderPipe
-  ]
+  styleUrls: ['mineable-table.component.scss']
 })
 export class MineableTableComponent implements OnInit {
   // market groups

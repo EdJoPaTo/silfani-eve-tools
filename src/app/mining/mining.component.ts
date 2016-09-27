@@ -3,12 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
-import { MineableTableComponent } from './mineable-table';
-import { MineralTableComponent } from './mineral-table';
-import { DetailsComponent } from './details';
-
-import { EnabledItemsPipe } from './enabled-items.pipe';
-
 import { ItemTypesService } from './../api/eve-crest/item-types.service';
 import { MarketGroupsService } from './../api/eve-crest/market-groups.service';
 import { Item } from './item';
@@ -26,14 +20,6 @@ import { StackPriceService } from './stack-price.service';
     FuzzworkMarketService,
     MineableService,
     StackPriceService
-  ],
-  pipes: [
-    EnabledItemsPipe
-  ],
-  directives: [
-    MineableTableComponent,
-    MineralTableComponent,
-    DetailsComponent
   ]
 })
 export class MiningComponent implements OnInit, OnDestroy {

@@ -37,12 +37,30 @@ import { MissionListComponent } from './missions/mission-list';
 import { NameFilterPipe } from './missions/name-filter.pipe';
 
 import { MiningComponent } from './mining';
+import { CompressedPipe } from './mining/mineable-table/compressed.pipe';
+import { DetailsComponent } from './mining/details';
+import { EnabledItemsPipe } from './mining/enabled-items.pipe';
+import { ItemnameComponent } from './mining/details/itemname';
+import { MineableTableComponent } from './mining/mineable-table';
+import { MineralTableComponent } from './mining/mineral-table';
+import { OrderPipe } from './mining/mineable-table/order.pipe';
+import { PricetableComponent } from './mining/details/pricetable';
+import { ReprocesstableComponent } from './mining/details/reprocesstable';
 
 @NgModule({
   declarations: [
     AppComponent,
     OverviewComponent,
     MiningComponent,
+    CompressedPipe,
+    DetailsComponent,
+    EnabledItemsPipe,
+    ItemnameComponent,
+    MineableTableComponent,
+    MineralTableComponent,
+    OrderPipe,
+    PricetableComponent,
+    ReprocesstableComponent,
     PilotAnalyzerComponent,
     AnyAlliancesPipe,
     DestroyedLostComponent,
