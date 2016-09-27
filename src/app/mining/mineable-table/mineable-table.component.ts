@@ -24,6 +24,7 @@ export class MineableTableComponent implements OnInit {
   @Input() items: any[];
   @Input() sell: boolean;
   @Input() pricearea: number;
+  @Input() volume: number = 1000;
   @Output() onSelect = new EventEmitter<Item>();
 
   private prices: any = {};
@@ -55,5 +56,13 @@ export class MineableTableComponent implements OnInit {
     } else {
       return this.prices[area][id].buy.percentile;
     }
+  }
+
+  getVolume(id: number) {
+    return 1;
+  }
+
+  getPortionSize(id: number) {
+    return 100;
   }
 }

@@ -9,6 +9,14 @@
         1 item
         <br /> ISK
       </th>
+      <th class="has-text-centered">
+        {{ volume | volume }}
+        <br /> amount
+      </th>
+      <th class="has-text-centered">
+        {{ volume | volume }}
+        <br /> ISK
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -21,6 +29,12 @@
       </td>
       <td class="has-text-centered">
         {{ getPrice(item.id, pricearea, sell) | number: '1.2-2' }}
+      </td>
+      <td class="has-text-centered">
+        {{ volume / getVolume(item.id) | number: '1.2-2' }}
+      </td>
+      <td class="has-text-centered">
+        {{ getPrice(item.id, pricearea, sell) * volume / getVolume(item.id) | number: '1.2-2' }}
       </td>
     </tr>
   </tbody>
