@@ -20,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of items | compressed: false" (click)="select(item.id)">
+    <tr *ngFor="let item of items | compressed: false | order: prices[pricearea]: itemTypes: volume: orderBy: orderDirectionIsDefault: sell" (click)="select(item.id)">
       <td>
         <img class="icon is-48x48" [src]="'//imageserver.eveonline.com/Type/'+ item.id +'_64.png'" [alt]="item.name" />
       </td>

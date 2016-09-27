@@ -1,16 +1,19 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
+import { ItemTypesService } from '../../api/eve-crest/item-types.service';
 import { FuzzworkMarketService } from '../../api/fuzzwork-market.service';
 
 import { Item } from '../item';
 import { CompressedPipe } from './compressed.pipe';
+import { OrderPipe } from './order.pipe';
 
 @Component({
   selector: 'app-mineable-table',
   templateUrl: 'mineable-table.component.html',
   styleUrls: ['mineable-table.component.scss'],
   pipes: [
-    CompressedPipe
+    CompressedPipe,
+    OrderPipe
   ]
 })
 export class MineableTableComponent implements OnInit {
@@ -26,6 +29,9 @@ export class MineableTableComponent implements OnInit {
   @Input() pricearea: number;
   @Input() volume: number = 1000;
   @Output() onSelect = new EventEmitter<Item>();
+
+  orderBy = 'cycleprice';
+  orderDirectionIsDefault = true;
 
   private prices: any = {};
   private itemTypes: any[] = [];
