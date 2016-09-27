@@ -3,20 +3,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ZKillStats } from '../../api/z-killboard/z-kill-stats';
 import { AllianceInformationService } from '../../api/eve-crest/alliance-information.service';
 import { Hovered } from '../hovered';
-import { ShortnumberPipe } from '../../shortnumber.pipe';
-
-function percentage(destroyed, lost) {
-  if (destroyed + lost > 0) {
-    return destroyed / (destroyed + lost);
-  } else {
-    return 0;
-  }
-}
+import { AnyAlliancesPipe } from './any-alliances.pipe';
 
 @Component({
   selector: 'app-pilot-list',
   templateUrl: 'pilot-list.component.html',
-  styleUrls: ['pilot-list.component.scss']
+  styleUrls: ['pilot-list.component.scss'],
+  pipes: [
+    AnyAlliancesPipe
+  ]
 })
 export class PilotListComponent implements OnInit {
   @Input() characters: ZKillStats[];
