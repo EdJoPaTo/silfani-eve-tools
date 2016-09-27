@@ -36,10 +36,13 @@ import { LevelFilterPipe } from './missions/level-filter.pipe';
 import { MissionListComponent } from './missions/mission-list';
 import { NameFilterPipe } from './missions/name-filter.pipe';
 
+import { MiningComponent } from './mining';
+
 @NgModule({
   declarations: [
     AppComponent,
     OverviewComponent,
+    MiningComponent,
     PilotAnalyzerComponent,
     AnyAlliancesPipe,
     DestroyedLostComponent,

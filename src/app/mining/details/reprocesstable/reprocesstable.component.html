@@ -1,0 +1,55 @@
+<table class="table" *ngIf="reprocessed.length">
+  <thead>
+    <tr>
+      <th> Reprocessed </th>
+      <th> Sell </th>
+      <th> Buy </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of reprocessed">
+      <td>
+        <app-itemname [id]="item.id" [amount]="item.amount" [small]="true"></app-itemname>
+      </td>
+      <td class="has-text-right">
+        <span *ngIf="prices && prices[item.id]">{{ prices[item.id].sell.percentile * item.amount | number: '1.2-2' }} ISK</span>
+      </td>
+      <td class="has-text-right">
+        <span *ngIf="prices && prices[item.id]">{{ prices[item.id].buy.percentile * item.amount | number: '1.2-2' }} ISK</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="has-text-right">
+        SUM
+      </td>
+      <td class="has-text-right">
+        {{ stackpriceSell | number: '1.2-2' }} ISK
+      </td>
+      <td class="has-text-right">
+        {{ stackpriceBuy | number: '1.2-2' }} ISK
+      </td>
+    </tr>
+    <tr *ngIf="amount > 1">
+      <td class="has-text-right">
+        {{ amount }}x SUM
+      </td>
+      <td class="has-text-right">
+        {{ amount * stackpriceSell | number: '1.2-2' }} ISK
+      </td>
+      <td class="has-text-right">
+        {{ amount * stackpriceBuy | number: '1.2-2' }} ISK
+      </td>
+    </tr>
+    <tr>
+      <td class="has-text-right">
+        <input [(ngModel)]="myAmount" type="number" step="1" min="1" max="999999999" />x SUM
+      </td>
+      <td class="has-text-right">
+        {{ myAmount * stackpriceSell | number: '1.2-2' }} ISK
+      </td>
+      <td class="has-text-right">
+        {{ myAmount * stackpriceBuy | number: '1.2-2' }} ISK
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,16 @@
+p.panel-heading {
+  // workaround until fix: https://github.com/jgthms/bulma/issues/294
+  margin-bottom: 0;
+}
+
+.included {
+  background-color: rgba(0,255,0, 0.1);
+}
+
+.excluded {
+  background-color: rgba(255,0,0, 0.1);
+}
+
+.hint {
+  opacity: 0.4;
+}
