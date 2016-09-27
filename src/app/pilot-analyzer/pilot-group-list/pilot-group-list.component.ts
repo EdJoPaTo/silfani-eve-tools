@@ -5,13 +5,11 @@ import { ZKillStats } from '../../api/z-killboard/z-kill-stats';
 import { ZKillStatsService } from '../../api/z-killboard/z-kill-stats.service';
 import { AllianceInformationService } from '../../api/eve-crest/alliance-information.service';
 import { Hovered } from '../hovered';
-import { GroupcountPipe } from './groupcount.pipe';
 
 @Component({
   selector: 'app-pilot-group-list',
   templateUrl: 'pilot-group-list.component.html',
-  styleUrls: ['pilot-group-list.component.scss'],
-  pipes: [GroupcountPipe]
+  styleUrls: ['pilot-group-list.component.scss']
 })
 export class PilotGroupListComponent implements OnInit {
   @Input() characters: ZKillStats[];

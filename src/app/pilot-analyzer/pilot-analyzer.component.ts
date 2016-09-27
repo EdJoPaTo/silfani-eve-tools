@@ -7,20 +7,16 @@ import { ZKillStats } from '../api/z-killboard/z-kill-stats';
 import { ZKillStatsService } from '../api/z-killboard/z-kill-stats.service';
 import { AllianceInformationService } from '../api/eve-crest/alliance-information.service';
 import { Hovered } from './hovered';
-import { DestroyedLostComponent } from './destroyed-lost';
-import { PilotListComponent } from './pilot-list';
-import { PilotGroupListComponent } from './pilot-group-list';
 
 @Component({
   selector: 'app-pilot-analyzer',
   templateUrl: 'pilot-analyzer.component.html',
   styleUrls: ['pilot-analyzer.component.css'],
-  directives: [
-    DestroyedLostComponent,
-    PilotGroupListComponent,
-    PilotListComponent
-  ],
-  providers: [AutocompleteService, ZKillStatsService, AllianceInformationService]
+  providers: [
+    AllianceInformationService,
+    AutocompleteService,
+    ZKillStatsService
+  ]
 })
 export class PilotAnalyzerComponent implements OnInit {
   characters: ZKillStats[] = [];

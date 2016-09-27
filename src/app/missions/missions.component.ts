@@ -3,28 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { MissionService } from '../api/static-resources/mission.service';
-import { MissionListComponent } from './mission-list';
-
-import { NameFilterPipe } from './name-filter.pipe';
-import { LevelFilterPipe } from './level-filter.pipe';
-import { DetailedinfoPipe } from './detailedinfo.pipe';
-import { InfoiconPipe } from './infoicon.pipe';
-import { InfotitlePipe } from './infotitle.pipe';
 
 @Component({
   selector: 'app-missions',
   templateUrl: 'missions.component.html',
   styleUrls: ['missions.component.scss'],
-  directives: [
-    MissionListComponent
-  ],
-  pipes: [
-    NameFilterPipe,
-    LevelFilterPipe,
-    DetailedinfoPipe,
-    InfoiconPipe,
-    InfotitlePipe
-  ],
   providers: [MissionService]
 })
 export class MissionsComponent implements OnInit, OnDestroy {
