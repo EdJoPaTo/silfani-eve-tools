@@ -28,8 +28,10 @@ export class MineableTableComponent implements OnInit {
   @Output() onSelect = new EventEmitter<Item>();
 
   private prices: any = {};
+  private itemTypes: any[] = [];
 
   constructor(
+    private itemTypesService: ItemTypesService,
     private fuzzworkMarketService: FuzzworkMarketService
   ) { }
 
@@ -58,11 +60,22 @@ export class MineableTableComponent implements OnInit {
     }
   }
 
+  private getItemInfo(id: number) {
+    if (!this.itemTypes[id] && this.itemTypes[id] !== null) {
+      this.itemTypes[id] = null;
+
+      this.itemTypesService.get(id).subscribe(data => this.itemTypes[id] = data);
+    }
+    return this.itemTypes[id];
+  }
+
   getVolume(id: number) {
-    return 1;
+    let value = this.getItemInfo(id);
+    return value ? value.volume : 0;
   }
 
   getPortionSize(id: number) {
-    return 100;
+    let value = this.getItemInfo(id);
+    return value ? value.portionSize : 0;
   }
 }

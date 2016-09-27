@@ -9,6 +9,7 @@ import { DetailsComponent } from './details';
 
 import { EnabledItemsPipe } from './enabled-items.pipe';
 
+import { ItemTypesService } from './../api/eve-crest/item-types.service';
 import { MarketGroupsService } from './../api/eve-crest/market-groups.service';
 import { Item } from './item';
 import { FuzzworkMarketService } from '../api/fuzzwork-market.service';
@@ -20,6 +21,7 @@ import { StackPriceService } from './stack-price.service';
   templateUrl: 'mining.component.html',
   styleUrls: ['mining.component.scss'],
   providers: [
+    ItemTypesService,
     MarketGroupsService,
     FuzzworkMarketService,
     MineableService,
