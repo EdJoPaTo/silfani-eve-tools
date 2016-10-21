@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -9,9 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PathsService } from './api/eve-crest/paths.service';
 import { ItemService } from './api/eve-crest/item.service';
 
-import { IskPipe } from './isk.pipe';
-import { ShortnumberPipe } from './shortnumber.pipe';
-import { VolumePipe } from './volume.pipe';
+import { SharedModule } from './shared/shared.module';
 
 import { AboutComponent } from './about';
 import { ImpressumComponent } from './impressum';
@@ -38,9 +35,6 @@ import { OverviewComponent } from './overview';
     GroupcountPipe,
     PilotGroupListComponent,
     PilotListComponent,
-    IskPipe,
-    ShortnumberPipe,
-    VolumePipe,
     AboutComponent,
     ImpressumComponent,
     LegalComponent,
@@ -50,8 +44,8 @@ import { OverviewComponent } from './overview';
   imports: [
     AppRoutingModule,
     BrowserModule,
-    FormsModule,
-    HttpModule
+    HttpModule,
+    SharedModule
   ],
   providers: [
     PathsService,
