@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { routing, appRoutingProviders } from './app.routing';
+import { AppRoutingModule } from './app-routing.module';
 
 import { PathsService } from './api/eve-crest/paths.service';
 import { ItemService } from './api/eve-crest/item.service';
@@ -63,13 +63,12 @@ import { NameFilterPipe } from './missions/name-filter.pipe';
     PageNotFoundComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
-    HttpModule,
-    routing
+    HttpModule
   ],
   providers: [
-    appRoutingProviders,
     PathsService,
     ItemService
   ],
