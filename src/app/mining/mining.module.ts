@@ -4,7 +4,9 @@ import { MiningRoutingModule } from './mining-routing.module';
 import { MiningComponent } from './mining.component';
 
 import { EveCrestModule } from '../api/eve-crest';
+import { FuzzworkMarketModule } from '../api/fuzzwork-market';
 import { SharedModule } from '../shared';
+import { StaticResourcesModule } from '../api/static-resources';
 
 import { CompressedPipe } from './mineable-table/compressed.pipe';
 import { DetailsComponent } from './details';
@@ -20,8 +22,10 @@ import { ReprocesstableComponent } from './details/reprocesstable';
   imports: [
     CommonModule,
     EveCrestModule,
+    FuzzworkMarketModule,
     MiningRoutingModule,
-    SharedModule
+    SharedModule,
+    StaticResourcesModule
   ],
   declarations: [
     MiningComponent,

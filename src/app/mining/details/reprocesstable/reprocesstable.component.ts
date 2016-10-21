@@ -1,16 +1,13 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
 
-import { ReprocessService } from '../../../api/static-resources/evedump/reprocess.service';
+import { ReprocessService } from '../../../api/static-resources';
 import { FuzzworkMarketService } from '../../../api/fuzzwork-market';
 import { StackPriceService } from '../../stack-price.service';
 
 @Component({
   selector: 'app-reprocesstable',
   templateUrl: 'reprocesstable.component.html',
-  styleUrls: ['reprocesstable.component.scss'],
-  providers: [
-    ReprocessService
-  ]
+  styleUrls: ['reprocesstable.component.scss']
 })
 export class ReprocesstableComponent implements OnInit, DoCheck {
   private idDataLoadedFor: number;

@@ -3,23 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
-import { ItemTypesService, MarketGroupsService } from '../api/eve-crest';
+import { MarketGroupsService } from '../api/eve-crest';
 import { Item } from './item';
-import { FuzzworkMarketService } from '../api/fuzzwork-market';
-import { MineableService } from '../api/static-resources/mineable.service';
-import { StackPriceService } from './stack-price.service';
+import { MineableService } from '../api/static-resources';
 
 @Component({
   selector: 'app-mining',
   templateUrl: 'mining.component.html',
-  styleUrls: ['mining.component.scss'],
-  providers: [
-    ItemTypesService,
-    MarketGroupsService,
-    FuzzworkMarketService,
-    MineableService,
-    StackPriceService
-  ]
+  styleUrls: ['mining.component.scss']
 })
 export class MiningComponent implements OnInit, OnDestroy {
   detailsItem = new Item();
