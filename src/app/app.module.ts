@@ -5,9 +5,6 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { EveCrestModule } from './api/eve-crest';
-import { ZKillboardModule } from './api/z-killboard';
-
 import { CoreModule } from './core';
 
 import { NavbarComponent } from './navbar';
@@ -20,10 +17,7 @@ import { NavbarComponent } from './navbar';
   imports: [
     AppRoutingModule,
     BrowserModule,
-    CoreModule,
-    EveCrestModule,
-    ZKillboardModule,
-    HttpModule
+    CoreModule
   ],
   bootstrap: [
     AppComponent

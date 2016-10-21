@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { PilotAnalyzerRoutingModule } from './pilot-analyzer-routing.module';
 import { PilotAnalyzerComponent } from './pilot-analyzer.component';
 
+import { EveCrestModule } from '../api/eve-crest';
 import { SharedModule } from '../shared';
+import { ZKillboardModule } from '../api/z-killboard';
 
 import { AnyAlliancesPipe } from './pilot-list/any-alliances.pipe';
 import { DestroyedLostComponent } from './destroyed-lost';
@@ -14,8 +16,10 @@ import { PilotListComponent } from './pilot-list';
 @NgModule({
   imports: [
     CommonModule,
+    EveCrestModule,
     PilotAnalyzerRoutingModule,
-    SharedModule
+    SharedModule,
+    ZKillboardModule
   ],
   declarations: [
     PilotAnalyzerComponent,
