@@ -8,8 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { EveCrestModule } from './api/eve-crest';
 import { ZKillboardModule } from './api/z-killboard';
 
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core';
+import { SharedModule } from './shared';
 
 import { NavbarComponent } from './navbar';
 

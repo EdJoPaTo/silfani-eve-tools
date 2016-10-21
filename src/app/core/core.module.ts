@@ -1,11 +1,11 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AboutComponent } from './about';
-import { ImpressumComponent } from './impressum';
-import { LegalComponent } from './legal';
-import { OverviewComponent } from './overview';
-import { PageNotFoundComponent } from './page-not-found';
+import { AboutComponent } from './about/about.component';
+import { ImpressumComponent } from './impressum/impressum.component';
+import { LegalComponent } from './legal/legal.component';
+import { OverviewComponent } from './overview/overview.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
