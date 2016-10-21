@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { MiningRoutingModule } from './mining-routing.module';
 import { MiningComponent } from './mining.component';
 
+import { EveCrestModule } from '../api/eve-crest';
 import { SharedModule } from '../shared';
 
 import { CompressedPipe } from './mineable-table/compressed.pipe';
@@ -19,7 +19,7 @@ import { ReprocesstableComponent } from './details/reprocesstable';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    EveCrestModule,
     MiningRoutingModule,
     SharedModule
   ],
