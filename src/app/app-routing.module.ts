@@ -7,7 +7,7 @@ import { AboutComponent, ImpressumComponent, LegalComponent, OverviewComponent, 
 
 const routes: Routes = [
   { path: '', component: OverviewComponent },
-  { path: 'pilot-analyzer', component: PilotAnalyzerComponent },
+  { path: 'pilot-analyzer', loadChildren: 'app/pilot-analyzer/pilot-analyzer.module#PilotAnalyzerModule' },
   { path: 'missions', loadChildren: 'app/missions/missions.module#MissionsModule' },
   { path: 'about', component: AboutComponent },
   { path: 'legal', component: LegalComponent },
