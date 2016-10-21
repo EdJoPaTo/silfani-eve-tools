@@ -9,26 +9,12 @@ import { EveCrestModule } from './api/eve-crest';
 import { ZKillboardModule } from './api/z-killboard';
 
 import { CoreModule } from './core';
-import { SharedModule } from './shared';
 
 import { NavbarComponent } from './navbar';
-
-import { PilotAnalyzerComponent } from './pilot-analyzer';
-import { AnyAlliancesPipe } from './pilot-analyzer/pilot-list/any-alliances.pipe';
-import { DestroyedLostComponent } from './pilot-analyzer/destroyed-lost';
-import { GroupcountPipe } from './pilot-analyzer/pilot-group-list/groupcount.pipe';
-import { PilotGroupListComponent } from './pilot-analyzer/pilot-group-list';
-import { PilotListComponent } from './pilot-analyzer/pilot-list';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PilotAnalyzerComponent,
-    AnyAlliancesPipe,
-    DestroyedLostComponent,
-    GroupcountPipe,
-    PilotGroupListComponent,
-    PilotListComponent,
     NavbarComponent
   ],
   imports: [
@@ -37,8 +23,7 @@ import { PilotListComponent } from './pilot-analyzer/pilot-list';
     CoreModule,
     EveCrestModule,
     ZKillboardModule,
-    HttpModule,
-    SharedModule
+    HttpModule
   ],
   bootstrap: [
     AppComponent

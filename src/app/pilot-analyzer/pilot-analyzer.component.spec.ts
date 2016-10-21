@@ -1,13 +1,28 @@
 /* tslint:disable:no-unused-variable */
-
-import { By }           from '@angular/platform-browser';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { addProviders, async, inject } from '@angular/core/testing';
+
 import { PilotAnalyzerComponent } from './pilot-analyzer.component';
 
-describe('Component: PilotAnalyzer', () => {
-  it('should create an instance', () => {
-    //let component = new PilotAnalyzerComponent();
-    //expect(component).toBeTruthy();
+describe('PilotAnalyzerComponent', () => {
+  let component: PilotAnalyzerComponent;
+  let fixture: ComponentFixture<PilotAnalyzerComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ PilotAnalyzerComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PilotAnalyzerComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });
