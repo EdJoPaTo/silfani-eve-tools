@@ -8,13 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { PathsService } from './api/eve-crest/paths.service';
 import { ItemService } from './api/eve-crest/item.service';
 
+import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
-import { AboutComponent } from './about';
-import { ImpressumComponent } from './impressum';
-import { LegalComponent } from './legal';
 import { NavbarComponent } from './navbar';
-import { PageNotFoundComponent } from './page-not-found';
 
 import { PilotAnalyzerComponent } from './pilot-analyzer';
 import { AnyAlliancesPipe } from './pilot-analyzer/pilot-list/any-alliances.pipe';
@@ -23,27 +20,21 @@ import { GroupcountPipe } from './pilot-analyzer/pilot-group-list/groupcount.pip
 import { PilotGroupListComponent } from './pilot-analyzer/pilot-group-list';
 import { PilotListComponent } from './pilot-analyzer/pilot-list';
 
-import { OverviewComponent } from './overview';
-
 @NgModule({
   declarations: [
     AppComponent,
-    OverviewComponent,
     PilotAnalyzerComponent,
     AnyAlliancesPipe,
     DestroyedLostComponent,
     GroupcountPipe,
     PilotGroupListComponent,
     PilotListComponent,
-    AboutComponent,
-    ImpressumComponent,
-    LegalComponent,
-    NavbarComponent,
-    PageNotFoundComponent
+    NavbarComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
+    CoreModule,
     HttpModule,
     SharedModule
   ],
