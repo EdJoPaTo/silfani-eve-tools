@@ -3,10 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
-import { ItemTypesService } from './../api/eve-crest/item-types.service';
-import { MarketGroupsService } from './../api/eve-crest/market-groups.service';
+import { ItemTypesService, MarketGroupsService } from '../api/eve-crest';
 import { Item } from './item';
-import { FuzzworkMarketService } from '../api/fuzzwork-market.service';
+import { FuzzworkMarketService } from '../api/fuzzwork-market';
 import { MineableService } from '../api/static-resources/mineable.service';
 import { StackPriceService } from './stack-price.service';
 

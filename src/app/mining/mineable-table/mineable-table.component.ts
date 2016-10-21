@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
-import { ItemTypesService } from '../../api/eve-crest/item-types.service';
-import { FuzzworkMarketService } from '../../api/fuzzwork-market.service';
+import { ItemTypesService } from '../../api/eve-crest';
+import { FuzzworkMarketService } from '../../api/fuzzwork-market';
 
 import { Item } from '../item';
 
