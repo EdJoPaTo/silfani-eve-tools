@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+import { StaticResourcesModule } from '../api/static-resources';
+
 import { MissionsRoutingModule } from './missions-routing.module';
 import { MissionsComponent } from './missions.component';
 
@@ -15,7 +18,8 @@ import { NameFilterPipe } from './name-filter.pipe';
   imports: [
     CommonModule,
     FormsModule,
-    MissionsRoutingModule
+    MissionsRoutingModule,
+    StaticResourcesModule
   ],
   declarations: [
     MissionsComponent,

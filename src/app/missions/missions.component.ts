@@ -2,13 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { MissionService } from '../api/static-resources/mission.service';
+import { MissionService } from '../api/static-resources';
 
 @Component({
   selector: 'app-missions',
   templateUrl: './missions.component.html',
-  styleUrls: ['./missions.component.scss'],
-  providers: [MissionService]
+  styleUrls: ['./missions.component.scss']
 })
 export class MissionsComponent implements OnInit, OnDestroy {
   private sub: Subscription;
