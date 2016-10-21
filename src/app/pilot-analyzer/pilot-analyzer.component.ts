@@ -5,7 +5,6 @@ import { Subject } from 'rxjs/Subject';
 import { AutocompleteService } from '../api/z-killboard/autocomplete.service';
 import { ZKillStats } from '../api/z-killboard/z-kill-stats';
 import { ZKillStatsService } from '../api/z-killboard/z-kill-stats.service';
-import { AllianceInformationService } from '../api/eve-crest/alliance-information.service';
 import { Hovered } from './hovered';
 
 @Component({
@@ -13,7 +12,6 @@ import { Hovered } from './hovered';
   templateUrl: 'pilot-analyzer.component.html',
   styleUrls: ['pilot-analyzer.component.css'],
   providers: [
-    AllianceInformationService,
     AutocompleteService,
     ZKillStatsService
   ]

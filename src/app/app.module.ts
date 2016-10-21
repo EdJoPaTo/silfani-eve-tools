@@ -5,8 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { PathsService } from './api/eve-crest/paths.service';
-import { ItemService } from './api/eve-crest/item.service';
+import { EveCrestModule } from './api/eve-crest';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -35,12 +34,9 @@ import { PilotListComponent } from './pilot-analyzer/pilot-list';
     AppRoutingModule,
     BrowserModule,
     CoreModule,
+    EveCrestModule,
     HttpModule,
     SharedModule
-  ],
-  providers: [
-    PathsService,
-    ItemService
   ],
   bootstrap: [
     AppComponent

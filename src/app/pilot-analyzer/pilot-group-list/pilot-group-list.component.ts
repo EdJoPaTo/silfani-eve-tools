@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { ZKillStats } from '../../api/z-killboard/z-kill-stats';
 import { ZKillStatsService } from '../../api/z-killboard/z-kill-stats.service';
-import { AllianceInformationService } from '../../api/eve-crest/alliance-information.service';
+import { AllianceInformationService } from '../../api/eve-crest';
 import { Hovered } from '../hovered';
 
 @Component({
