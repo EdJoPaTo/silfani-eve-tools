@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { OverviewComponent } from './overview';
 import { MiningComponent } from './mining';
 import { PilotAnalyzerComponent } from './pilot-analyzer';
 
-import { AboutComponent } from './about';
-import { LegalComponent } from './legal';
-import { ImpressumComponent } from './impressum';
-import { PageNotFoundComponent } from './page-not-found';
+import { OverviewComponent } from './core/overview';
+import { AboutComponent } from './core/about';
+import { LegalComponent } from './core/legal';
+import { ImpressumComponent } from './core/impressum';
+import { PageNotFoundComponent } from './core/page-not-found';
 
 const routes: Routes = [
   { path: '', component: OverviewComponent },
