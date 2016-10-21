@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { ZKillStats } from '../../api/z-killboard/z-kill-stats';
-import { ZKillStatsService } from '../../api/z-killboard/z-kill-stats.service';
+import { ZKillStats, ZKillStatsService } from '../../api/z-killboard';
 import { AllianceInformationService } from '../../api/eve-crest';
 import { Hovered } from '../hovered';
 

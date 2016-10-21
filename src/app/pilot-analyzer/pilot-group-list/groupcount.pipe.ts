@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { ZKillStats } from '../../api/z-killboard/z-kill-stats';
+import { ZKillStats } from '../../api/z-killboard';
 
 function orderByDesc(obj, selector) {
   let tmp = JSON.parse(JSON.stringify(obj));

@@ -2,19 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { AutocompleteService } from '../api/z-killboard/autocomplete.service';
-import { ZKillStats } from '../api/z-killboard/z-kill-stats';
-import { ZKillStatsService } from '../api/z-killboard/z-kill-stats.service';
+import { AutocompleteService, ZKillStats, ZKillStatsService } from '../api/z-killboard';
 import { Hovered } from './hovered';
 
 @Component({
   selector: 'app-pilot-analyzer',
   templateUrl: 'pilot-analyzer.component.html',
-  styleUrls: ['pilot-analyzer.component.css'],
-  providers: [
-    AutocompleteService,
-    ZKillStatsService
-  ]
+  styleUrls: ['pilot-analyzer.component.css']
 })
 export class PilotAnalyzerComponent implements OnInit {
   characters: ZKillStats[] = [];

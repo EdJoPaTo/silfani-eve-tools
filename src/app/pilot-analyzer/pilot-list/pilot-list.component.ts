@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ZKillStats } from '../../api/z-killboard/z-kill-stats';
+import { ZKillStats } from '../../api/z-killboard';
 import { AllianceInformationService } from '../../api/eve-crest';
 import { Hovered } from '../hovered';
 
