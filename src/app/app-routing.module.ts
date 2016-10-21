@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MiningComponent } from './mining';
 import { PilotAnalyzerComponent } from './pilot-analyzer';
 
 import { AboutComponent, ImpressumComponent, LegalComponent, OverviewComponent, PageNotFoundComponent } from './core';
 
 const routes: Routes = [
   { path: '', component: OverviewComponent },
-  { path: 'mining', component: MiningComponent },
+  { path: 'mining', loadChildren: 'app/mining/mining.module#MiningModule' },
   { path: 'pilot-analyzer', component: PilotAnalyzerComponent },
   { path: 'missions', loadChildren: 'app/missions/missions.module#MissionsModule' },
   { path: 'about', component: AboutComponent },
