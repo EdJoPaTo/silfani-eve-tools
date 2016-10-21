@@ -28,14 +28,6 @@ import { PilotListComponent } from './pilot-analyzer/pilot-list';
 
 import { OverviewComponent } from './overview';
 
-import { MissionsComponent } from './missions';
-import { DetailedinfoPipe } from './missions/detailedinfo.pipe';
-import { InfoiconPipe } from './missions/infoicon.pipe';
-import { InfotitlePipe } from './missions/infotitle.pipe';
-import { LevelFilterPipe } from './missions/level-filter.pipe';
-import { MissionListComponent } from './missions/mission-list';
-import { NameFilterPipe } from './missions/name-filter.pipe';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,13 +38,6 @@ import { NameFilterPipe } from './missions/name-filter.pipe';
     GroupcountPipe,
     PilotGroupListComponent,
     PilotListComponent,
-    MissionsComponent,
-    DetailedinfoPipe,
-    InfoiconPipe,
-    InfotitlePipe,
-    LevelFilterPipe,
-    MissionListComponent,
-    NameFilterPipe,
     IskPipe,
     ShortnumberPipe,
     VolumePipe,
