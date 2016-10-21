@@ -9,7 +9,7 @@ import { PathsService } from './api/eve-crest/paths.service';
 import { ItemService } from './api/eve-crest/item.service';
 
 import { CoreModule } from './core';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './shared';
 
 import { NavbarComponent } from './navbar';
 
