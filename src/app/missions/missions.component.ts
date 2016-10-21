@@ -6,8 +6,8 @@ import { MissionService } from '../api/static-resources/mission.service';
 
 @Component({
   selector: 'app-missions',
-  templateUrl: 'missions.component.html',
-  styleUrls: ['missions.component.scss'],
+  templateUrl: './missions.component.html',
+  styleUrls: ['./missions.component.scss'],
   providers: [MissionService]
 })
 export class MissionsComponent implements OnInit, OnDestroy {

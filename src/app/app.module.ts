@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { routing, appRoutingProviders } from './app.routing';
+import { AppRoutingModule } from './app-routing.module';
 
 import { PathsService } from './api/eve-crest/paths.service';
 import { ItemService } from './api/eve-crest/item.service';
@@ -27,14 +27,6 @@ import { PilotGroupListComponent } from './pilot-analyzer/pilot-group-list';
 import { PilotListComponent } from './pilot-analyzer/pilot-list';
 
 import { OverviewComponent } from './overview';
-
-import { MissionsComponent } from './missions';
-import { DetailedinfoPipe } from './missions/detailedinfo.pipe';
-import { InfoiconPipe } from './missions/infoicon.pipe';
-import { InfotitlePipe } from './missions/infotitle.pipe';
-import { LevelFilterPipe } from './missions/level-filter.pipe';
-import { MissionListComponent } from './missions/mission-list';
-import { NameFilterPipe } from './missions/name-filter.pipe';
 
 import { MiningComponent } from './mining';
 import { CompressedPipe } from './mining/mineable-table/compressed.pipe';
@@ -67,13 +59,6 @@ import { ReprocesstableComponent } from './mining/details/reprocesstable';
     GroupcountPipe,
     PilotGroupListComponent,
     PilotListComponent,
-    MissionsComponent,
-    DetailedinfoPipe,
-    InfoiconPipe,
-    InfotitlePipe,
-    LevelFilterPipe,
-    MissionListComponent,
-    NameFilterPipe,
     IskPipe,
     ShortnumberPipe,
     VolumePipe,
@@ -84,13 +69,12 @@ import { ReprocesstableComponent } from './mining/details/reprocesstable';
     PageNotFoundComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
-    HttpModule,
-    routing
+    HttpModule
   ],
   providers: [
-    appRoutingProviders,
     PathsService,
     ItemService
   ],
