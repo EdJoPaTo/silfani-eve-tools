@@ -98,8 +98,13 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
 
   private stackItems(currentStack: Item[], add: Item[]): Item[] {
     add.forEach(itemToAdd => {
-      // TODO: stack already existing Items instead of adding them
-      currentStack = currentStack.concat(itemToAdd);
+      let indexOfExistingItem = currentStack.map(i => i.name).indexOf(itemToAdd.name);
+
+      if (indexOfExistingItem >= 0) {
+        currentStack[indexOfExistingItem].amount += itemToAdd.amount;
+      } else {
+        currentStack = currentStack.concat(itemToAdd);
+      }
     });
     return currentStack;
   }
