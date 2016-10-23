@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { ParseItemLineService } from './parse-item-line.service';
-import { TypeIdFromNameService } from '../api/fuzzwork';
+import { FuzzworkMarketService, TypeIdFromNameService } from '../api/fuzzwork';
 
 import { LineInfo } from './line-info';
 import { Item } from './item';
@@ -20,8 +20,10 @@ export class ItemEstimatorComponent implements OnInit {
   input: string;
   private searchTerms = new Subject<string>();
   items: Item[] = [];
+  private prices = {};
 
   constructor(
+    private fuzzworkMarketService: FuzzworkMarketService,
     private parseItemLineService: ParseItemLineService,
     private typeIdFromNameService: TypeIdFromNameService
   ) { }
@@ -41,6 +43,11 @@ export class ItemEstimatorComponent implements OnInit {
           .flatMap(li => li ? this.itemFromLineInfo(li) : Observable.of<Item>(null))
           .subscribe(item => {
             if (!item) { return; }
+            if (!this.prices[item.id]) {
+              // TODO: pricearea in GUI
+              this.fuzzworkMarketService.get([item.id])
+                .subscribe(pricedata => this.prices[item.id] = pricedata[item.id]);
+            }
             if (clear) {
               clear = false;
               this.items = [];
