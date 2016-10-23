@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { FuzzworkMarketService } from '../api/fuzzwork-market';
+import { FuzzworkMarketService } from '../api/fuzzwork';
 
 @Injectable()
 export class StackPriceService {

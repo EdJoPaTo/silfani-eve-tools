@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
 
-import { FuzzworkMarketService } from '../../../api/fuzzwork-market';
+import { FuzzworkMarketService } from '../../../api/fuzzwork';
 
 @Component({
   selector: 'app-pricetable',

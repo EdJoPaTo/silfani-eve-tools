@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
 
 import { ReprocessService } from '../../../api/static-resources';
-import { FuzzworkMarketService } from '../../../api/fuzzwork-market';
+import { FuzzworkMarketService } from '../../../api/fuzzwork';
 import { StackPriceService } from '../../stack-price.service';
 
 @Component({
