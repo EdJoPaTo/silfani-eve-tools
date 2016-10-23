@@ -5,13 +5,13 @@ import { ItemEstimatorComponent } from './item-estimator.component';
 
 import { SharedModule } from '../shared';
 import { EveCrestModule } from '../api/eve-crest';
-import { FuzzworkMarketModule } from '../api/fuzzwork-market';
+import { FuzzworkModule } from '../api/fuzzwork';
 
 @NgModule({
   imports: [
     CommonModule,
     EveCrestModule,
-    FuzzworkMarketModule,
+    FuzzworkModule,
     ItemEstimatorRoutingModule,
     SharedModule
   ],
