@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { ParseItemLineService } from './parse-item-line.service';
 import { FuzzworkMarketService, TypeIdFromNameService } from '../api/fuzzwork';
+import { ItemTypesService } from '../api/eve-crest';
+import { ParseItemLineService } from './parse-item-line.service';
 
 import { LineInfo } from './line-info';
 import { Item } from './item';
@@ -21,9 +22,11 @@ export class ItemEstimatorComponent implements OnInit {
   private searchTerms = new Subject<string>();
   items: Item[] = [];
   private prices = {};
+  private volumes = {};
 
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
+    private itemTypesService: ItemTypesService,
     private parseItemLineService: ParseItemLineService,
     private typeIdFromNameService: TypeIdFromNameService
   ) { }
@@ -47,6 +50,11 @@ export class ItemEstimatorComponent implements OnInit {
               // TODO: pricearea in GUI
               this.fuzzworkMarketService.get([item.id])
                 .subscribe(pricedata => this.prices[item.id] = pricedata[item.id]);
+            }
+            if (!this.volumes[item.id]) {
+              this.itemTypesService.get(item.id)
+                .map(typeinfo => typeinfo.volume)
+                .subscribe(volume => this.volumes[item.id] = volume);
             }
             if (clear) {
               clear = false;
