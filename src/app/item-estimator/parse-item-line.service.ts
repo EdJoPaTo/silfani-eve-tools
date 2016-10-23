@@ -72,7 +72,12 @@ export class ParseItemLineService {
     for (let i = 0; i < NameAmountRegexList.length; i++) {
       if (result = NameAmountRegexList[i].exec(line)) {
         let li = new LineInfo();
-        li.amount = Number(result[2].replace('.', ''));
+        if (!result[2]) {
+          // Unpacked Items does not have an amount
+          li.amount = 1;
+        } else {
+          li.amount = Number(result[2].replace('.', ''));
+        }
         li.name = result[1];
         return [li];
       }
