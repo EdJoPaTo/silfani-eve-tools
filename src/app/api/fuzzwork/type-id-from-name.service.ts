@@ -6,23 +6,32 @@ const URL = 'https://www.fuzzwork.co.uk/api/typeid.php?typename=';
 
 @Injectable()
 export class TypeIdFromNameService {
+  private ids = {};
 
   constructor(
     private http: Http
   ) { }
 
-  get(name: string): Observable<any> {
+  getId(name: string): Observable<number> {
     // https://www.fuzzwork.co.uk/api/typeid.php?typename=Tritanium
 
-    let url = `https://www.fuzzwork.co.uk/api/typeid.php?typename=${name}`;
+    let url = `${URL}${name}`;
+
+    if (this.ids[name]) {
+      return Observable.of<number>(this.ids[name]);
+    }
 
     return this.http
       .get(url)
-      .map((r: Response) => r.json());
-  }
+      .map((r: Response) => r.json())
+      .map(i => i.typeID)
+      .map(id => {
+        if (!this.ids[name]) {
+          this.ids[name] = id;
+        }
+        console.log('ids', this.ids);
 
-  getId(name: string): Observable<number> {
-    return this.get(name)
-      .map(i => i.typeID);
+        return id;
+      });
   }
 }
