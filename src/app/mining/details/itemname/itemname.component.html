@@ -1,0 +1,13 @@
+<article class="media">
+  <div class="media-left">
+    <figure class="image" [class.is-64x64]="!small" [class.is-48x48]="small">
+      <img [src]="'http://imageserver.eveonline.com/Type/'+ id +'_64.png'" [alt]="name">
+    </figure>
+  </div>
+  <div class="media-content">
+    <span *ngIf="amount !== 1">{{ amount }}x</span>
+    <span class="itemname">{{ name }}</span>
+    <br />
+    <span class="itemid">{{ id }}</span>
+  </div>
+</article>
