@@ -4,6 +4,13 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class FuzzworkMarketService {
+  stations = [
+    { name: 'Jita IV M4 CNAP', id: 60003760 }, // Jita IV - Moon 4 - Caldari Navy Assembly Plant
+    { name: 'Amarr VIII', id: 60008494 }, // Amarr VIII (Oris) - Emperor Family Academy
+    { name: 'Dodixie IX M20', id: 60011866 }, // Dodixie IX - Moon 20 - Federation Navy Assembly Plant
+    { name: 'Rens VI M8', id: 60004588 }, // Rens VI - Moon 8 - Brutor Tribe Treasure
+    { name: 'Hek VIII M12', id: 60005686 } // Hek VIII - Moon 12 - Boundless Creation Factory
+  ];
 
   constructor(
     private http: Http
