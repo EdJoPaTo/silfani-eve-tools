@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 
 import { FuzzworkMarketService } from './fuzzwork-market.service';
+import { TypeIdFromNameService } from './type-id-from-name.service';
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import { FuzzworkMarketService } from './fuzzwork-market.service';
     HttpModule
   ],
   providers: [
-    FuzzworkMarketService
+    FuzzworkMarketService,
+    TypeIdFromNameService
   ]
 })
 export class FuzzworkModule { }
