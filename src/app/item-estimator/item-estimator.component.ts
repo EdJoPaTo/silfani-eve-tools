@@ -33,9 +33,11 @@ export class ItemEstimatorComponent implements OnInit {
         let clear = true;
         Observable.of<string[]>(lines)
           .flatMap(a => a)
-          .map(this.parseItemLineService.parse)
-          .flatMap(li => this.itemFromLineInfo(li))
+          .map(line => this.parseItemLineService.parse(line))
+          .flatMap(itemStack => itemStack)
+          .flatMap(li => li ? this.itemFromLineInfo(li) : Observable.of<Item>(null))
           .subscribe(item => {
+            if (!item) { return; }
             if (clear) {
               clear = false;
               this.items = [];

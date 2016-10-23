@@ -7,13 +7,13 @@ export class ParseItemLineService {
 
   constructor() { }
 
-  parse(line: string): LineInfo {
+  parse(line: string): LineInfo[] {
+    line = line.trim();
+
     let li = new LineInfo();
     li.name = 'Veldspar';
-    // li.amount = 1;
 
-    console.log('ParseItemLineService', line, li);
-    return li;
+    return [li];
   }
 
 }
