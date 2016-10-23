@@ -2,20 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
+import { ParseItemLineService } from './parse-item-line.service';
+
 import { LineInfo } from './line-info';
 import { Item } from './item';
 
 @Component({
   selector: 'app-item-estimator',
   templateUrl: './item-estimator.component.html',
-  styleUrls: ['./item-estimator.component.scss']
+  styleUrls: ['./item-estimator.component.scss'],
+  providers: [
+    ParseItemLineService
+  ]
 })
 export class ItemEstimatorComponent implements OnInit {
   input: string;
   private searchTerms = new Subject<string>();
   items: Item[] = [];
 
-  constructor() { }
+  constructor(
+    private parseItemLineService: ParseItemLineService
+  ) { }
 
   ngOnInit() {
     this.searchTerms
@@ -26,10 +33,9 @@ export class ItemEstimatorComponent implements OnInit {
         let clear = true;
         Observable.of<string[]>(lines)
           .flatMap(a => a)
-          .map(this.infoFromLine)
+          .map(this.parseItemLineService.parse)
           .map(this.itemFromLineInfo)
           .subscribe(item => {
-            console.log(item);
             if (clear) {
               clear = false;
               this.items = [];
@@ -47,15 +53,6 @@ Power Circuit  2  Salvaged Materials  0,02 m3
 Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
 `;
     this.search(this.input);
-  }
-
-  infoFromLine(line: string): LineInfo {
-    // TODO: replace with a service
-    let li = new LineInfo();
-    li.name = 'Veldspar';
-    // li.amount = 1;
-    console.log('infoFromLine', line, li);
-    return li;
   }
 
   itemFromLineInfo(lineinfo: LineInfo): Item {
