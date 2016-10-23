@@ -13,4 +13,4 @@ import { FuzzworkMarketService } from './fuzzwork-market.service';
     FuzzworkMarketService
   ]
 })
-export class FuzzworkMarketModule { }
+export class FuzzworkModule { }

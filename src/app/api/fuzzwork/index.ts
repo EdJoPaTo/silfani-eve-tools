@@ -1,3 +1,3 @@
-export { FuzzworkMarketModule } from './fuzzwork-market.module';
+export { FuzzworkModule } from './fuzzwork.module';
 
 export { FuzzworkMarketService } from './fuzzwork-market.service';
