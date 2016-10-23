@@ -7,7 +7,7 @@ const ItemNamePart = '(\\S+(?: \\S+)*)\\*?';
 const NumberPart = '(\\d+(?:\\.\\d{3})*)?';
 const RangePart = '((?:\\d+(?:\\.\\d{3})*) k?m|-)';
 const SeperatorPart = '(?: |\\t)+';
-const PossibleSingleWordPart = '(?:\w+' + SeperatorPart + ')?';
+const PossibleSingleWordPart = '(?:\\w+' + SeperatorPart + ')?';
 
 const BlueprintIngredientsRegex = new RegExp('^' + NumberPart + ' ?x' + SeperatorPart + ItemNamePart + '$');
 const CargoScannerRegex = new RegExp('^' + NumberPart + SeperatorPart + ItemNamePart + '$');
