@@ -34,6 +34,7 @@ export class ItemEstimatorComponent implements OnInit {
         Observable.of<string[]>(lines)
           .flatMap(a => a)
           .map(line => this.parseItemLineService.parse(line))
+          .reduce(this.stackItems)
           .flatMap(itemStack => itemStack)
           .flatMap(li => li ? this.itemFromLineInfo(li) : Observable.of<Item>(null))
           .subscribe(item => {
@@ -55,6 +56,14 @@ Power Circuit  2  Salvaged Materials  0,02 m3
 Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
 `;
     this.search(this.input);
+  }
+
+  private stackItems(currentStack: Item[], add: Item[]): Item[] {
+    add.forEach(itemToAdd => {
+      // TODO: stack already existing Items instead of adding them
+      currentStack = currentStack.concat(itemToAdd);
+    });
+    return currentStack;
   }
 
   itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
