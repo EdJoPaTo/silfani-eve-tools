@@ -34,7 +34,7 @@ export class ItemEstimatorComponent implements OnInit {
         Observable.of<string[]>(lines)
           .flatMap(a => a)
           .map(this.parseItemLineService.parse)
-          .map(this.itemFromLineInfo)
+          .flatMap(li => this.itemFromLineInfo(li))
           .subscribe(item => {
             if (clear) {
               clear = false;
@@ -55,12 +55,8 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     this.search(this.input);
   }
 
-  itemFromLineInfo(lineinfo: LineInfo): Item {
-    // TODO: replace with a service
-    let i = new Item();
-    i.id = 1230;
-    i.amount = lineinfo.amount;
-    return i;
+  itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
+    return Observable.of<Item>({name: lineinfo.name, amount: lineinfo.amount, id: 1230});
   }
 
   splitLines(input: string): string[] { return input.split('\n').filter(str => str); }
