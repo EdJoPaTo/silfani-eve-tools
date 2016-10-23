@@ -16,11 +16,13 @@ export class FuzzworkMarketService {
     private http: Http
   ) { }
 
+  private kind(area) { return area >= 60000000 ? 'station' : 'region'; }
+
   get(ids: number[], area = 60003760): Observable<any> {
     // https://market.fuzzwork.co.uk/aggregates/?region=10000002&types=34,35,36,37,38,39,40
     // https://market.fuzzwork.co.uk/aggregates/?station=60003760&types=34,35,36,37,38,39,40
 
-    let kind = area >= 60000000 ? 'station' : 'region';
+    let kind = this.kind(area);
     let types = ids.toString();
 
     let url = `https://market.fuzzwork.co.uk/aggregates/?${kind}=${area}&types=${types}`;
@@ -28,5 +30,14 @@ export class FuzzworkMarketService {
     return this.http
       .get(url)
       .map((r: Response) => r.json());
+  }
+
+  detailsUrl(id: number, area = 60003760, isSell = true) {
+    // Tritanium in Jita IV - 4
+    // https://market.fuzzwork.co.uk/station/60003760/type/34/#buy
+
+    let kind = this.kind(area);
+
+    return `https://market.fuzzwork.co.uk/${kind}/${area}/type/${id}/${isSell ? '' : '#buy'}`;
   }
 }
