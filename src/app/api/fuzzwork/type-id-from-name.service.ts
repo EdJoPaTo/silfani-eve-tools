@@ -29,8 +29,6 @@ export class TypeIdFromNameService {
         if (!this.ids[name]) {
           this.ids[name] = id;
         }
-        console.log('ids', this.ids);
-
         return id;
       });
   }
