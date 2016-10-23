@@ -53,6 +53,8 @@
             </td>
             <td>
               {{ item.name }}
+              <br />
+              <a [href]="fuzzworkMarketService.detailsUrl(item.id, pricearea, isSell)" target="_blank">Fuzzwork Market</a>
             </td>
             <td class="has-text-right" [title]="(item.amount | number: '1.0-0') + 'x ' + (volumes[item.id] | number: '1.2-2') + ' m³'">
               {{ item.amount * volumes[item.id] | number: '1.2-2' }}
