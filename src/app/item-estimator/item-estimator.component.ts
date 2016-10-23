@@ -83,6 +83,12 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     return currentStack;
   }
 
+  private price(id: number, isBuy = true): number {
+    if (!this.prices[id]) { return null; }
+
+    return this.prices[id][isBuy ? 'buy' : 'sell'].percentile;
+  }
+
   itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
     return this.typeIdFromNameService.getId(lineinfo.name)
       .map(id => ({ name: lineinfo.name, amount: lineinfo.amount, id: id }));
