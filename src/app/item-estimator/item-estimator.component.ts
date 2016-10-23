@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 
 import { FuzzworkMarketService, TypeIdFromNameService } from '../api/fuzzwork';
 import { ItemTypesService } from '../api/eve-crest';
@@ -17,21 +19,28 @@ import { Item } from './item';
     ParseItemLineService
   ]
 })
-export class ItemEstimatorComponent implements OnInit {
+export class ItemEstimatorComponent implements OnInit, OnDestroy {
   input: string;
   private searchTerms = new Subject<string>();
   items: Item[] = [];
   private prices = {};
+  private isSell = true;
+  private sub: Subscription;
   private volumes = {};
 
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
     private itemTypesService: ItemTypesService,
     private parseItemLineService: ParseItemLineService,
+    private route: ActivatedRoute,
+    private router: Router,
     private typeIdFromNameService: TypeIdFromNameService
   ) { }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.isSell = params['pricetype'] !== 'buy';
+    });
     this.searchTerms
       .debounceTime(300)        // wait for 300ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous
@@ -75,6 +84,15 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     this.search(this.input);
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+  private updateUrl(): void {
+    let params: any = {};
+    if (!this.isSell) { params.pricetype = 'buy'; }
+    this.router.navigate([params]);  }
+
   private stackItems(currentStack: Item[], add: Item[]): Item[] {
     add.forEach(itemToAdd => {
       // TODO: stack already existing Items instead of adding them
@@ -83,10 +101,10 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     return currentStack;
   }
 
-  private price(id: number, isBuy = true): number {
+  private price(id: number, isSell: boolean): number {
     if (!this.prices[id]) { return null; }
 
-    return this.prices[id][isBuy ? 'buy' : 'sell'].percentile;
+    return this.prices[id][isSell ? 'sell' : 'buy'].percentile;
   }
 
   itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
@@ -95,7 +113,7 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
   }
 
   totalAmount(items: any[]): number { return items.reduce((sum, add) => sum + add.amount, 0); }
-  totalPrice(items: any[]): number { return items.reduce((sum, add) => sum + this.price(add.id) * add.amount, 0); }
+  totalPrice(items: any[], isSell: boolean): number { return items.reduce((sum, add) => sum + this.price(add.id, isSell) * add.amount, 0); }
   totalVolume(items: any[]): number { return items.reduce((sum, add) => sum + this.volumes[add.id] * add.amount, 0); }
 
   splitLines(input: string): string[] { return input.split('\n').filter(str => str); }
