@@ -15,6 +15,13 @@
                 Buy
               </a>
             </p>
+            <p class="control">
+              <span class="select">
+                <select [(ngModel)]="pricearea" (click)="updateUrl()">
+                  <option *ngFor="let p of fuzzworkMarketService.stations" [value]="p.id">{{ p.name }}</option>
+                </select>
+              </span>
+            </p>
           </div>
         </div>
         <div class="column is-narrow">
