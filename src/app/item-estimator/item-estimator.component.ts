@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { ParseItemLineService } from './parse-item-line.service';
+import { TypeIdFromNameService } from '../api/fuzzwork';
 
 import { LineInfo } from './line-info';
 import { Item } from './item';
@@ -21,7 +22,8 @@ export class ItemEstimatorComponent implements OnInit {
   items: Item[] = [];
 
   constructor(
-    private parseItemLineService: ParseItemLineService
+    private parseItemLineService: ParseItemLineService,
+    private typeIdFromNameService: TypeIdFromNameService
   ) { }
 
   ngOnInit() {
@@ -67,7 +69,8 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
   }
 
   itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
-    return Observable.of<Item>({name: lineinfo.name, amount: lineinfo.amount, id: 1230});
+    return this.typeIdFromNameService.getId(lineinfo.name)
+      .map(id => ({ name: lineinfo.name, amount: lineinfo.amount, id: id }));
   }
 
   splitLines(input: string): string[] { return input.split('\n').filter(str => str); }
