@@ -94,6 +94,10 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
       .map(id => ({ name: lineinfo.name, amount: lineinfo.amount, id: id }));
   }
 
+  totalAmount(items: any[]): number { return items.reduce((sum, add) => sum + add.amount, 0); }
+  totalPrice(items: any[]): number { return items.reduce((sum, add) => sum + this.price(add.id) * add.amount, 0); }
+  totalVolume(items: any[]): number { return items.reduce((sum, add) => sum + this.volumes[add.id] * add.amount, 0); }
+
   splitLines(input: string): string[] { return input.split('\n').filter(str => str); }
   search(term: string) { this.searchTerms.next(term); }
 }

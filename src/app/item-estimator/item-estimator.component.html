@@ -7,10 +7,10 @@
           <textarea [(ngModel)]="input" placeholder="items" rows="6" #searchBox id="search-box" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" (keyup)="search(searchBox.value)"></textarea>
         </div>
         <div class="column is-narrow" id="volume">
-          {{ 255.12 | volume: true }}
+          {{ totalVolume(items) | volume: true }}
         </div>
         <div class="column is-narrow" id="price">
-          {{ 60000 | isk: true }}
+          {{ totalPrice(items) | isk: true }}
         </div>
       </div>
       <table class="table" *ngIf="items.length">
@@ -42,6 +42,21 @@
             </td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td> </td>
+            <td class="has-text-right">
+              {{ totalAmount(items) | number: '1.0-0' }}
+            </td>
+            <td> Sum </td>
+            <td class="has-text-right">
+              {{ totalVolume(items) | number: '1.2-2' }}
+            </td>
+            <td class="has-text-right">
+              {{ totalPrice(items) | number: '1.2-2' }}
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
