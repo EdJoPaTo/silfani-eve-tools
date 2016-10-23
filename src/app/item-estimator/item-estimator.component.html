@@ -19,7 +19,7 @@
         </div>
         <div class="column is-narrow">
           <div id="price">
-            {{ totalPrice(items, isSell) | isk: true }}
+            {{ totalPrice(items, pricearea, isSell) | isk: true }}
           </div>
           <div id="volume">
             {{ totalVolume(items) | volume: true }}
@@ -50,8 +50,8 @@
             <td class="has-text-right" [title]="(item.amount | number: '1.0-0') + 'x ' + (volumes[item.id] | number: '1.2-2') + ' m³'">
               {{ item.amount * volumes[item.id] | number: '1.2-2' }}
             </td>
-            <td class="has-text-right" [title]="(item.amount | number: '1.0-0') + 'x ' + (price(item.id, isSell) | number: '1.2-2') + ' ISK (' + (isSell ? 'sell' : 'buy')  + ')'">
-              {{ item.amount * price(item.id, isSell) | number: '1.2-2' }}
+            <td class="has-text-right" [title]="(item.amount | number: '1.0-0') + 'x ' + (price(item.id, pricearea, isSell) | number: '1.2-2') + ' ISK (' + (isSell ? 'sell' : 'buy')  + ')'">
+              {{ item.amount * price(item.id, pricearea, isSell) | number: '1.2-2' }}
             </td>
           </tr>
         </tbody>
@@ -66,7 +66,7 @@
               {{ totalVolume(items) | number: '1.2-2' }}
             </td>
             <td class="has-text-right">
-              {{ totalPrice(items, isSell) | number: '1.2-2' }}
+              {{ totalPrice(items, pricearea, isSell) | number: '1.2-2' }}
             </td>
           </tr>
         </tfoot>

@@ -24,6 +24,7 @@ export class ItemEstimatorComponent implements OnInit, OnDestroy {
   private searchTerms = new Subject<string>();
   items: Item[] = [];
   private prices = {};
+  private pricearea: number;
   private isSell = true;
   private sub: Subscription;
   private volumes = {};
@@ -40,6 +41,11 @@ export class ItemEstimatorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.isSell = params['pricetype'] !== 'buy';
+      if (Number(params['pricearea']) > 0) {
+        this.pricearea = Number(params['pricearea']);
+      } else {
+        this.pricearea = 60003760; // Jita IV - 4
+      }
     });
     this.searchTerms
       .debounceTime(300)        // wait for 300ms pause in events
@@ -55,11 +61,6 @@ export class ItemEstimatorComponent implements OnInit, OnDestroy {
           .flatMap(li => li ? this.itemFromLineInfo(li) : Observable.of<Item>(null))
           .subscribe(item => {
             if (!item) { return; }
-            if (!this.prices[item.id]) {
-              // TODO: pricearea in GUI
-              this.fuzzworkMarketService.get([item.id])
-                .subscribe(pricedata => this.prices[item.id] = pricedata[item.id]);
-            }
             if (!this.volumes[item.id]) {
               this.itemTypesService.get(item.id)
                 .map(typeinfo => typeinfo.volume)
@@ -91,7 +92,9 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
   private updateUrl(): void {
     let params: any = {};
     if (!this.isSell) { params.pricetype = 'buy'; }
-    this.router.navigate([params]);  }
+    if (Number(this.pricearea) !== 60003760) { params.pricearea = Number(this.pricearea); }
+    this.router.navigate([params]);
+  }
 
   private stackItems(currentStack: Item[], add: Item[]): Item[] {
     add.forEach(itemToAdd => {
@@ -101,10 +104,18 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     return currentStack;
   }
 
-  private price(id: number, isSell: boolean): number {
-    if (!this.prices[id]) { return null; }
+  private price(id: number, area: number, isSell: boolean): number {
+    if (!this.prices[area]) { this.prices[area] = {}; }
 
-    return this.prices[id][isSell ? 'sell' : 'buy'].percentile;
+    if (!this.prices[area][id] && this.prices[area][id] !== null) {
+      this.prices[area][id] = null;
+      this.fuzzworkMarketService.get([id], area)
+        .subscribe(pricedata => this.prices[area][id] = pricedata[id]);
+    }
+
+    if (!this.prices[area][id]) { return null; }
+
+    return this.prices[area][id][isSell ? 'sell' : 'buy'].percentile;
   }
 
   itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
@@ -113,7 +124,9 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
   }
 
   totalAmount(items: any[]): number { return items.reduce((sum, add) => sum + add.amount, 0); }
-  totalPrice(items: any[], isSell: boolean): number { return items.reduce((sum, add) => sum + this.price(add.id, isSell) * add.amount, 0); }
+  totalPrice(items: any[], area: number, isSell: boolean): number {
+    return items.reduce((sum, add) => sum + this.price(add.id, area, isSell) * add.amount, 0);
+  }
   totalVolume(items: any[]): number { return items.reduce((sum, add) => sum + this.volumes[add.id] * add.amount, 0); }
 
   splitLines(input: string): string[] { return input.split('\n').filter(str => str); }
