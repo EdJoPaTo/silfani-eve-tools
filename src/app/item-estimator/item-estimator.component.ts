@@ -14,7 +14,6 @@ export class ItemEstimatorComponent implements OnInit {
   input: string;
   private searchTerms = new Subject<string>();
   items: Item[] = [];
-  test: any;
 
   constructor() { }
 
@@ -36,7 +35,6 @@ export class ItemEstimatorComponent implements OnInit {
               this.items = [];
             }
             this.items = this.items.concat([item]);
-            this.test = this.items;
           }
           );
       });
@@ -68,6 +66,6 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     return i;
   }
 
-  splitLines(input: string): string[] {    return input.split('\n').filter(str => str);  }
+  splitLines(input: string): string[] { return input.split('\n').filter(str => str); }
   search(term: string) { this.searchTerms.next(term); }
 }
