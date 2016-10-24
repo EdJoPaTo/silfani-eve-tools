@@ -4,8 +4,9 @@
       <h1>Item Estimator</h1>
       <div class="columns">
         <div class="column">
-          <textarea [(ngModel)]="input" placeholder="items" rows="6" #searchBox id="search-box" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" (keyup)="search(searchBox.value)"></textarea>
-
+          <p class="control">
+            <textarea [(ngModel)]="input" placeholder="items" rows="6" #searchBox id="search-box" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" (keyup)="search(searchBox.value)"></textarea>
+          </p>
           <div class="control is-grouped">
             <p class="control has-addons">
               <a class="button" [class.is-primary]="isSell" (click)="isSell = true; updateUrl();">
