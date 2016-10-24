@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, ReplaySubject, Subject, Subscription } from 'rxjs/Rx';
 
 import { FuzzworkMarketService, TypeIdFromNameService } from '../api/fuzzwork';
 import { ItemTypesService } from '../api/eve-crest';
@@ -23,7 +21,6 @@ export class ItemEstimatorComponent implements OnInit, OnDestroy {
   input: string;
   private searchTerms = new Subject<string>();
   items: Item[] = [];
-  private prices = {};
   private pricearea: number;
   private isSell = true;
   private sub: Subscription;
@@ -109,18 +106,10 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     return currentStack;
   }
 
-  private price(id: number, area: number, isSell: boolean): number {
-    if (!this.prices[area]) { this.prices[area] = {}; }
-
-    if (!this.prices[area][id] && this.prices[area][id] !== null) {
-      this.prices[area][id] = null;
-      this.fuzzworkMarketService.get([id], area)
-        .subscribe(pricedata => this.prices[area][id] = pricedata[id]);
-    }
-
-    if (!this.prices[area][id]) { return null; }
-
-    return this.prices[area][id][isSell ? 'sell' : 'buy'].percentile;
+  private price(id: number, area: number, isSell: boolean): Observable<number> {
+    return this.fuzzworkMarketService.getSingle(id, area)
+      .map(data => data[isSell ? 'sell' : 'buy'])
+      .map(pricedata => Number(pricedata.percentile));
   }
 
   itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
@@ -129,8 +118,18 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
   }
 
   totalAmount(items: any[]): number { return items.reduce((sum, add) => sum + add.amount, 0); }
-  totalPrice(items: any[], area: number, isSell: boolean): number {
-    return items.reduce((sum, add) => sum + this.price(add.id, area, isSell) * add.amount, 0);
+  totalPrice(items: any[], area: number, isSell: boolean): Observable<number> {
+    return Observable.from(items)
+      .flatMap(item => {
+        let s = new ReplaySubject();
+        this.price(item.id, area, isSell)
+          .subscribe(data => {
+            s.next(data * item.amount);
+            s.complete();
+          }, err => s.error(err));
+        return s;
+      })
+      .reduce((a, b) => a + b);
   }
   totalVolume(items: any[]): number { return items.reduce((sum, add) => sum + this.volumes[add.id] * add.amount, 0); }
 
