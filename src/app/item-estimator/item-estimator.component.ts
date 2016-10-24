@@ -24,7 +24,6 @@ export class ItemEstimatorComponent implements OnInit, OnDestroy {
   private pricearea: number;
   private isSell = true;
   private sub: Subscription;
-  private volumes = {};
 
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
@@ -58,11 +57,6 @@ export class ItemEstimatorComponent implements OnInit, OnDestroy {
           .flatMap(li => li ? this.itemFromLineInfo(li) : Observable.of<Item>(null))
           .subscribe(item => {
             if (!item) { return; }
-            if (!this.volumes[item.id]) {
-              this.itemTypesService.get(item.id)
-                .map(typeinfo => typeinfo.volume)
-                .subscribe(volume => this.volumes[item.id] = volume);
-            }
             if (clear) {
               clear = false;
               this.items = [];
@@ -112,6 +106,11 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
       .map(pricedata => Number(pricedata.percentile));
   }
 
+  private volume(id: number): Observable<number> {
+    return this.itemTypesService.get(id)
+      .map(typeinfo => typeinfo.volume);
+  }
+
   itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
     return this.typeIdFromNameService.getId(lineinfo.name)
       .map(id => ({ name: lineinfo.name, amount: lineinfo.amount, id: id }));
@@ -131,7 +130,19 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
       })
       .reduce((a, b) => a + b);
   }
-  totalVolume(items: any[]): number { return items.reduce((sum, add) => sum + this.volumes[add.id] * add.amount, 0); }
+  totalVolume(items: any[]): Observable<number> {
+    return Observable.from(items)
+      .flatMap(item => {
+        let s = new ReplaySubject();
+        this.volume(item.id)
+          .subscribe(data => {
+            s.next(data * item.amount);
+            s.complete();
+          }, err => s.error(err));
+        return s;
+      })
+      .reduce((a, b) => a + b);
+  }
 
   splitLines(input: string): string[] { return input.split('\n').filter(str => str); }
   search(term: string) { this.searchTerms.next(term); }

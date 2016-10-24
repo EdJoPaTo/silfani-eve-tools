@@ -30,7 +30,7 @@
             {{ totalPrice(items, pricearea, isSell) | async | isk: true }}
           </div>
           <div id="volume">
-            {{ totalVolume(items) | volume: true }}
+            {{ totalVolume(items) | async | volume: true }}
           </div>
         </div>
       </div>
@@ -59,8 +59,8 @@
               </div>
               <span *ngIf="!item.id" class="tag is-warning">Item does not exist!</span>
             </td>
-            <td class="has-text-right" [title]="(item.amount | number: '1.0-0') + 'x ' + (volumes[item.id] | number: '1.2-2') + ' m³'">
-              {{ item.amount * volumes[item.id] | number: '1.2-2' }}
+            <td class="has-text-right" [title]="(item.amount | number: '1.0-0') + 'x ' + (volume(item.id) | async | number: '1.2-2') + ' m³'">
+              {{ item.amount * (volume(item.id) | async) | number: '1.2-2' }}
             </td>
             <td class="has-text-right" [title]="(item.amount | number: '1.0-0') + 'x ' + (price(item.id, pricearea, isSell) | async | number: '1.2-2') + ' ISK (' + (isSell ? 'sell' : 'buy')  + ')'">
               {{ item.amount * (price(item.id, pricearea, isSell) | async) | number: '1.2-2' }}
@@ -75,7 +75,7 @@
             </td>
             <td> Sum </td>
             <td class="has-text-right">
-              {{ totalVolume(items) | number: '1.2-2' }}
+              {{ totalVolume(items) | async | number: '1.2-2' }}
             </td>
             <td class="has-text-right">
               {{ totalPrice(items, pricearea, isSell) | async | number: '1.2-2' }}
