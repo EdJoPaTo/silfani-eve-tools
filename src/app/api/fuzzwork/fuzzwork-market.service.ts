@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 @Injectable()
 export class FuzzworkMarketService {
+  private cache = {};
   stations = [
     { name: 'Jita IV M4 CNAP', id: 60003760 }, // Jita IV - Moon 4 - Caldari Navy Assembly Plant
     { name: 'Amarr VIII', id: 60008494 }, // Amarr VIII (Oris) - Emperor Family Academy
@@ -30,6 +31,19 @@ export class FuzzworkMarketService {
     return this.http
       .get(url)
       .map((r: Response) => r.json());
+  }
+
+  getSingle(id: number, area = 60003760, forceRefresh?: boolean): Observable<any> {
+    if (!this.cache[area]) { this.cache[area] = {}; }
+    if (!this.cache[area][id] || forceRefresh) {
+      if (!this.cache[area][id]) {
+        this.cache[area][id] = new ReplaySubject(1);
+      }
+      this.get([id], area)
+        .map(pricedata => pricedata[id])
+        .subscribe(data => this.cache[area][id].next(data), err => this.cache[area][id].error(err));
+    }
+    return this.cache[area][id];
   }
 
   detailsUrl(id: number, area = 60003760, isSell = true) {
