@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 const URL = 'https://www.fuzzwork.co.uk/api/typeid.php?typename=';
 
 @Injectable()
 export class TypeIdFromNameService {
-  private ids = {};
+  private cache = {};
 
   constructor(
     private http: Http
@@ -14,22 +14,14 @@ export class TypeIdFromNameService {
 
   getId(name: string): Observable<number> {
     // https://www.fuzzwork.co.uk/api/typeid.php?typename=Tritanium
-
-    let url = `${URL}${name}`;
-
-    if (this.ids[name]) {
-      return Observable.of<number>(this.ids[name]);
+    if (!this.cache[name]) {
+      this.cache[name] = new ReplaySubject(1);
+      this.http
+        .get(`${URL}${name}`)
+        .map((r: Response) => r.json())
+        .map(i => i.typeID)
+        .subscribe(data => this.cache[name].next(data), err => this.cache[name].error(err));
     }
-
-    return this.http
-      .get(url)
-      .map((r: Response) => r.json())
-      .map(i => i.typeID)
-      .map(id => {
-        if (!this.ids[name]) {
-          this.ids[name] = id;
-        }
-        return id;
-      });
+    return this.cache[name];
   }
 }

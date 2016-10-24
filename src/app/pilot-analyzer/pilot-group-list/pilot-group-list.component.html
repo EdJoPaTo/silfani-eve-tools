@@ -36,7 +36,7 @@
         </span>
         <span *ngIf="elem.allianceID">
           {{ allianceName(elem.allianceID) }}
-          [{{ allianceTag(elem.allianceID) }}]
+          [{{ allianceTag(elem.allianceID) | async }}]
         </span>
         <br />
         <span *ngIf="elem.corporationID">
