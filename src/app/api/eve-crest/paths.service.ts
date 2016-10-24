@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 const CREST_URL = 'https://crest-tq.eveonline.com/';
 
 @Injectable()
 export class PathsService {
+  private cache = new ReplaySubject(1);
 
   constructor(
     private http: Http
   ) { }
 
-  getAll(): Observable<any> {
-    return this.http
-      .get(CREST_URL)
-      .map((r: Response) => r.json());
+  getAll(forceRefresh?: boolean): Observable<any> {
+    if (!this.cache.observers.length || forceRefresh) {
+      this.http
+        .get(CREST_URL)
+        .map((r: Response) => r.json())
+        .subscribe(data => this.cache.next(data), error => this.cache.error(error)
+        );
+    }
+    return this.cache;
   }
 
   pilotsOnline(): Observable<number> {
-    return this.getAll()
+    return this.getAll(true)
       .map(info => info.userCount);
   }
 
@@ -28,12 +34,12 @@ export class PathsService {
   }
 
   serviceStatus(): Observable<string> {
-    return this.getAll()
+    return this.getAll(true)
       .map(info => info.serviceStatus);
   }
 
   serverVersion(): Observable<string> {
-    return this.getAll()
+    return this.getAll(true)
       .map(info => info.serverVersion);
   }
 

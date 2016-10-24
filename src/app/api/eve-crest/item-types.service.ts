@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 import { PathsService } from './paths.service';
 
 @Injectable()
 export class ItemTypesService {
+  private cache = {};
 
   constructor(
     private http: Http,
@@ -13,9 +14,14 @@ export class ItemTypesService {
   ) { }
 
   get(itemID: number): Observable<any> {
-    return this.paths.service('itemTypes')
-    .map(info => info.href)
-    .flatMap(url => this.http.get(`${url}${itemID}/`))
-    .map((r: Response) => r.json());
+    if (!this.cache[itemID]) {
+      this.cache[itemID] = new ReplaySubject(1);
+      this.paths.service('itemTypes')
+        .map(info => info.href)
+        .flatMap(url => this.http.get(`${url}${itemID}/`))
+        .map((r: Response) => r.json())
+        .subscribe(data => this.cache[itemID].next(data), err => this.cache[itemID].error(err));
+    }
+    return this.cache[itemID];
   }
 }
