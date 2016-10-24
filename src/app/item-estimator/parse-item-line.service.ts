@@ -38,8 +38,8 @@ const NameRegexList: RegExp[] = [
   SimpleTextRegex
 ];
 
-
 // special cases
+const DScanItemRegex = new RegExp('^' + ItemNamePart + SeperatorPart + ItemNamePart + SeperatorPart + RangePart + '$');
 const ShipFittingModuleWithCharge = new RegExp('^' + '(?!\\[)' + ItemNamePart + ', ' + ItemNamePart + '$');
 
 @Injectable()
@@ -52,6 +52,13 @@ export class ParseItemLineService {
     let result;
 
     // Special Cases first
+    if (result = DScanItemRegex.exec(line)) {
+      console.log(DScanItemRegex);
+      let li = new LineInfo();
+      li.name = result[2];
+      return [li];
+    }
+
     if (result = ShipFittingModuleWithCharge.exec(line)) {
       let module = new LineInfo();
       module.name = result[1];
