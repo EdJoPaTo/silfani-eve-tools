@@ -1,0 +1,28 @@
+#search-box {
+  width: 100%;
+}
+
+#price,
+#volume {
+  text-align: center;
+}
+
+#price {
+  font-size: 400%;
+}
+
+#volume {
+  font-size: 300%;
+}
+
+img.icon {
+  $size: 32px;
+  height: $size;
+  width: $size;
+  min-width: $size;
+}
+
+table thead th.has-text-right {
+  // workaround while the bulma bug is there: https://github.com/jgthms/bulma/issues/293
+  text-align: right;
+}

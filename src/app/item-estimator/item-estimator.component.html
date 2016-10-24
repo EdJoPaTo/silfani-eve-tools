@@ -1,0 +1,88 @@
+<div class="section">
+  <div class="container">
+    <div class="content">
+      <h1>Item Estimator</h1>
+      <div class="columns">
+        <div class="column">
+          <p class="control">
+            <textarea [(ngModel)]="input" placeholder="items" rows="6" #searchBox id="search-box" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" (keyup)="search(searchBox.value)"></textarea>
+          </p>
+          <div class="control is-grouped">
+            <p class="control has-addons">
+              <a class="button" [class.is-primary]="isSell" (click)="isSell = true; updateUrl();">
+                Sell
+              </a>
+              <a class="button" [class.is-primary]="!isSell" (click)="isSell = false; updateUrl();">
+                Buy
+              </a>
+            </p>
+            <p class="control">
+              <span class="select">
+                <select [(ngModel)]="pricearea" (click)="updateUrl()">
+                  <option *ngFor="let p of fuzzworkMarketService.stations" [value]="p.id">{{ p.name }}</option>
+                </select>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="column is-narrow">
+          <div id="price">
+            {{ totalPrice(items, pricearea, isSell) | isk: true }}
+          </div>
+          <div id="volume">
+            {{ totalVolume(items) | volume: true }}
+          </div>
+        </div>
+      </div>
+      <table class="table" *ngIf="items.length">
+        <thead>
+          <tr>
+            <th class="is-narrow"> </th>
+            <th class="has-text-right is-narrow"> Amount </th>
+            <th> Item{{ items.length > 1 ? 's' : '' }} ({{ items.length }})</th>
+            <th class="has-text-right"> Volume (m³) </th>
+            <th class="has-text-right"> Price (ISK) </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td>
+              <img class="icon" [src]="'//imageserver.eveonline.com/Type/'+ item.id +'_64.png'" />
+            </td>
+            <td class="has-text-right">
+              {{ item.amount | number: '1.0-0' }}
+            </td>
+            <td>
+              {{ item.name }}
+              <div *ngIf="item.id">
+                <a [href]="fuzzworkMarketService.detailsUrl(item.id, pricearea, isSell)" target="_blank">Fuzzwork Market</a>
+              </div>
+              <span *ngIf="!item.id" class="tag is-warning">Item does not exist!</span>
+            </td>
+            <td class="has-text-right" [title]="(item.amount | number: '1.0-0') + 'x ' + (volumes[item.id] | number: '1.2-2') + ' m³'">
+              {{ item.amount * volumes[item.id] | number: '1.2-2' }}
+            </td>
+            <td class="has-text-right" [title]="(item.amount | number: '1.0-0') + 'x ' + (price(item.id, pricearea, isSell) | number: '1.2-2') + ' ISK (' + (isSell ? 'sell' : 'buy')  + ')'">
+              {{ item.amount * price(item.id, pricearea, isSell) | number: '1.2-2' }}
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td> </td>
+            <td class="has-text-right">
+              {{ totalAmount(items) | number: '1.0-0' }}
+            </td>
+            <td> Sum </td>
+            <td class="has-text-right">
+              {{ totalVolume(items) | number: '1.2-2' }}
+            </td>
+            <td class="has-text-right">
+              {{ totalPrice(items, pricearea, isSell) | number: '1.2-2' }}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
