@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 import { PathsService } from './paths.service';
 
 @Injectable()
 export class AllianceInformationService {
-  private allianceDict = {};
+  private cache = {};
 
   constructor(
     private http: Http,
@@ -14,28 +14,22 @@ export class AllianceInformationService {
   ) { }
 
   get(allianceID: number): Observable<any> {
-    return this.paths.service('alliances')
-      .map(info => info.href)
-      .flatMap(url => this.http.get(`${url}${allianceID}/`))
-      .map((r: Response) => r.json());
-  }
-
-  private getCached(allianceID: number): any {
-    if (this.allianceDict[allianceID] !== null && !this.allianceDict[allianceID]) {
-      this.allianceDict[allianceID] = null;
-      this.get(allianceID)
-        .subscribe(json => this.allianceDict[allianceID] = json);
+    if (!this.cache[allianceID]) {
+      this.cache[allianceID] = new ReplaySubject(1);
+      this.paths.service('alliances')
+        .map(info => info.href)
+        .flatMap(url => this.http.get(`${url}${allianceID}/`))
+        .map((r: Response) => r.json())
+        .subscribe(data => this.cache[allianceID].next(data), err => this.cache[allianceID].error(err));
     }
-    return this.allianceDict[allianceID];
+    return this.cache[allianceID];
   }
 
-  getName(allianceID: number): string {
-    let result = this.getCached(allianceID);
-    return result ? result.name : 'loading...';
+  getName(allianceID: number): Observable<string> {
+    return this.get(allianceID).map(r => r.name);
   }
 
-  getTag(allianceID: number): string {
-    let result = this.getCached(allianceID);
-    return result ? result.shortName : 'loading...';
+  getTag(allianceID: number): Observable<string> {
+    return this.get(allianceID).map(r => r.shortName);
   }
 }

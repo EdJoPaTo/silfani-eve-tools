@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { ZKillStats } from '../../api/z-killboard';
 import { AllianceInformationService } from '../../api/eve-crest';
@@ -30,7 +31,7 @@ export class PilotListComponent implements OnInit {
     this.hovered.allianceID = null;
   }
 
-  allianceTag(allianceID: number): string {
+  allianceTag(allianceID: number): Observable<string> {
     return this.allianceInformationService.getTag(allianceID);
   }
 

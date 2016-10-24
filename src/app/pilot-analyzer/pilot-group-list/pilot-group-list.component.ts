@@ -41,7 +41,7 @@ export class PilotGroupListComponent implements OnInit {
     return stats ? stats.info.name : 'loading...';
   }
 
-  allianceTag(allianceID: number): string {
+  allianceTag(allianceID: number): Observable<string> {
     return this.allianceInformationService.getTag(allianceID);
   }
 
