@@ -52,12 +52,11 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     this.search
       .subscribe(lines => {
         let clear = true;
-        Observable.of<string[]>(lines)
-          .flatMap(a => a)
+        Observable.from(lines)
           .map(line => this.parseItemLineService.parse(line))
           .reduce(this.stackItems)
           .flatMap(itemStack => itemStack)
-          .flatMap(li => li ? this.itemFromLineInfo(li) : Observable.of<Item>(null))
+          .flatMap((li: LineInfo) => li ? this.itemFromLineInfo(li) : Observable.of<Item>(null))
           .subscribe(item => {
             if (!item) { return; }
             if (clear) {
