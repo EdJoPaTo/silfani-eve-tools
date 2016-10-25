@@ -4,9 +4,8 @@
       <h1>Pilot Analyzer</h1>
       <div class="columns">
         <div class="column">
-          <textarea [(ngModel)]="input" placeholder="pilot names" rows="6" #searchBox id="search-box" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" (keyup)="search(searchBox.value)"></textarea>
-
-          <progress *ngIf="characters.length + charactersWithoutKills !== namesOfInput(input).length" class="progress is-primary" [value]="characters.length + charactersWithoutKills" [max]="namesOfInput(input).length">loading characters</progress>
+          <app-clipboard-paste-textarea [initialContent]="initialContent" [placeholder]="'pilot names'" (changed)="search($event)"></app-clipboard-paste-textarea>
+          <progress *ngIf="characters.length + charactersWithoutKills !== nameCount" class="progress is-primary" [value]="characters.length + charactersWithoutKills" [max]="nameCount">loading characters</progress>
 
           <app-pilot-group-list [characters]="characters" [hovered]="hovered"></app-pilot-group-list>
 
