@@ -105,8 +105,14 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
   }
 
   itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
-    return this.typeIdFromNameService.getId(lineinfo.name)
-      .map(id => ({ name: lineinfo.name, amount: lineinfo.amount, id: id }));
+    let s = new ReplaySubject<Item>();
+    this.typeIdFromNameService.getId(lineinfo.name)
+      .map(id => ({ name: lineinfo.name, amount: lineinfo.amount, id: id }))
+      .subscribe((i: Item) => {
+        s.next(i);
+        s.complete();
+      });
+    return s;
   }
 
   totalAmount(items: any[]): number { return items.reduce((sum, add) => sum + add.amount, 0); }
