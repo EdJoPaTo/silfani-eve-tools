@@ -5,7 +5,7 @@
       <div class="columns">
         <div class="column">
           <p class="control">
-            <textarea [(ngModel)]="input" placeholder="items" rows="6" #searchBox id="search-box" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" (keyup)="search(searchBox.value)"></textarea>
+            <app-clipboard-paste-textarea [initialContent]="initialContent" [placeholder]="'paste your items here'" (changed)="search.next($event)"></app-clipboard-paste-textarea>
           </p>
           <div class="control is-grouped">
             <p class="control has-addons">

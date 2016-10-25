@@ -18,8 +18,14 @@ import { Item } from './item';
   ]
 })
 export class ItemEstimatorComponent implements OnInit, OnDestroy {
-  input: string;
-  private searchTerms = new Subject<string>();
+  initialContent: string = `3.000  Veldspar
+2  Logic Circuit
+XR-3200 Heavy Missile Bay
+Fried Interface Circuit  30  Salvaged Materials  0,30 m3
+Power Circuit  2  Salvaged Materials  0,02 m3
+Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
+`;
+  private search = new Subject<string[]>();
   items: Item[] = [];
   private pricearea: number;
   private isSell = true;
@@ -43,10 +49,7 @@ export class ItemEstimatorComponent implements OnInit, OnDestroy {
         this.pricearea = 60003760; // Jita IV - 4
       }
     });
-    this.searchTerms
-      .debounceTime(300)        // wait for 300ms pause in events
-      .distinctUntilChanged()   // ignore if next search term is same as previous
-      .map(this.splitLines)
+    this.search
       .subscribe(lines => {
         let clear = true;
         Observable.of<string[]>(lines)
@@ -65,15 +68,6 @@ export class ItemEstimatorComponent implements OnInit, OnDestroy {
           }
           );
       });
-
-    this.input = `3.000  Veldspar
-2  Logic Circuit
-XR-3200 Heavy Missile Bay
-Fried Interface Circuit  30  Salvaged Materials  0,30 m3
-Power Circuit  2  Salvaged Materials  0,02 m3
-Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
-`;
-    this.search(this.input);
   }
 
   ngOnDestroy() {
@@ -143,7 +137,4 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
       })
       .reduce((a, b) => a + b);
   }
-
-  splitLines(input: string): string[] { return input.split('\n').filter(str => str); }
-  search(term: string) { this.searchTerms.next(term); }
 }
