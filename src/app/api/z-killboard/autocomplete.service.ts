@@ -18,7 +18,10 @@ export class AutocompleteService {
         .get(`https://zkillboard.com/autocomplete/characterID/${name}/`)
         .map((r: Response) => r.json())
         .map(json => json.map(char => char.id))
-        .subscribe(data => this.characterIdCache[name].next(data), err => this.characterIdCache[name].error(err));
+        .subscribe(data => this.characterIdCache[name].next(data),
+        err => this.characterIdCache[name].error(err),
+        () => this.characterIdCache[name].complete()
+        );
     }
     return this.characterIdCache[name];
   }

@@ -20,7 +20,10 @@ export class TypeIdFromNameService {
         .get(`${URL}${name}`)
         .map((r: Response) => r.json())
         .map(i => i.typeID)
-        .subscribe(data => this.cache[name].next(data), err => this.cache[name].error(err));
+        .subscribe(data => this.cache[name].next(data),
+        err => this.cache[name].error(err),
+        () => this.cache[name].complete()
+        );
     }
     return this.cache[name];
   }
