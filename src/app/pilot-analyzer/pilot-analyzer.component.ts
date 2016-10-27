@@ -11,8 +11,9 @@ import { Hovered } from './hovered';
   styleUrls: ['pilot-analyzer.component.css']
 })
 export class PilotAnalyzerComponent implements OnInit {
-  characters: ZKillStats[] = [];
-  charactersWithoutKills = 0;
+  characterIds: Observable<number[]>;
+  characterStats: Observable<ZKillStats[]>;
+  charactersWithoutKills: Observable<number>;
   initialContent: string = 'Rell Silfani\nKarnis Delvari\n';
   nameCount: number = 0;
   private searchTerms = new Subject<string[]>();
@@ -24,36 +25,25 @@ export class PilotAnalyzerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.searchTerms
-      .subscribe(names => {
-        let clear = true;
-        Observable.of<string[]>(names)
-          .flatMap(a => this.statsOfNames(a))
-          .flatMap(a => a)
-          .subscribe(stats => {
-            if (clear) {
-              clear = false;
-              this.characters = [];
-              this.charactersWithoutKills = 0;
-            }
-            if (stats) {
-              this.characters = this.characters.concat([stats]);
-            } else {
-              this.charactersWithoutKills++;
-            }
-          }
-          );
-      });
-  }
+    this.characterIds = this.searchTerms
+      .switchMap(names => Observable.from(names)
+        .flatMap(name => this.zKautocompleteService.characterID(name))
+        .map(ids => ids[0])
+        .filter(id => id)
+        .reduce((cur, add) => cur.concat(add), [])
+      )
+      .share();
 
-  statsOfName(name: string): Observable<ZKillStats> {
-    return this.zKautocompleteService.characterID(name)
-      .map(ids => ids[0] ? ids[0] : null)
-      .flatMap(id => id ? this.zKillStatsService.character(id) : Observable.of<ZKillStats>(null));
-  }
+    this.characterStats = this.characterIds
+      .switchMap(ids => Observable.from(ids)
+        .flatMap(id => this.zKillStatsService.character(id))
+        .reduce((cur, add) => cur.concat(add), [])
+      )
+      .share();
 
-  statsOfNames(names: string[]): Observable<ZKillStats>[] {
-    return names.map(name => this.statsOfName(name));
+    this.charactersWithoutKills = this.characterIds
+      .map(ids => this.nameCount - ids.length)
+      .share();
   }
 
   search(lines: string[]) {

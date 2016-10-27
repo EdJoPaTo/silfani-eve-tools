@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th> </th>
-      <th> Name ({{ characters.length }}) </th>
+      <th> Name ({{ characters ? characters.length : 0 }}) </th>
       <th> Ships </th>
       <th> ISK </th>
       <th> Corporation </th>
@@ -16,7 +16,7 @@
     (mouseleave)='mouseleave(character)'
     [class.samecorp]="character.info.corporationID === hovered.corporationID"
     [class.samealli]="character.info.allianceID === hovered.allianceID"
-    [class.small]="characters.length > 20"
+    [class.small]="characters ? characters.length > 20 : false"
     >
       <td>
         <img class="icon character" [src]="'//imageserver.eveonline.com/Character/'+ character.id +'_256.jpg'" />
