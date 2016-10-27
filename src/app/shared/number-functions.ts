@@ -1,7 +1,7 @@
 const allLetters = ['', 'k', 'M', 'B', 'T'];
 
 export function formatNumberShort(value: number): string {
-  if (!value) { return 'NaN'; }
+  if (!value && value !== 0) { return 'NaN'; }
 
   let exponent = value !== 0 ? Math.ceil(Math.log10(value)) : 0;
   let engineerExponentLevel = Math.max(0, Math.floor((exponent - 1) / 3));
