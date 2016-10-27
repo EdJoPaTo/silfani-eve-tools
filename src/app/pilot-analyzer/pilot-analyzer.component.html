@@ -9,9 +9,7 @@
 
           <app-pilot-group-list [characters]="characters" [hovered]="hovered"></app-pilot-group-list>
 
-          <div *ngIf="charactersWithoutKills" class="notification is-warning">
-            {{ charactersWithoutKills }} character{{charactersWithoutKills > 1 ? 's' : ''}} without kills on zKillboard!
-          </div>
+          <app-characters-without-kills-hint [charactersWithoutKills]="charactersWithoutKills"></app-characters-without-kills-hint>
         </div>
         <div class="column">
           <app-pilot-list [characters]="characters" [hovered]="hovered"></app-pilot-list>
