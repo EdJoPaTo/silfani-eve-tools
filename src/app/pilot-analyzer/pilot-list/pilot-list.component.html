@@ -28,7 +28,7 @@
         <a [href]="'http://eve-hunt.net/hunt/'+ character.info.name +'/'" target="_blank" title="EVE Hunt">Hunt</a>
       </td>
       <td>
-        <app-destroyed-lost [destroyed]="character.shipsDestroyed" [lost]="character.shipsLost" [title]="'ships'"></app-destroyed-lost>
+        <app-destroyed-lost [destroyed]="character.shipsDestroyed" [lost]="character.shipsLost" [title]="'ships'" [isInteger]="true"></app-destroyed-lost>
       </td>
       <td>
         <app-destroyed-lost [destroyed]="character.iskDestroyed" [lost]="character.iskLost" [title]="'ISK'"></app-destroyed-lost>
