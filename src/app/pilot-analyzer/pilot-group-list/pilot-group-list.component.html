@@ -48,12 +48,12 @@
         </span>
       </td>
       <td class="has-text-centered">
-        <app-destroyed-lost *ngIf="elem.corporationID && corpStats(elem.corporationID)" [destroyed]="corpStats(elem.corporationID).shipsDestroyed" [lost]="corpStats(elem.corporationID).shipsLost" [title]="ships"></app-destroyed-lost>
-        <app-destroyed-lost *ngIf="elem.allianceID && allianceStats(elem.allianceID)" [destroyed]="allianceStats(elem.allianceID).shipsDestroyed" [lost]="allianceStats(elem.allianceID).shipsLost" [title]="ships"></app-destroyed-lost>
+        <app-destroyed-lost *ngIf="elem.corporationID && corpStats(elem.corporationID)" [destroyed]="corpStats(elem.corporationID).shipsDestroyed" [lost]="corpStats(elem.corporationID).shipsLost" [title]="'ships'"></app-destroyed-lost>
+        <app-destroyed-lost *ngIf="elem.allianceID && allianceStats(elem.allianceID)" [destroyed]="allianceStats(elem.allianceID).shipsDestroyed" [lost]="allianceStats(elem.allianceID).shipsLost" [title]="'ships'"></app-destroyed-lost>
       </td>
       <td class="has-text-centered">
-        <app-destroyed-lost *ngIf="elem.corporationID && corpStats(elem.corporationID)" [destroyed]="corpStats(elem.corporationID).iskDestroyed" [lost]="corpStats(elem.corporationID).iskLost" [title]="ISK"></app-destroyed-lost>
-        <app-destroyed-lost *ngIf="elem.allianceID && allianceStats(elem.allianceID)" [destroyed]="allianceStats(elem.allianceID).iskDestroyed" [lost]="allianceStats(elem.allianceID).iskLost" [title]="ISK"></app-destroyed-lost>
+        <app-destroyed-lost *ngIf="elem.corporationID && corpStats(elem.corporationID)" [destroyed]="corpStats(elem.corporationID).iskDestroyed" [lost]="corpStats(elem.corporationID).iskLost" [title]="'ISK'"></app-destroyed-lost>
+        <app-destroyed-lost *ngIf="elem.allianceID && allianceStats(elem.allianceID)" [destroyed]="allianceStats(elem.allianceID).iskDestroyed" [lost]="allianceStats(elem.allianceID).iskLost" [title]="'ISK'"></app-destroyed-lost>
       </td>
     </tr>
   </tbody>
