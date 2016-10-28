@@ -1,6 +1,9 @@
 <div class="section">
   <div class="container">
     <div class="content">
+      <div *ngIf="error" class="notification is-danger">
+        {{ error }}
+      </div>
       <h1>Pilot Analyzer</h1>
       <div class="columns">
         <div class="column">

@@ -14,6 +14,7 @@ export class PilotAnalyzerComponent implements OnInit {
   characterIds: Observable<number[]>;
   characterStats: Observable<ZKillStats[]>;
   charactersWithoutKills: Observable<number>;
+  error: string;
   initialContent: string = 'Rell Silfani\nKarnis Delvari\n';
   nameCount: number = 0;
   private searchTerms = new Subject<string[]>();
@@ -32,6 +33,8 @@ export class PilotAnalyzerComponent implements OnInit {
         .filter(id => id)
         .reduce((cur, add) => cur.concat(add), [])
       )
+      .catch(err => { this.error = 'zKillboard autocomplete API failed'; return Observable.of<number[]>([]); })
+      .map(ids => { if (ids.length > 0) { this.error = ''; }  return ids; })
       .share();
 
     this.characterStats = this.characterIds
@@ -39,6 +42,8 @@ export class PilotAnalyzerComponent implements OnInit {
         .flatMap(id => this.zKillStatsService.character(id))
         .reduce((cur, add) => cur.concat(add), [])
       )
+      .catch(err => { this.error = 'zKillboard Statistics API failed'; return Observable.of<ZKillStats[]>([]); })
+      .map(ids => { if (ids.length > 0) { this.error = ''; }  return ids; })
       .share();
 
     this.charactersWithoutKills = this.characterIds
