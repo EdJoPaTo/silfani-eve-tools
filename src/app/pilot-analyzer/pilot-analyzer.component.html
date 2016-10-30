@@ -1,20 +1,20 @@
 <div class="section">
   <div class="container">
     <div class="content">
+      <div *ngIf="error" class="notification is-danger">
+        {{ error }}
+      </div>
       <h1>Pilot Analyzer</h1>
       <div class="columns">
         <div class="column">
           <app-clipboard-paste-textarea [initialContent]="initialContent" [placeholder]="'pilot names'" (changed)="search($event)"></app-clipboard-paste-textarea>
-          <progress *ngIf="characters.length + charactersWithoutKills !== nameCount" class="progress is-primary" [value]="characters.length + charactersWithoutKills" [max]="nameCount">loading characters</progress>
 
-          <app-pilot-group-list [characters]="characters" [hovered]="hovered"></app-pilot-group-list>
+          <app-pilot-group-list [characters]="characterStats | async" [hovered]="hovered"></app-pilot-group-list>
 
-          <div *ngIf="charactersWithoutKills" class="notification is-warning">
-            {{ charactersWithoutKills }} character{{charactersWithoutKills > 1 ? 's' : ''}} without kills on zKillboard!
-          </div>
+          <app-characters-without-kills-hint [charactersWithoutKills]="charactersWithoutKills | async"></app-characters-without-kills-hint>
         </div>
         <div class="column">
-          <app-pilot-list [characters]="characters" [hovered]="hovered"></app-pilot-list>
+          <app-pilot-list [characters]="characterStats | async" [hovered]="hovered"></app-pilot-list>
         </div>
       </div>
     </div>

@@ -10,13 +10,13 @@
     </a>
   </div>
 
-  <span [class.nav-toggle]="!navopen" (click)="navopen = !navopen">
+  <span class="nav-toggle" [class.is-active]="navopen" (click)="navopen = !navopen">
     <span></span>
     <span></span>
     <span></span>
   </span>
 
-  <div class="nav-right" [class.nav-menu]="!navopen" (click)="navopen = false">
+  <div class="nav-right nav-menu" [class.is-active]="navopen" (click)="navopen = false">
     <a class="nav-item is-tab" routerLink="/pilot-analyzer" routerLinkActive="is-active">Pilot Analyzer</a>
     <a class="nav-item is-tab" routerLink="/item-estimator" routerLinkActive="is-active">Item Estimator</a>
     <a class="nav-item is-tab" routerLink="/missions" routerLinkActive="is-active">Missions</a>

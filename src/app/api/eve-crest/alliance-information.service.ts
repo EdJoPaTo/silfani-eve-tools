@@ -20,7 +20,10 @@ export class AllianceInformationService {
         .map(info => info.href)
         .flatMap(url => this.http.get(`${url}${allianceID}/`))
         .map((r: Response) => r.json())
-        .subscribe(data => this.cache[allianceID].next(data), err => this.cache[allianceID].error(err));
+        .subscribe(data => this.cache[allianceID].next(data),
+        err => this.cache[allianceID].error(err),
+        () => this.cache[allianceID].complete()
+        );
     }
     return this.cache[allianceID];
   }

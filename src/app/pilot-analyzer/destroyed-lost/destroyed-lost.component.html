@@ -1,9 +1,9 @@
 <div class="destroyed" [title]="title+' destroyed'">
-  {{ destroyed | shortnumber }}
+  {{ destroyed | shortnumber: isInteger }}
 </div>
 <div>
   {{ percentage(destroyed, lost) | percent:percentFormat }}
 </div>
 <div class="lost" [title]="title+' lost'">
-  {{ lost | shortnumber }}
+  {{ lost | shortnumber: isInteger }}
 </div>

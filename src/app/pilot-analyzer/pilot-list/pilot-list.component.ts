@@ -36,6 +36,7 @@ export class PilotListComponent implements OnInit {
   }
 
   sorted(characters: ZKillStats[]): ZKillStats[] {
+    if (!characters) { return []; }
     characters.sort((a, b) => b.iskDestroyed - a.iskDestroyed);
     return characters;
   }

@@ -27,7 +27,10 @@ export class ZKillStatsService {
         .get(`https://zkillboard.com/api/stats/characterID/${id}/`)
         .map((r: Response) => r.json())
         .map(json => json && json.info ? new ZKillStats(json) : null)
-        .subscribe(data => this.charCache[id].next(data), err => this.charCache[id].error(err));
+        .subscribe(data => this.charCache[id].next(data),
+        err => this.charCache[id].error(err),
+        () => this.charCache[id].complete()
+        );
     }
     return this.charCache[id];
   }
@@ -40,7 +43,10 @@ export class ZKillStatsService {
         .get(`https://zkillboard.com/api/stats/corporationID/${id}/`)
         .map((r: Response) => r.json())
         .map(json => json && json.info ? new ZKillStats(json) : null)
-        .subscribe(data => this.corpCache[id].next(data), err => this.corpCache[id].error(err));
+        .subscribe(data => this.corpCache[id].next(data),
+        err => this.corpCache[id].error(err),
+        () => this.corpCache[id].complete()
+        );
     }
     return this.corpCache[id];
   }
@@ -53,7 +59,10 @@ export class ZKillStatsService {
         .get(`https://zkillboard.com/api/stats/allianceID/${id}/`)
         .map((r: Response) => r.json())
         .map(json => json && json.info ? new ZKillStats(json) : null)
-        .subscribe(data => this.alliCache[id].next(data), err => this.alliCache[id].error(err));
+        .subscribe(data => this.alliCache[id].next(data),
+        err => this.alliCache[id].error(err),
+        () => this.alliCache[id].complete()
+        );
     }
     return this.alliCache[id];
   }
