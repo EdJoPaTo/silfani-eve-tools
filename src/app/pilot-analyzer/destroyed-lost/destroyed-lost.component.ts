@@ -6,9 +6,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['destroyed-lost.component.scss']
 })
 export class DestroyedLostComponent implements OnInit {
-  @Input() title;
-  @Input() destroyed;
-  @Input() lost;
+  @Input() title: string;
+  @Input() isInteger = false;
+  @Input() destroyed: number;
+  @Input() lost: number;
   percentFormat = '1.1-1';
 
   constructor() { }

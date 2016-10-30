@@ -17,7 +17,9 @@ export class PathsService {
       this.http
         .get(CREST_URL)
         .map((r: Response) => r.json())
-        .subscribe(data => this.cache.next(data), error => this.cache.error(error)
+        .subscribe(data => this.cache.next(data),
+        error => this.cache.error(error),
+        () => this.cache.complete()
         );
     }
     return this.cache;

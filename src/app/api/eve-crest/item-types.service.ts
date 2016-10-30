@@ -20,7 +20,10 @@ export class ItemTypesService {
         .map(info => info.href)
         .flatMap(url => this.http.get(`${url}${itemID}/`))
         .map((r: Response) => r.json())
-        .subscribe(data => this.cache[itemID].next(data), err => this.cache[itemID].error(err));
+        .subscribe(data => this.cache[itemID].next(data),
+        err => this.cache[itemID].error(err),
+        () => this.cache[itemID].complete()
+        );
     }
     return this.cache[itemID];
   }

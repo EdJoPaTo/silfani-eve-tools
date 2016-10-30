@@ -7,8 +7,8 @@ import { formatNumberShort } from './number-functions';
 })
 export class ShortnumberPipe implements PipeTransform {
 
-  transform(value: number): string {
-    return formatNumberShort(value);
+  transform(value: number, isInteger = false): string {
+    return formatNumberShort(value, isInteger);
   }
 
 }
