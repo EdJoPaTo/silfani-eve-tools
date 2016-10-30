@@ -43,7 +43,7 @@ export class FuzzworkMarketService {
         .map(pricedata => pricedata[id])
         .subscribe(data => this.cache[area][id].next(data),
         err => this.cache[area][id].error(err),
-        () => this.cache[area][id].complate()
+        () => this.cache[area][id].complete()
         );
     }
     return this.cache[area][id];
