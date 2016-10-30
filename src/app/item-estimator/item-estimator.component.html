@@ -19,7 +19,9 @@
             <p class="control">
               <span class="select">
                 <select [(ngModel)]="pricearea" (click)="updateUrl()">
-                  <option *ngFor="let p of fuzzworkMarketService.stations" [value]="p.id">{{ p.name }}</option>
+                  <optgroup label="Market Hubs">
+                    <option *ngFor="let p of fuzzworkMarketService.stations" [value]="p.id">{{ p.name }}</option>
+                  </optgroup>
                 </select>
               </span>
             </p>
