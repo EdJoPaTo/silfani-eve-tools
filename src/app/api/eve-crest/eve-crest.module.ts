@@ -7,6 +7,7 @@ import { ItemService } from './item.service';
 import { ItemTypesService } from './item-types.service';
 import { MarketGroupsService } from './market-groups.service';
 import { PathsService } from './paths.service';
+import { RegionService } from './region.service';
 import { TimeService } from './time.service';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { TimeService } from './time.service';
     ItemTypesService,
     MarketGroupsService,
     PathsService,
+    RegionService,
     TimeService
   ]
 })
