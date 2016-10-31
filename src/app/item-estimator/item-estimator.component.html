@@ -22,6 +22,9 @@
                   <optgroup label="Market Hubs">
                     <option *ngFor="let p of fuzzworkMarketService.stations" [value]="p.id">{{ p.name }}</option>
                   </optgroup>
+                  <optgroup label="Regions">
+                    <option *ngFor="let p of regionService.get() | async" [value]="p.id">{{ p.name }}</option>
+                  </optgroup>
                 </select>
               </span>
             </p>

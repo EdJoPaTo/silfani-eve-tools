@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, ReplaySubject, Subject, Subscription } from 'rxjs/Rx';
 
 import { FuzzworkMarketService, TypeIdFromNameService } from '../api/fuzzwork';
-import { ItemTypesService } from '../api/eve-crest';
+import { ItemTypesService, RegionService } from '../api/eve-crest';
 import { ParseItemLineService } from './parse-item-line.service';
 
 import { LineInfo } from './line-info';
@@ -35,6 +35,7 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     private fuzzworkMarketService: FuzzworkMarketService,
     private itemTypesService: ItemTypesService,
     private parseItemLineService: ParseItemLineService,
+    private regionService: RegionService,
     private route: ActivatedRoute,
     private router: Router,
     private typeIdFromNameService: TypeIdFromNameService
