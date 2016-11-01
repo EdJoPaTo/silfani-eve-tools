@@ -19,6 +19,8 @@ export class PilotAnalyzerComponent implements OnInit {
   nameCount: number = 0;
   private searchTerms = new Subject<string[]>();
   hovered: Hovered = new Hovered();
+  idCurrent: number = 0;
+  statsCurrent: number = 0;
 
   constructor(
     private zKillStatsService: ZKillStatsService,
@@ -27,23 +29,27 @@ export class PilotAnalyzerComponent implements OnInit {
 
   ngOnInit() {
     this.characterIds = this.searchTerms
+      .map(s => { this.idCurrent = 0; this.statsCurrent = 0; return s; })
       .switchMap(names => Observable.from(names)
         .flatMap(name => this.zKautocompleteService.characterID(name))
         .map(ids => ids[0])
+        .map(s => { this.idCurrent++; return s; })
         .filter(id => id)
         .reduce((cur, add) => cur.concat(add), [])
       )
       .catch(err => { this.error = 'zKillboard autocomplete API failed'; return Observable.of<number[]>([]); })
-      .map(ids => { if (ids.length > 0) { this.error = ''; }  return ids; })
+      .map(ids => { if (ids.length > 0) { this.error = ''; } return ids; })
       .share();
 
     this.characterStats = this.characterIds
+      .map(s => { this.statsCurrent = 0; return s; })
       .switchMap(ids => Observable.from(ids)
         .flatMap(id => this.zKillStatsService.character(id))
+        .map(s => { this.statsCurrent++; return s; })
         .reduce((cur, add) => cur.concat(add), [])
       )
       .catch(err => { this.error = 'zKillboard Statistics API failed'; return Observable.of<ZKillStats[]>([]); })
-      .map(ids => { if (ids.length > 0) { this.error = ''; }  return ids; })
+      .map(ids => { if (ids.length > 0) { this.error = ''; } return ids; })
       .share();
 
     this.charactersWithoutKills = this.characterIds
