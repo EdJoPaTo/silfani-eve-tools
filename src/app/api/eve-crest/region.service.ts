@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 import { PathsService } from './paths.service';
@@ -21,10 +21,6 @@ export class RegionService {
     private paths: PathsService,
     private itemService: ItemService
   ) { }
-
-  private reduceRegions(current, add) {
-    return current.concat(add);
-  }
 
   get(): Observable<Region[]> {
     if (!this.cache) {
