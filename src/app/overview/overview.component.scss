@@ -82,3 +82,15 @@ $logoStrongColor: #222222;
 #karnis {
   background-image: url("https://image.eveonline.com/Character/91572014_512.jpg");
 }
+
+.hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.5)), url("/assets/backgrounds/nemesiscloak.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+.title {
+  margin-top: 40px;
+}
