@@ -7,7 +7,8 @@
       <h1>Pilot Analyzer</h1>
       <div class="columns">
         <div class="column">
-          <app-clipboard-paste-textarea [initialContent]="initialContent" [placeholder]="'pilot names'" (changed)="search($event)"></app-clipboard-paste-textarea>
+          <app-clipboard-paste-textarea [initialContent]="initialContent" [placeholder]="'pilot names'" [distinctLines]="true" (changed)="search($event)"></app-clipboard-paste-textarea>
+          <progress class="progress is-primary" *ngIf="idCurrent + statsCurrent < 2 * nameCount - ((charactersWithoutKills | async) || 0 )" [value]="idCurrent + statsCurrent" [max]="2 * nameCount - ((charactersWithoutKills | async) || 0 )">loading...</progress>
 
           <app-pilot-group-list [characters]="characterStats | async" [hovered]="hovered"></app-pilot-group-list>
 
