@@ -29,7 +29,7 @@ export class PilotAnalyzerComponent implements OnInit {
 
   ngOnInit() {
     this.characterIds = this.searchTerms
-      .map(s => { this.idCurrent = 0; this.statsCurrent = 0; return s; })
+      .map(lines => { this.nameCount = lines.length; this.idCurrent = 0; this.statsCurrent = 0; return lines; })
       .switchMap(names => Observable.from(names)
         .flatMap(name => this.zKautocompleteService.characterID(name))
         .map(ids => ids[0])
@@ -59,6 +59,5 @@ export class PilotAnalyzerComponent implements OnInit {
 
   search(lines: string[]) {
     this.searchTerms.next(lines);
-    this.nameCount = lines.length;
   }
 }
