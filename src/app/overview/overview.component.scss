@@ -1,5 +1,5 @@
-$logoNormalColor: #69707a;
-$logoStrongColor: #222222;
+$logoNormalColor: rgba(100,100,100, 0.8);
+$logoStrongColor: rgba(255,255,255,0.5);
 @keyframes showmeoff {
   0% {
     fill: $logoNormalColor;
