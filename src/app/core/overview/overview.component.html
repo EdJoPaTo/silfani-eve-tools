@@ -19,23 +19,40 @@
     <div class="content">
       <h1>Tools</h1>
       <div class="tile is-ancestor">
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="title">Pilot Analyzer</p>
-            Ever wanted to know about the combat strength of pilots in a chat channel or the local? Just copy them into the Pilot Analyzer.
-            <br />
-            <a routerLink="/pilot-analyzer">try it...</a>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification">
-            <p class="title">Security Agent Missions</p>
-            With the use of EVE-Survival you can prepare what kinds of enemies you have to face within an Security Mission.
-            For german players there was a great list of german - english translated missionnames from Darkblad, but it was discontinued.
-            I asked for the data and hosted it again with an own UI.
-            <br />
-            <a routerLink="/missions">use it...</a>
-          </article>
+        <div class="tile is-vertical">
+          <div class="tile">
+            <div class="tile is-parent">
+              <article class="tile is-child notification">
+                <p class="title">Pilot Analyzer</p>
+                Ever wanted to know about the combat strength of pilots in a chat channel or the local? Just copy them into the Pilot Analyzer.
+                <br />
+                <a routerLink="/pilot-analyzer">try it...</a>
+              </article>
+            </div>
+            <div class="tile is-parent">
+              <article class="tile is-child notification">
+                <p class="title">Item Estimator</p>
+                You got some items in your cargo and want to know reliable how much that stuff is worth?
+                A contract? cargo scanner?
+                Just select them and copy (<code>Ctrl + C</code>) them from ingame into the item estimator!
+                Now you just know how much your items are worth in a Market Hub or Region.
+                <br />
+                <a routerLink="/item-estimator">I want to estimate my stuff!</a>
+              </article>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-parent">
+              <article class="tile is-child notification">
+                <p class="title">Security Agent Missions</p>
+                With the use of EVE-Survival you can prepare what kinds of enemies you have to face within an Security Mission.
+                For german players there was a great list of german - english translated missionnames from Darkblad, but it was discontinued.
+                I asked for the data and hosted it again with an own UI.
+                <br />
+                <a routerLink="/missions">use it...</a>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </div>
