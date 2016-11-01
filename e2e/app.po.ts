@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class EveAngular2Page {
+export class SilfaniEveToolsPage {
   navigateTo() {
     return browser.get('/');
   }
