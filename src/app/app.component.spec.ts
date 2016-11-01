@@ -3,7 +3,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
-describe('App: EveAngular2', () => {
+describe('App: SilfaniEveTools', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [

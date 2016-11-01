@@ -1,10 +1,10 @@
-import { EveAngular2Page } from './app.po';
+import { SilfaniEveToolsPage } from './app.po';
 
-describe('eve-angular2 App', function() {
-  let page: EveAngular2Page;
+describe('silfani-eve-tools App', function() {
+  let page: SilfaniEveToolsPage;
 
   beforeEach(() => {
-    page = new EveAngular2Page();
+    page = new SilfaniEveToolsPage();
   });
 
   it('should display message saying app works', () => {
