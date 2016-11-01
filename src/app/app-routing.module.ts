@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PilotAnalyzerComponent } from './pilot-analyzer';
 
-import { AboutComponent, ImpressumComponent, LegalComponent, OverviewComponent, PageNotFoundComponent } from './core';
+import { AboutComponent, ImpressumComponent, LegalComponent, PageNotFoundComponent } from './core';
+import { OverviewComponent } from './overview';
 
 const routes: Routes = [
   { path: '', component: OverviewComponent },

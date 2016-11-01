@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AboutComponent } from './about/about.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { LegalComponent } from './legal/legal.component';
-import { OverviewComponent } from './overview/overview.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
@@ -15,14 +14,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AboutComponent,
     ImpressumComponent,
     LegalComponent,
-    OverviewComponent,
     PageNotFoundComponent
   ],
   exports: [
     AboutComponent,
     ImpressumComponent,
     LegalComponent,
-    OverviewComponent,
     PageNotFoundComponent
   ]
 })
