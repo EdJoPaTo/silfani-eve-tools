@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PilotAnalyzerComponent } from './pilot-analyzer';
-
 import { AboutComponent, ImpressumComponent, LegalComponent, PageNotFoundComponent } from './core';
 import { OverviewComponent } from './overview';
 
