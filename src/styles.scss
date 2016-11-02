@@ -1,3 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 
+/*
+// light theme
+$black: #0a0a0a;
+$grey-darker: #363636;
+$grey-dark: #4a4a4a;
+$grey: #7a7a7a;
+$grey-light: #b5b5b5;
+$grey-lighter: #dbdbdb;
+$white: #fff;
+*/
+
+// dark theme
+$black: #fff;
+$grey-darker: #dbdbdb;
+$grey-dark: #b5b5b5;
+$grey: #7a7a7a;
+$grey-light: #4a4a4a;
+$grey-lighter: #363636;
+$white: #4a4a4a;
+
+$control-background: #363636;
+
+$body-background: $grey-lighter;
+$background: $grey-lighter;
+
 @import "node_modules/bulma/bulma.sass";
