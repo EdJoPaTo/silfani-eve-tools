@@ -21,6 +21,7 @@ $logoStrongColor: rgba(255,255,255,0.5);
 .logo {
   width: 30vmin;
   height: auto;
+  margin-bottom: 40px;
 
   &:hover {
     $translateVal: 0.03vmin;
@@ -83,10 +84,6 @@ $logoStrongColor: rgba(255,255,255,0.5);
   background-image: url("https://image.eveonline.com/Character/91572014_512.jpg");
 }
 
-.hero {
+.main-theme {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.5)), url("/assets/backgrounds/nemesiscloak.jpg");
-}
-
-.title {
-  margin-top: 40px;
 }
