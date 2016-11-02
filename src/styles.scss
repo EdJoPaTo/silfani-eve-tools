@@ -1,3 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import "node_modules/bulma/bulma.sass";
+
+.background-fixed {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  @media (min-width: 769px) {
+    background-attachment: fixed;
+  }
+}
