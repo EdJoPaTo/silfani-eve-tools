@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
-import { addProviders, async, inject } from '@angular/core/testing';
+import { TestBed, async, inject } from '@angular/core/testing';
 import { FuzzworkMarketService } from './fuzzwork-market.service';
 
 describe('Service: FuzzworkMarket', () => {
   beforeEach(() => {
-    addProviders([FuzzworkMarketService]);
+    TestBed.configureTestingModule({
+      providers: [FuzzworkMarketService]
+    });
   });
 
-  it('should ...',
-    inject([FuzzworkMarketService],
-      (service: FuzzworkMarketService) => {
-        expect(service).toBeTruthy();
-      }));
+  it('should ...', inject([FuzzworkMarketService], (service: FuzzworkMarketService) => {
+    expect(service).toBeTruthy();
+  }));
 });

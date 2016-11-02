@@ -1,13 +1,28 @@
 /* tslint:disable:no-unused-variable */
-
-import { By }           from '@angular/platform-browser';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { addProviders, async, inject } from '@angular/core/testing';
+
 import { PilotListComponent } from './pilot-list.component';
 
-describe('Component: PilotList', () => {
-  it('should create an instance', () => {
-    let component = new PilotListComponent();
+describe('PilotListComponent', () => {
+  let component: PilotListComponent;
+  let fixture: ComponentFixture<PilotListComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ PilotListComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PilotListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
