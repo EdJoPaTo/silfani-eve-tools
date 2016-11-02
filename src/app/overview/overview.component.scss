@@ -60,30 +60,6 @@ $logoStrongColor: rgba(255,255,255,0.5);
   }
 }
 
-.hoverimage {
-  -webkit-transition: -webkit-filter 1s ease;
-  transition: -webkit-filter 1s ease, filter 1s ease;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  @media (min-width: 769px) {
-    -webkit-filter: grayscale(0.3) blur(4px);
-    filter: grayscale(0.3) blur(4px);
-  }
-
-  &:hover {
-    -webkit-filter: grayscale(0) blur(0px);
-    filter: grayscale(0) blur(0px);
-  }
-}
-
-#rell {
-  background-image: url("https://image.eveonline.com/Character/90419497_512.jpg");
-}
-
-#karnis {
-  background-image: url("https://image.eveonline.com/Character/91572014_512.jpg");
-}
-
 .main-theme {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.5)), url("/assets/backgrounds/nemesiscloak.jpg");
 }
