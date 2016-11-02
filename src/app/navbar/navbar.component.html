@@ -1,24 +1,25 @@
 <nav class="nav has-shadow">
-  <div class="nav-left" (click)="navopen = false">
-    <a class="nav-item is-brand" routerLink="/" (mouseenter)="rotate = true" (mouseleave)="rotate = false">
-      <svg class="icon is-64x64" viewBox="0 0 20 20" [class.single-rotation]="rotate">
+  <div class="container">
+    <div class="nav-left" (click)="navopen = false">
+      <a class="nav-item is-brand" routerLink="/" (mouseenter)="rotate = true" (mouseleave)="rotate = false">
+        <svg class="icon is-64x64" viewBox="0 0 20 20" [class.single-rotation]="rotate">
         <polygon class="top" points="4,4 16,4 16,6 6,6 6,8 4,8" />
         <rect class="middle" width="12" height="2" x="4" y="9"/>
         <polygon class="bottom" points="4,16 16,16 16,12 14,12 14,14 4,14" />
-      </svg>
-      Silfani EVE Tools
-    </a>
-  </div>
+      </svg> Silfani EVE Tools
+      </a>
+    </div>
 
-  <span class="nav-toggle" [class.is-active]="navopen" (click)="navopen = !navopen">
+    <span class="nav-toggle" [class.is-active]="navopen" (click)="navopen = !navopen">
     <span></span>
     <span></span>
     <span></span>
-  </span>
+    </span>
 
-  <div class="nav-right nav-menu" [class.is-active]="navopen" (click)="navopen = false">
-    <a class="nav-item is-tab" routerLink="/pilot-analyzer" routerLinkActive="is-active">Pilot Analyzer</a>
-    <a class="nav-item is-tab" routerLink="/item-estimator" routerLinkActive="is-active">Item Estimator</a>
-    <a class="nav-item is-tab" routerLink="/missions" routerLinkActive="is-active">Missions</a>
+    <div class="nav-right nav-menu" [class.is-active]="navopen" (click)="navopen = false">
+      <a class="nav-item is-tab" routerLink="/pilot-analyzer" routerLinkActive="is-active">Pilot Analyzer</a>
+      <a class="nav-item is-tab" routerLink="/item-estimator" routerLinkActive="is-active">Item Estimator</a>
+      <a class="nav-item is-tab" routerLink="/missions" routerLinkActive="is-active">Missions</a>
+    </div>
   </div>
 </nav>
