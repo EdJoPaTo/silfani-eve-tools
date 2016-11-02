@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   navopen: boolean;
+  rotate: boolean;
 
   constructor() { }
 
