@@ -2,27 +2,37 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
+import { AutocompleteHit } from './autocomplete-hit';
+
 @Injectable()
 export class AutocompleteService {
-  private characterIdCache = {};
+  private characterCache = {};
 
   constructor(
     private http: Http
   ) { }
 
-  characterID(name: string): Observable<number[]> {
+  private makeCall(type: string, name: string): Observable<AutocompleteHit[]> {
+    return this.http
+      .get(`https://zkillboard.com/autocomplete/${type}${type ? '/' : ''}${name}/`)
+      .map((r: Response) => r.json());
+  }
+
+  character(name: string): Observable<AutocompleteHit[]> {
     // https://zkillboard.com/autocomplete/characterID/rell%20silfani/
-    if (!this.characterIdCache[name]) {
-      this.characterIdCache[name] = new ReplaySubject(1);
-      this.http
-        .get(`https://zkillboard.com/autocomplete/characterID/${name}/`)
-        .map((r: Response) => r.json())
-        .map(json => json.map(char => char.id))
-        .subscribe(data => this.characterIdCache[name].next(data),
-        err => this.characterIdCache[name].error(err),
-        () => this.characterIdCache[name].complete()
+    if (!this.characterCache[name]) {
+      this.characterCache[name] = new ReplaySubject(1);
+      this.makeCall('characterID', name)
+        .subscribe(data => this.characterCache[name].next(data),
+        err => this.characterCache[name].error(err),
+        () => this.characterCache[name].complete()
         );
     }
-    return this.characterIdCache[name];
+    return this.characterCache[name];
+  }
+
+  characterID(name: string): Observable<number[]> {
+    return this.character(name)
+      .map(chars => chars.map(char => char.id));
   }
 }
