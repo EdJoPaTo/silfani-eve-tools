@@ -6,6 +6,7 @@ import { ClipboardPasteTextareaComponent } from './clipboard-paste-textarea/clip
 import { IskPipe } from './isk.pipe';
 import { ShortnumberPipe } from './shortnumber.pipe';
 import { VolumePipe } from './volume.pipe';
+import { LengthPipe } from './length.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { VolumePipe } from './volume.pipe';
   declarations: [
     ClipboardPasteTextareaComponent,
     IskPipe,
+    LengthPipe,
     ShortnumberPipe,
     VolumePipe
   ],
@@ -23,6 +25,7 @@ import { VolumePipe } from './volume.pipe';
     ClipboardPasteTextareaComponent,
     FormsModule,
     IskPipe,
+    LengthPipe,
     ShortnumberPipe,
     VolumePipe
   ]
