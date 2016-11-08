@@ -82,7 +82,7 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     this.router.navigate([params]);
   }
 
-  private stackItems(currentStack: Item[], add: Item[]): Item[] {
+  private stackItems(currentStack: LineInfo[], add: LineInfo[]): LineInfo[] {
     add.forEach(itemToAdd => {
       let indexOfExistingItem = currentStack.map(i => i.name).indexOf(itemToAdd.name);
 
