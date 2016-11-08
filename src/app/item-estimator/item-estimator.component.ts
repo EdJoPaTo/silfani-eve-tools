@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, ReplaySubject, Subject, Subscription } from 'rxjs/Rx';
+import { Observable, Subject, Subscription } from 'rxjs/Rx';
 
 import { FuzzworkMarketService, TypeIdFromNameService } from '../api/fuzzwork';
 import { ItemTypesService, RegionService } from '../api/eve-crest';
@@ -26,7 +26,7 @@ Power Circuit  2  Salvaged Materials  0,02 m3
 Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
 `;
   private search = new Subject<string[]>();
-  items: Item[] = [];
+  private items: Observable<Item[]>;
   private pricearea: number;
   private isSell = true;
   private sub: Subscription;
@@ -50,25 +50,17 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
         this.pricearea = 60003760; // Jita IV - 4
       }
     });
-    this.search
-      .subscribe(lines => {
-        let clear = true;
-        Observable.from(lines)
-          .map(line => this.parseItemLineService.parse(line))
-          .reduce(this.stackItems)
-          .flatMap(itemStack => itemStack)
-          .filter((li: LineInfo) => li ? true : false)
-          .flatMap((li: LineInfo) => this.itemFromLineInfo(li))
-          .subscribe(item => {
-            if (!item) { return; }
-            if (clear) {
-              clear = false;
-              this.items = [];
-            }
-            this.items = this.items.concat([item]);
-          }
-          );
-      });
+
+    this.items = this.search
+      .switchMap(lines => Observable.from(lines)
+        .map(line => this.parseItemLineService.parse(line))
+        .reduce(this.stackItems)
+        .flatMap(lineInfoStack => lineInfoStack)
+        .filter((li: LineInfo) => li ? true : false)
+        .flatMap(li => this.itemFromLineInfo(li))
+        .reduce((cur: Item[], add: Item) => cur.concat(add), [])
+      )
+      .share();
   }
 
   ngOnDestroy() {
@@ -95,33 +87,8 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     return currentStack;
   }
 
-  private price(id: number, area: number, isSell: boolean, amount = 1): Observable<number> {
-    return this.fuzzworkMarketService.getSingle(id, area)
-      .map(data => data[isSell ? 'sell' : 'buy'])
-      .map(pricedata => Number(pricedata.percentile))
-      .map(single => single * amount);
-  }
-
-  private volume(id: number, amount = 1): Observable<number> {
-    return this.itemTypesService.get(id)
-      .map(typeinfo => typeinfo.volume)
-      .map(single => single * amount);
-  }
-
   itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
     return this.typeIdFromNameService.getId(lineinfo.name)
       .map(id => ({ name: lineinfo.name, amount: lineinfo.amount, id: id }));
-  }
-
-  totalAmount(items: any[]): number { return items.reduce((sum, add) => sum + add.amount, 0); }
-  totalPrice(items: any[], area: number, isSell: boolean): Observable<number> {
-    return Observable.from(items)
-      .flatMap(item => this.price(item.id, area, isSell, item.amount))
-      .reduce((a, b) => a + b);
-  }
-  totalVolume(items: any[]): Observable<number> {
-    return Observable.from(items)
-      .flatMap(item => this.volume(item.id, item.amount))
-      .reduce((a, b) => a + b);
   }
 }

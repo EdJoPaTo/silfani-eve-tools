@@ -7,6 +7,8 @@ import { SharedModule } from '../shared';
 import { EveCrestModule } from '../api/eve-crest';
 import { FuzzworkModule } from '../api/fuzzwork';
 
+import { ItemListComponent } from './item-list/item-list.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { FuzzworkModule } from '../api/fuzzwork';
     SharedModule
   ],
   declarations: [
-    ItemEstimatorComponent
+    ItemEstimatorComponent,
+    ItemListComponent
   ]
 })
 export class ItemEstimatorModule { }

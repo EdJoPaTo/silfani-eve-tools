@@ -39,62 +39,14 @@
         </div>
         <div class="column is-narrow">
           <div id="price">
-            {{ totalPrice(items, pricearea, isSell) | async | isk: true }}
+            {{ directItems.totalPrice | async | isk: true }}
           </div>
           <div id="volume">
-            {{ totalVolume(items) | async | volume: true }}
+            {{ directItems.totalVolume | async | volume: true }}
           </div>
         </div>
       </div>
-      <table class="table" *ngIf="items.length">
-        <thead>
-          <tr>
-            <th class="is-narrow"> </th>
-            <th class="has-text-right is-narrow"> Amount </th>
-            <th> Item{{ items.length > 1 ? 's' : '' }} ({{ items.length }})</th>
-            <th class="has-text-right"> Volume (m³) </th>
-            <th class="has-text-right"> Price (ISK) </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of items">
-            <td>
-              <img class="icon" [src]="'//imageserver.eveonline.com/Type/'+ item.id +'_64.png'" />
-            </td>
-            <td class="has-text-right">
-              {{ item.amount | number: '1.0-0' }}
-            </td>
-            <td>
-              {{ item.name }}
-              <div *ngIf="item.id">
-                <a [href]="fuzzworkMarketService.detailsUrl(item.id, pricearea, isSell)" target="_blank">Fuzzwork Market</a>
-              </div>
-              <span *ngIf="!item.id" class="tag is-warning">Item does not exist!</span>
-            </td>
-            <td class="has-text-right" [title]="(item.amount | number: '1.0-0') + 'x ' + (volume(item.id) | async | number: '1.2-2') + ' m³'">
-              {{ item.amount * (volume(item.id) | async) | number: '1.2-2' }}
-            </td>
-            <td class="has-text-right" [title]="(item.amount | number: '1.0-0') + 'x ' + (price(item.id, pricearea, isSell) | async | number: '1.2-2') + ' ISK (' + (isSell ? 'sell' : 'buy')  + ')'">
-              {{ item.amount * (price(item.id, pricearea, isSell) | async) | number: '1.2-2' }}
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td> </td>
-            <td class="has-text-right">
-              {{ totalAmount(items) | number: '1.0-0' }}
-            </td>
-            <td> Sum </td>
-            <td class="has-text-right">
-              {{ totalVolume(items) | async | number: '1.2-2' }}
-            </td>
-            <td class="has-text-right">
-              {{ totalPrice(items, pricearea, isSell) | async | number: '1.2-2' }}
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+      <app-item-list #directItems [items]="items | async" [pricearea]="pricearea" [isSell]="isSell"></app-item-list>
     </div>
   </div>
 </div>
