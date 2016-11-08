@@ -95,53 +95,33 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     return currentStack;
   }
 
-  private price(id: number, area: number, isSell: boolean): Observable<number> {
+  private price(id: number, area: number, isSell: boolean, amount = 1): Observable<number> {
     return this.fuzzworkMarketService.getSingle(id, area)
       .map(data => data[isSell ? 'sell' : 'buy'])
-      .map(pricedata => Number(pricedata.percentile));
+      .map(pricedata => Number(pricedata.percentile))
+      .map(single => single * amount);
   }
 
-  private volume(id: number): Observable<number> {
+  private volume(id: number, amount = 1): Observable<number> {
     return this.itemTypesService.get(id)
-      .map(typeinfo => typeinfo.volume);
+      .map(typeinfo => typeinfo.volume)
+      .map(single => single * amount);
   }
 
   itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
-    let s = new ReplaySubject<Item>();
-    this.typeIdFromNameService.getId(lineinfo.name)
-      .map(id => ({ name: lineinfo.name, amount: lineinfo.amount, id: id }))
-      .subscribe((i: Item) => {
-        s.next(i);
-        s.complete();
-      });
-    return s;
+    return this.typeIdFromNameService.getId(lineinfo.name)
+      .map(id => ({ name: lineinfo.name, amount: lineinfo.amount, id: id }));
   }
 
   totalAmount(items: any[]): number { return items.reduce((sum, add) => sum + add.amount, 0); }
   totalPrice(items: any[], area: number, isSell: boolean): Observable<number> {
     return Observable.from(items)
-      .flatMap(item => {
-        let s = new ReplaySubject();
-        this.price(item.id, area, isSell)
-          .subscribe(data => {
-            s.next(data * item.amount);
-            s.complete();
-          }, err => s.error(err));
-        return s;
-      })
+      .flatMap(item => this.price(item.id, area, isSell, item.amount))
       .reduce((a, b) => a + b);
   }
   totalVolume(items: any[]): Observable<number> {
     return Observable.from(items)
-      .flatMap(item => {
-        let s = new ReplaySubject();
-        this.volume(item.id)
-          .subscribe(data => {
-            s.next(data * item.amount);
-            s.complete();
-          }, err => s.error(err));
-        return s;
-      })
+      .flatMap(item => this.volume(item.id, item.amount))
       .reduce((a, b) => a + b);
   }
 }
