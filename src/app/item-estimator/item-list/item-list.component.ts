@@ -39,6 +39,9 @@ export class ItemListComponent implements OnInit, OnChanges {
   totalVolume: Observable<number>;
   totalPrice: Observable<number>;
 
+  currentLoadedPrices: number = 0;
+  currentLoadedVolumes: number = 0;
+
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
     private itemTypesService: ItemTypesService,
@@ -52,15 +55,19 @@ export class ItemListComponent implements OnInit, OnChanges {
       .share();
 
     this.totalPrice = this.itemSubject
+      .map(s => { this.currentLoadedPrices = 0; return s; })
       .switchMap(items => Observable.from(items)
         .flatMap(item => this.price(item.id, this.pricearea, this.isSell, item.amount))
+        .map(s => { this.currentLoadedPrices++; return s; })
         .reduce((a, b) => a + b)
       )
       .share();
 
     this.totalVolume = this.itemSubject
+      .map(s => { this.currentLoadedVolumes = 0; return s; })
       .switchMap(items => Observable.from(items)
         .flatMap(item => this.volume(item.id, item.amount))
+        .map(s => { this.currentLoadedVolumes++; return s; })
         .reduce((a, b) => a + b)
       )
       .share();
