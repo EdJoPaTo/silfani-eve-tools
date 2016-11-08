@@ -9,3 +9,8 @@
     background-attachment: fixed;
   }
 }
+
+table thead th.has-text-right {
+  // workaround while the bulma bug is there: https://github.com/jgthms/bulma/issues/293
+  text-align: right;
+}
