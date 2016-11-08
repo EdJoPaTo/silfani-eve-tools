@@ -31,6 +31,9 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
   private isSell = true;
   private sub: Subscription;
 
+  private allStackItems: number = 0;
+  private currentLoadedStackItems: number = 0;
+
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
     private itemTypesService: ItemTypesService,
@@ -52,12 +55,15 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     });
 
     this.items = this.search
+      .map(line => { this.currentLoadedStackItems = 0; this.allStackItems = 0; return line; })
       .switchMap(lines => Observable.from(lines)
         .map(line => this.parseItemLineService.parse(line))
         .reduce(this.stackItems)
+        .map((lis: LineInfo[]) => { this.allStackItems = lis.length; return lis; })
         .flatMap(lineInfoStack => lineInfoStack)
         .filter((li: LineInfo) => li ? true : false)
         .flatMap(li => this.itemFromLineInfo(li))
+        .map((i: Item) => { this.currentLoadedStackItems++; return i; })
         .reduce((cur: Item[], add: Item) => cur.concat(add), [])
       )
       .share();

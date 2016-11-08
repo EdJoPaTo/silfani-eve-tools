@@ -14,6 +14,7 @@
           <p class="control">
             <app-clipboard-paste-textarea [initialContent]="initialContent" [placeholder]="'paste your items here'" (changed)="search.next($event)"></app-clipboard-paste-textarea>
           </p>
+          <progress class="progress is-primary" *ngIf="currentLoadedStackItems < allStackItems" [value]="currentLoadedStackItems" [max]="allStackItems"></progress>
           <div class="control is-grouped">
             <p class="control has-addons">
               <a class="button" [class.is-primary]="isSell" (click)="isSell = true; updateUrl();">
