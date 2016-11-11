@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 
 import { MissionService } from './mission.service';
+import { ReprocessService } from './evedump/reprocess.service';
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import { MissionService } from './mission.service';
     HttpModule
   ],
   providers: [
-    MissionService
+    MissionService,
+    ReprocessService
   ]
 })
 export class StaticResourcesModule { }
