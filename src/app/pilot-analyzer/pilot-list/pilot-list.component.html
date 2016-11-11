@@ -2,7 +2,10 @@
   <thead>
     <tr>
       <th> </th>
-      <th> Name ({{ characters ? characters.length : 0 }}) </th>
+      <th>
+        Name
+        <span class="tag is-primary">{{ characters | length | number }}</span>
+      </th>
       <th> Ships </th>
       <th> ISK </th>
       <th> Corporation </th>
