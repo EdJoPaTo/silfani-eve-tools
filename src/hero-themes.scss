@@ -28,6 +28,18 @@
   background-image: url("/assets/backgrounds/orcawarp.jpg");
 }
 
+.hero-theme-perimeter-v {
+  background-image: url("/assets/backgrounds/PerimeterVwhole.jpg");
+}
+
+.hero-theme-perimeter-v-planet {
+  background-image: url("/assets/backgrounds/PerimeterVheadquarterPlanet.jpg");
+}
+
+.hero-theme-perimeter-v-space {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url("/assets/backgrounds/PerimeterVheadquarterSpace.jpg");
+}
+
 .hero-theme-tenguwarp {
   background-image: url("/assets/backgrounds/tenguwarp.jpg");
 }
