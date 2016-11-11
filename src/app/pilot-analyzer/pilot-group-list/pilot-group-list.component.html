@@ -4,7 +4,8 @@
       <th> </th>
       <th> </th>
       <th>
-        Name ({{ (characters | groupcount).length | number }})
+        Name
+        <span class="tag is-primary">{{ characters | groupcount | length | number }}</span>
       </th>
       <th class="has-text-centered">
         Ships

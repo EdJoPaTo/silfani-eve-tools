@@ -12,6 +12,7 @@ import { Hovered } from '../hovered';
 })
 export class PilotListComponent implements OnInit {
   @Input() characters: ZKillStats[];
+  @Input() unknown: string[];
   @Input() hovered: Hovered;
 
   constructor(
