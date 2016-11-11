@@ -5,6 +5,7 @@
       <th>
         Name
         <span class="tag is-primary">{{ characters | length | number }}</span>
+        <span *ngIf="unknown | length" class="tag is-warning" [title]="(unknown | length | number) + ' character' + ((unknown | length | number) > 1 ? 's' : '') + ' without kills on zKillboard'">{{ unknown | length | number }}</span>
       </th>
       <th> Ships </th>
       <th> ISK </th>
@@ -44,6 +45,28 @@
           <img class="icon" [src]="'//imageserver.eveonline.com/Alliance/'+ character.info.allianceID +'_128.png'" />
           <div class="shortName">{{ allianceTag(character.info.allianceID) | async }}</div>
         </div>
+      </td>
+    </tr>
+    <tr *ngFor="let line of unknown" [class.small]="characters ? characters.length > 20 : false">
+      <td>
+        <img class="icon character" [src]="'//imageserver.eveonline.com/Character/0_256.jpg'" />
+      </td>
+      <td>
+        {{ line }}
+        <br />
+        <span class="tag is-warning">No kill on zKillboard</span>
+      </td>
+      <td>
+        <app-destroyed-lost [destroyed]="0" [lost]="0" [title]="'ships'" [isInteger]="true"></app-destroyed-lost>
+      </td>
+      <td>
+        <app-destroyed-lost [destroyed]="0" [lost]="0" [title]="'ISK'"></app-destroyed-lost>
+      </td>
+      <td>
+        <img class="icon corporation" [src]="'//imageserver.eveonline.com/Corporation/0_256.png'" />
+      </td>
+      <td class="alliance" *ngIf="characters | anyAlliances">
+
       </td>
     </tr>
   </tbody>

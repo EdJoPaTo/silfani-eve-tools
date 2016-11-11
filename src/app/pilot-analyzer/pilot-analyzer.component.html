@@ -16,12 +16,11 @@
         <div class="column">
           <app-clipboard-paste-textarea [initialContent]="initialContent" [placeholder]="'pilot names'" [distinctLines]="true" (changed)="search($event)"></app-clipboard-paste-textarea>
           <progress class="progress is-primary" *ngIf="idCurrent + statsCurrent < 2 * nameCount - (charactersWithoutKills | async | length)" [value]="idCurrent + statsCurrent" [max]="2 * nameCount - (charactersWithoutKills | async | length)">loading...</progress>
-          <app-characters-without-kills-hint [charactersWithoutKills]="charactersWithoutKills | async | length"></app-characters-without-kills-hint>
 
           <app-pilot-group-list [characters]="characterStats | async" [hovered]="hovered"></app-pilot-group-list>
         </div>
         <div class="column">
-          <app-pilot-list [characters]="characterStats | async" [hovered]="hovered"></app-pilot-list>
+          <app-pilot-list [characters]="characterStats | async" [unknown]="charactersWithoutKills | async" [hovered]="hovered"></app-pilot-list>
         </div>
       </div>
     </div>
