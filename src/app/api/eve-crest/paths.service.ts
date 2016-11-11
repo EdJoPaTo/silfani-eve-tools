@@ -12,7 +12,7 @@ export class PathsService {
     private http: Http
   ) { }
 
-  getAll(forceRefresh?: boolean): Observable<any> {
+  getAll(forceRefresh = false): Observable<any> {
     if (!this.cache.observers.length || forceRefresh) {
       this.http
         .get(CREST_URL)

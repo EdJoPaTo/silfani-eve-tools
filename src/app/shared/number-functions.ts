@@ -19,6 +19,7 @@ export function formatNumberShort(value: number, isInteger = false): string {
 }
 
 export function formatNumberDefault(value: number): string {
+  if (!value) { return 'NaN'; }
   // http://stackoverflow.com/a/14428340
   return value.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 }
