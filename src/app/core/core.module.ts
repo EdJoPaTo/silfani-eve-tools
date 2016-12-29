@@ -1,4 +1,4 @@
-import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AboutComponent } from './about/about.component';
@@ -23,12 +23,4 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     PageNotFoundComponent
   ]
 })
-export class CoreModule {
-
-  // https://angular.io/docs/ts/latest/guide/ngmodule.html#!#prevent-reimport
-  constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
-    if (parentModule) {
-      throw new Error('CoreModule is already loaded. Import it in the AppModule only');
-    }
-  }
-}
+export class CoreModule { }
