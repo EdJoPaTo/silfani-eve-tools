@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-destroyed-lost',
-  templateUrl: 'destroyed-lost.component.html',
-  styleUrls: ['destroyed-lost.component.scss']
+  templateUrl: './destroyed-lost.component.html',
+  styleUrls: ['./destroyed-lost.component.scss']
 })
 export class DestroyedLostComponent implements OnInit {
   @Input() title: string;

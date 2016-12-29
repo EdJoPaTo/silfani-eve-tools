@@ -7,8 +7,8 @@ import { Hovered } from '../hovered';
 
 @Component({
   selector: 'app-pilot-group-list',
-  templateUrl: 'pilot-group-list.component.html',
-  styleUrls: ['pilot-group-list.component.scss']
+  templateUrl: './pilot-group-list.component.html',
+  styleUrls: ['./pilot-group-list.component.scss']
 })
 export class PilotGroupListComponent implements OnInit {
   @Input() characters: ZKillStats[];

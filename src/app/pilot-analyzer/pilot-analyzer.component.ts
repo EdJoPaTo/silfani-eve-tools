@@ -7,8 +7,8 @@ import { Hovered } from './hovered';
 
 @Component({
   selector: 'app-pilot-analyzer',
-  templateUrl: 'pilot-analyzer.component.html',
-  styleUrls: ['pilot-analyzer.component.css']
+  templateUrl: './pilot-analyzer.component.html',
+  styleUrls: ['./pilot-analyzer.component.css']
 })
 export class PilotAnalyzerComponent implements OnInit {
   characters: Observable<AutocompleteHit[]>;
