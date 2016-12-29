@@ -7,8 +7,8 @@ import { Hovered } from '../hovered';
 
 @Component({
   selector: 'app-pilot-list',
-  templateUrl: 'pilot-list.component.html',
-  styleUrls: ['pilot-list.component.scss']
+  templateUrl: './pilot-list.component.html',
+  styleUrls: ['./pilot-list.component.scss']
 })
 export class PilotListComponent implements OnInit {
   @Input() characters: ZKillStats[];
