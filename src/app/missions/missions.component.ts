@@ -11,7 +11,7 @@ import { MissionService } from '../api/static-resources';
 })
 export class MissionsComponent implements OnInit, OnDestroy {
   private sub: Subscription;
-  private missions = [];
+  missions = [];
   namefilter: string;
   level1enabled: boolean;
   level2enabled: boolean;

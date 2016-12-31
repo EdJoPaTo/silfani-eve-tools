@@ -80,14 +80,14 @@ export class ItemListComponent implements OnInit, OnChanges {
     }
   }
 
-  private price(id: number, area: number, isSell: boolean, amount = 1): Observable<number> {
+  price(id: number, area: number, isSell: boolean, amount = 1): Observable<number> {
     return this.fuzzworkMarketService.getSingle(id, area)
       .map(data => data[isSell ? 'sell' : 'buy'])
       .map(pricedata => Number(pricedata.percentile))
       .map(single => single * amount);
   }
 
-  private volume(id: number, amount = 1): Observable<number> {
+  volume(id: number, amount = 1): Observable<number> {
     return this.itemTypesService.get(id)
       .map(typeinfo => typeinfo.volume)
       .map(single => single * amount);

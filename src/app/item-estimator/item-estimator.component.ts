@@ -25,14 +25,14 @@ Fried Interface Circuit  30  Salvaged Materials  0,30 m3
 Power Circuit  2  Salvaged Materials  0,02 m3
 Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
 `;
-  private search = new Subject<string[]>();
-  private items: Observable<Item[]>;
-  private pricearea: number;
-  private isSell = true;
+  search = new Subject<string[]>();
+  items: Observable<Item[]>;
+  pricearea: number;
+  isSell = true;
   private sub: Subscription;
 
-  private allStackItems: number = 0;
-  private currentLoadedStackItems: number = 0;
+  allStackItems: number = 0;
+  currentLoadedStackItems: number = 0;
 
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
@@ -73,7 +73,7 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     this.sub.unsubscribe();
   }
 
-  private updateUrl(): void {
+  updateUrl(): void {
     let params: any = {};
     if (!this.isSell) { params.pricetype = 'buy'; }
     if (Number(this.pricearea) !== 60003760) { params.pricearea = Number(this.pricearea); }

@@ -15,8 +15,8 @@ export class ClipboardPasteTextareaComponent implements OnInit {
   @Input() placeholder: string = 'paste stuff here';
   @Input() distinctLines: boolean = false;
   @Output() changed = new EventEmitter();
-  private search = new Subject<string>();
-  private input: string = '';
+  search = new Subject<string>();
+  input: string = '';
 
   constructor() { }
 
