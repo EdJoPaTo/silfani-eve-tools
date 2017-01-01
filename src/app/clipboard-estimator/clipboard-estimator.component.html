@@ -1,0 +1,49 @@
+<section class="hero is-info is-medium background-fixed hero-theme-perimeter-v">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Clipboard Estimator</h1>
+    </div>
+  </div>
+</section>
+
+<div class="section">
+  <div class="container">
+    <div class="content">
+      <div class="columns">
+        <div class="column">
+          <p class="control">
+            <app-clipboard-paste-textarea [initialContent]="initialContent" [placeholder]="'paste your items here'" (changed)="search.next($event)"></app-clipboard-paste-textarea>
+          </p>
+          <progress class="progress is-primary" *ngIf="currentLoadedStackItems < allStackItems" [value]="currentLoadedStackItems" [max]="allStackItems"></progress>
+          <div class="control is-grouped">
+            <p class="control has-addons">
+              <a class="button" [class.is-primary]="isSell" (click)="isSell = true; updateUrl();">
+                Sell
+              </a>
+              <a class="button" [class.is-primary]="!isSell" (click)="isSell = false; updateUrl();">
+                Buy
+              </a>
+            </p>
+            <p class="control">
+              <span class="select">
+                <select [(ngModel)]="pricearea" (click)="updateUrl()">
+                  <optgroup label="Market Hubs">
+                    <option *ngFor="let p of fuzzworkMarketService.stations" [value]="p.id">{{ p.name }}</option>
+                  </optgroup>
+                  <optgroup label="Regions">
+                    <option *ngFor="let p of regionService.get() | async" [value]="p.id">{{ p.name }}</option>
+                  </optgroup>
+                </select>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="column is-narrow">
+          <h2>Some quick stats</h2>
+        </div>
+      </div>
+      <h2>Items here</h2>
+      <h2>Pilots here</h2>
+    </div>
+  </div>
+</div>
