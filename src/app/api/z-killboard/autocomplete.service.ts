@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 import { AutocompleteHit } from './autocomplete-hit';
@@ -12,9 +12,12 @@ export class AutocompleteService {
     private http: Http
   ) { }
 
-  private makeCall(type: string, name: string): Observable<AutocompleteHit[]> {
+  private makeCall(name: string): Observable<AutocompleteHit[]> {
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' });
+    let options = new RequestOptions({ headers: headers });
+
     return this.http
-      .get(`https://zkillboard.com/autocomplete/${type}${type ? '/' : ''}${name}/`)
+      .post(`https://zkillboard.com/autocomplete/`, 'query=' + encodeURIComponent(name), options)
       .map((r: Response) => r.json());
   }
 
@@ -22,7 +25,8 @@ export class AutocompleteService {
     // https://zkillboard.com/autocomplete/characterID/rell%20silfani/
     if (!this.characterCache[name]) {
       this.characterCache[name] = new ReplaySubject(1);
-      this.makeCall('characterID', name)
+      this.makeCall(name)
+        .map(data => data.filter(entry => entry.type === 'character'))
         .subscribe(data => this.characterCache[name].next(data),
         err => this.characterCache[name].error(err),
         () => this.characterCache[name].complete()
