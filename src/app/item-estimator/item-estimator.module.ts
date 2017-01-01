@@ -7,6 +7,8 @@ import { SharedModule } from '../shared';
 import { EveCrestModule } from '../api/eve-crest';
 import { FuzzworkModule } from '../api/fuzzwork';
 
+import { ParseItemLineService } from './parse-item-line.service';
+
 import { ItemListComponent } from './item-list/item-list.component';
 
 @NgModule({
@@ -16,6 +18,9 @@ import { ItemListComponent } from './item-list/item-list.component';
     FuzzworkModule,
     ItemEstimatorRoutingModule,
     SharedModule
+  ],
+  providers: [
+    ParseItemLineService
   ],
   declarations: [
     ItemEstimatorComponent,

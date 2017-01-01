@@ -12,10 +12,7 @@ import { Item } from './item';
 @Component({
   selector: 'app-item-estimator',
   templateUrl: './item-estimator.component.html',
-  styleUrls: ['./item-estimator.component.scss'],
-  providers: [
-    ParseItemLineService
-  ]
+  styleUrls: ['./item-estimator.component.scss']
 })
 export class ItemEstimatorComponent implements OnInit, OnDestroy {
   initialContent: string = `3.000  Veldspar
