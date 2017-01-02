@@ -16,7 +16,7 @@ const AmountNameRegexList: RegExp[] = [
   CargoScannerRegex
 ];
 
-const ContractRegex = new RegExp('^' + ItemNamePart + SeperatorPart + NumberPart + SeperatorPart + ItemNamePart + SeperatorPart + ItemNamePart + '(?:' + SeperatorPart + ItemNamePart + ')' + '$'); // not perfect but it works for the name/ amount detection
+const ContractRegex = new RegExp('^' + ItemNamePart + SeperatorPart + NumberPart + SeperatorPart + ItemNamePart + SeperatorPart + ItemNamePart + '(?:' + SeperatorPart + ItemNamePart + ')?' + '$'); // not perfect but it works for the name/ amount detection
 const InventoryRegex = new RegExp('^' + ItemNamePart + SeperatorPart + NumberPart + SeperatorPart + ItemNamePart + SeperatorPart + PossibleSingleWordPart + PossibleSingleWordPart + FractionNumberPart + ' m3' + '$');
 const ItemInfoReprocessedMaterialsRegex = new RegExp('^' + ItemNamePart + SeperatorPart + '\\(' + NumberPart + ' Units?\\)' + '$');
 const ShipFittingChargesRegex = new RegExp('^' + ItemNamePart + ' x' + NumberPart + '$');
