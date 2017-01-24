@@ -45,7 +45,7 @@ export class MissionsComponent implements OnInit, OnDestroy {
   }
 
   updateUrl(level1: boolean, level2: boolean, level3: boolean, level4: boolean, level5: boolean) {
-    let params: any = {};
+    const params: any = {};
     if (!level1) { params.noL1 = true; }
     if (!level2) { params.noL2 = true; }
     if (!level3) { params.noL3 = true; }

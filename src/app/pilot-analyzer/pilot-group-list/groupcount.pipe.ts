@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { ZKillStats } from '../../api/z-killboard';
 
 function orderByDesc(obj, selector) {
-  let tmp = JSON.parse(JSON.stringify(obj));
+  const tmp = JSON.parse(JSON.stringify(obj));
   tmp.sort(function(a, b) {
     if (selector(a) > selector(b)) { return -1; }
     if (selector(a) < selector(b)) { return 1; }
@@ -20,7 +20,7 @@ export class GroupcountPipe implements PipeTransform {
 
   transform(characters: ZKillStats[], args?: any): any[] {
     if (!characters) { return []; }
-    let counts = {};
+    const counts = {};
 
     characters
       .map(char => char.info)
@@ -38,7 +38,7 @@ export class GroupcountPipe implements PipeTransform {
         }
       });
 
-    let countsArr = Object.keys(counts).map(key => counts[key]);
+    const countsArr = Object.keys(counts).map(key => counts[key]);
     return orderByDesc(countsArr, i => i.count);
   }
 }

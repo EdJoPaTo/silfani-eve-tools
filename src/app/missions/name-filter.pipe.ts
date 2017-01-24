@@ -7,7 +7,7 @@ export class NameFilterPipe implements PipeTransform {
 
   transform(missions: any[], term: string): any[] {
     if (!missions && !missions.length) { return []; }
-    let myTerm = term.toLowerCase();
+    const myTerm = term.toLowerCase();
     return missions.filter(m => this.isMissionBasedOnTerm(m, myTerm));
   }
 

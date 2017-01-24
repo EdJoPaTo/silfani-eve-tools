@@ -37,7 +37,7 @@ export class PilotGroupListComponent implements OnInit {
   }
 
   allianceName(allianceID: number): string {
-    let stats = this.allianceStats(allianceID);
+    const stats = this.allianceStats(allianceID);
     return stats ? stats.info.name : 'loading...';
   }
 
@@ -50,7 +50,7 @@ export class PilotGroupListComponent implements OnInit {
   }
 
   corpName(corporationID: number): string {
-    let stats = this.corpStats(corporationID);
+    const stats = this.corpStats(corporationID);
     return stats ? stats.info.name : 'loading...';
   }
 }

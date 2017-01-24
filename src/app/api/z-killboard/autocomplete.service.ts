@@ -13,8 +13,8 @@ export class AutocompleteService {
   ) { }
 
   private makeCall(name: string): Observable<AutocompleteHit[]> {
-    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' });
-    let options = new RequestOptions({ headers: headers });
+    const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' });
+    const options = new RequestOptions({ headers: headers });
 
     return this.http
       .post(`https://zkillboard.com/autocomplete/`, 'query=' + encodeURIComponent(name), options)

@@ -23,10 +23,10 @@ export class FuzzworkMarketService {
     // https://market.fuzzwork.co.uk/aggregates/?region=10000002&types=34,35,36,37,38,39,40
     // https://market.fuzzwork.co.uk/aggregates/?station=60003760&types=34,35,36,37,38,39,40
 
-    let kind = this.kind(area);
-    let types = ids.toString();
+    const kind = this.kind(area);
+    const types = ids.toString();
 
-    let url = `https://market.fuzzwork.co.uk/aggregates/?${kind}=${area}&types=${types}`;
+    const url = `https://market.fuzzwork.co.uk/aggregates/?${kind}=${area}&types=${types}`;
 
     return this.http
       .get(url)
@@ -53,7 +53,7 @@ export class FuzzworkMarketService {
     // Tritanium in Jita IV - 4
     // https://market.fuzzwork.co.uk/station/60003760/type/34/#buy
 
-    let kind = this.kind(area);
+    const kind = this.kind(area);
 
     return `https://market.fuzzwork.co.uk/${kind}/${area}/type/${id}/${isSell ? '' : '#buy'}`;
   }

@@ -71,7 +71,7 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
   }
 
   updateUrl(): void {
-    let params: any = {};
+    const params: any = {};
     if (!this.isSell) { params.pricetype = 'buy'; }
     if (Number(this.pricearea) !== 60003760) { params.pricearea = Number(this.pricearea); }
     this.router.navigate([params]);
@@ -79,7 +79,7 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
 
   private stackItems(currentStack: LineInfo[], add: LineInfo[]): LineInfo[] {
     add.forEach(itemToAdd => {
-      let indexOfExistingItem = currentStack.map(i => i.name).indexOf(itemToAdd.name);
+      const indexOfExistingItem = currentStack.map(i => i.name).indexOf(itemToAdd.name);
 
       if (indexOfExistingItem >= 0) {
         currentStack[indexOfExistingItem].amount += itemToAdd.amount;

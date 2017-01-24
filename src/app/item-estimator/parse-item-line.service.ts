@@ -54,22 +54,22 @@ export class ParseItemLineService {
     // Special Cases first
     if (result = DScanItemRegex.exec(line)) {
       console.log(DScanItemRegex);
-      let li = new LineInfo();
+      const li = new LineInfo();
       li.name = result[2];
       return [li];
     }
 
     if (result = ShipFittingModuleWithCharge.exec(line)) {
-      let module = new LineInfo();
+      const module = new LineInfo();
       module.name = result[1];
-      let charge = new LineInfo();
+      const charge = new LineInfo();
       charge.name = result[2];
       return [module, charge];
     }
 
     for (let i = 0; i < AmountNameRegexList.length; i++) {
       if (result = AmountNameRegexList[i].exec(line)) {
-        let li = new LineInfo();
+        const li = new LineInfo();
         li.amount = Number(result[1].replace('.', ''));
         li.name = result[2];
         return [li];
@@ -78,7 +78,7 @@ export class ParseItemLineService {
 
     for (let i = 0; i < NameAmountRegexList.length; i++) {
       if (result = NameAmountRegexList[i].exec(line)) {
-        let li = new LineInfo();
+        const li = new LineInfo();
         if (!result[2]) {
           // Unpacked Items does not have an amount
           li.amount = 1;
@@ -92,7 +92,7 @@ export class ParseItemLineService {
 
     for (let i = 0; i < NameRegexList.length; i++) {
       if (result = NameRegexList[i].exec(line)) {
-        let li = new LineInfo();
+        const li = new LineInfo();
         li.name = result[1];
         return [li];
       }
