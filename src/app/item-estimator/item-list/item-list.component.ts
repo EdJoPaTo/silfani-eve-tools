@@ -80,6 +80,10 @@ export class ItemListComponent implements OnInit, OnChanges {
     }
   }
 
+  detailsUrl(id: number, area: number, isSell: boolean): string {
+    return this.fuzzworkMarketService.detailsUrl(id, area, isSell);
+  }
+
   price(id: number, area: number, isSell: boolean, amount = 1): Observable<number> {
     return this.fuzzworkMarketService.getSingle(id, area)
       .map(data => data[isSell ? 'sell' : 'buy'])
