@@ -1,0 +1,48 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Type
+      </th>
+      <th class="has-text-right">
+        Amount
+      </th>
+      <th class="has-text-right">
+        Distance
+      </th>
+      <th class="has-text-right">
+        Volume
+      </th>
+      <th class="has-text-right">
+        Cycles remaining
+      </th>
+      <th class="has-text-right">
+        Estimated value
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let entry of entries" [class.out-of-range]="entry.distance > range * 1000">
+      <td>
+        {{ entry.name }}
+      </td>
+      <td class="has-text-right">
+        {{ entry.amount | shortnumber: true }}
+      </td>
+      <td class="has-text-right distance">
+        {{ entry.distance / 1000 | number: '1.0-1' }} km
+      </td>
+      <td class="has-text-right">
+        {{ volumeFromEntry(entry) | async | volume: true }}
+      </td>
+      <td class="has-text-right">
+        {{ cyclesFromEntry(entry, amount) | async | shortnumber }}
+      </td>
+      <td class="has-text-right">
+        <a target="_blank" [href]="priceDetailsUrl(id(entry.name) | async, pricearea, isSell)">
+          {{ priceFromEntry(entry) | async | isk: true }}
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

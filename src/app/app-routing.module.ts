@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'pilot-analyzer', loadChildren: 'app/pilot-analyzer/pilot-analyzer.module#PilotAnalyzerModule' },
   { path: 'item-estimator', loadChildren: 'app/item-estimator/item-estimator.module#ItemEstimatorModule' },
   { path: 'missions', loadChildren: 'app/missions/missions.module#MissionsModule' },
+  { path: 'survey', loadChildren: 'app/survey/survey.module#SurveyModule' },
   { path: 'about', component: AboutComponent },
   { path: 'legal', component: LegalComponent },
   { path: 'impressum', component: ImpressumComponent },

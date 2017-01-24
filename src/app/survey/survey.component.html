@@ -1,0 +1,90 @@
+<section class="hero is-info is-medium background-fixed hero-theme-venture-orca">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Survey Scanner</h1>
+    </div>
+  </div>
+</section>
+
+<div class="section">
+  <div class="container">
+    <div class="content">
+      <div class="columns">
+        <div class="column">
+          <p class="control">
+            <app-clipboard-paste-textarea [initialContent]="initialContent" [placeholder]="'paste your items here'" (changed)="search.next($event)"></app-clipboard-paste-textarea>
+          </p>
+          <div class="control is-grouped">
+            <p class="control has-addons">
+              <a class="button" [class.is-primary]="isSell" (click)="isSell = true; updateUrl();">
+                Sell
+              </a>
+              <a class="button" [class.is-primary]="!isSell" (click)="isSell = false; updateUrl();">
+                Buy
+              </a>
+            </p>
+            <p class="control">
+              <span class="select">
+                <select [(ngModel)]="pricearea" (click)="updateUrl()">
+                  <optgroup label="Market Hubs">
+                    <option *ngFor="let p of fuzzworkMarketService.stations" [value]="p.id">{{ p.name }}</option>
+                  </optgroup>
+                  <optgroup label="Regions">
+                    <option *ngFor="let p of regionService.get() | async" [value]="p.id">{{ p.name }}</option>
+                  </optgroup>
+                </select>
+              </span>
+            </p>
+          </div>
+          <nav class="level">
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">Volume</p>
+                <p class="title">{{ list.totalVolume | volume: true}}</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">solo time remaining</p>
+                <p class="title">≈ {{ soloTimeRemaining(list.totalVolume, cycletime, amount, miners) / 60 | number: '1.0-0' }} min</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">estimated value</p>
+                <p class="title">{{ list.totalPrice | isk: true}}</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">ISK per hour</p>
+                <p class="title">{{ list.totalPrice / (soloTimeRemaining(list.totalVolume, cycletime, amount, miners) / 3600) | isk: true}}/h</p>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="column is-narrow">
+          <label class="label">Mining amount per miner per cycle in m³</label>
+          <p class="control">
+            <input [(ngModel)]="amount" class="input" type="number" min="100" max="10000" placeholder="1000 m³" step="10" (keyup)="updateUrl()" (click)="updateUrl()">
+          </p>
+          <label class="label">Amount of miners fitted</label>
+          <p class="control">
+            <input [(ngModel)]="miners" class="input" type="number" min="1" max="8" placeholder="2" step="1" (keyup)="updateUrl()" (click)="updateUrl()">
+          </p>
+          <label class="label">Cycletime in seconds</label>
+          <p class="control">
+            <input [(ngModel)]="cycletime" class="input" type="number" min="10" max="120" placeholder="90 seconds" step="1" (keyup)="updateUrl()" (click)="updateUrl()">
+          </p>
+          <label class="label">Range in km</label>
+          <p class="control">
+            <input [(ngModel)]="range" class="input" type="number" min="2" max="35" placeholder="17 km" step="1" (keyup)="updateUrl()" (click)="updateUrl()">
+          </p>
+        </div>
+      </div>
+      <div>
+        <app-list #list [entries]="search | async | surveyScannerEntry" [pricearea]="pricearea" [isSell]="isSell" [amount]="amount" [miners]="miners" [cycletime]="cycletime" [range]="range"></app-list>
+      </div>
+    </div>
+  </div>
+</div>
