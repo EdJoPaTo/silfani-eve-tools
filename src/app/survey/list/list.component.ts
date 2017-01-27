@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import { FuzzworkMarketService, TypeIdFromNameService } from '../../api/fuzzwork';
@@ -22,6 +22,8 @@ export class ListComponent implements OnInit, OnChanges {
   @Input() cycletime: number;
   @Input() range: number;
 
+  @Output() error = new EventEmitter();
+
   totalVolume: number = NaN;
   totalPrice: number = NaN;
 
@@ -38,12 +40,16 @@ export class ListComponent implements OnInit, OnChanges {
     Observable.from(this.entries)
       .flatMap(entry => this.volumeFromEntry(entry))
       .reduce((total, add) => total + add)
-      .subscribe(volume => this.totalVolume = volume);
+      .subscribe(volume => this.totalVolume = volume, error =>
+        this.error.emit('CREST failed to respond properly.')
+      );
 
     Observable.from(this.entries)
       .flatMap(entry => this.priceFromEntry(entry, this.pricearea, this.isSell))
       .reduce((total, add) => total + add)
-      .subscribe(price => this.totalPrice = price);
+      .subscribe(price => this.totalPrice = price, error =>
+        this.error.emit('Fuzzwork Market Data failed to respond properly.')
+      );
   }
 
   id(name: string): Observable<number> {

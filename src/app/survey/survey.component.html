@@ -9,6 +9,9 @@
 <div class="section">
   <div class="container">
     <div class="content">
+      <div *ngIf="error" class="notification is-danger">
+        {{ error }}
+      </div>
       <div class="columns">
         <div class="column">
           <p class="control">
@@ -83,7 +86,7 @@
         </div>
       </div>
       <div>
-        <app-list #list [entries]="search | async | surveyScannerEntry" [pricearea]="pricearea" [isSell]="isSell" [amount]="amount" [miners]="miners" [cycletime]="cycletime" [range]="range"></app-list>
+        <app-list #list [entries]="search | async | surveyScannerEntry" [pricearea]="pricearea" [isSell]="isSell" [amount]="amount" [miners]="miners" [cycletime]="cycletime" [range]="range" (error)="error = $event"></app-list>
       </div>
     </div>
   </div>

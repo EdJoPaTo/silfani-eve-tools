@@ -38,6 +38,8 @@ Solid Pyroxeres  9.977  18 km`;
   cycletime: number;
   range: number;
 
+  error: string;
+
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
     private regionService: RegionService,
