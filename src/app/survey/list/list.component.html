@@ -17,6 +17,9 @@
         Cycles remaining
       </th>
       <th class="has-text-right">
+        Time remaining
+      </th>
+      <th class="has-text-right">
         Estimated value
       </th>
     </tr>
@@ -37,6 +40,9 @@
       </td>
       <td class="has-text-right">
         {{ cyclesFromEntry(entry, amount) | async | shortnumber }}
+      </td>
+      <td class="has-text-right">
+        {{ volumeFromEntry(entry) | async | soloTimeRemaining: amount: cycletime | soloTimeRemainingPrettyFormatted }}
       </td>
       <td class="has-text-right">
         <a target="_blank" [href]="priceDetailsUrl(id(entry.name) | async, pricearea, isSell)">

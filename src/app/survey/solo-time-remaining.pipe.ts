@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SoloTimeRemainingPipe implements PipeTransform {
 
-  transform(totalVolume: number, amount: number, cycletime: number, miners: number): number {
+  transform(totalVolume: number, amount: number, cycletime: number, miners = 1): number {
     const a = totalVolume / amount;
     const b = cycletime / miners;
     const seconds = a * b;
