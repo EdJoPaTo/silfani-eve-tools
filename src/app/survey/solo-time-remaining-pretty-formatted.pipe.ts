@@ -30,7 +30,9 @@ export class SoloTimeRemainingPrettyFormattedPipe implements PipeTransform {
       }
 
       if (date.getUTCDate() === 1) {
-        dateString += date.getUTCMinutes() < 10 ? '0' : '';
+        if (date.getUTCHours() > 0) {
+          dateString += date.getUTCMinutes() < 10 ? '0' : '';
+        }
         dateString += date.getUTCMinutes();
       }
 
