@@ -75,10 +75,4 @@ Solid Pyroxeres  9.977  18 km`;
     if (Number(this.range) !== 17) { params.range = Number(this.range); }
     this.router.navigate([params]);
   }
-
-  soloTimeRemaining(totalVolume, cycletime, amount, miners): number {
-    const a = totalVolume / amount;
-    const b = cycletime / miners;
-    return a * b; // seconds
-  }
 }

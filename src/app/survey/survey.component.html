@@ -46,7 +46,7 @@
             <div class="level-item has-text-centered">
               <div>
                 <p class="heading">solo time remaining</p>
-                <p class="title">≈ {{ soloTimeRemaining(list.totalVolume, cycletime, amount, miners) / 60 | number: '1.0-0' }} min</p>
+                <p class="title">{{ list.totalVolume | soloTimeRemaining: amount: cycletime: miners | soloTimeRemainingPrettyFormatted }}</p>
               </div>
             </div>
             <div class="level-item has-text-centered">
@@ -58,7 +58,7 @@
             <div class="level-item has-text-centered">
               <div>
                 <p class="heading">ISK per hour</p>
-                <p class="title">{{ list.totalPrice / (soloTimeRemaining(list.totalVolume, cycletime, amount, miners) / 3600) | isk: true}}/h</p>
+                <p class="title">{{ list.totalPrice / ((list.totalVolume | soloTimeRemaining: amount: cycletime: miners) / 3600) | isk: true }}/h</p>
               </div>
             </div>
           </nav>
