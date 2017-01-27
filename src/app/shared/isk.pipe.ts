@@ -8,9 +8,9 @@ import { formatNumberShort, formatNumberDefault } from './number-functions';
 export class IskPipe implements PipeTransform {
   transform(value: number, short = false): string {
     if (short) {
-      return formatNumberShort(value) + ' ISK';
+      return formatNumberShort(value) + ' ISK';
     } else {
-      return formatNumberDefault(value) + ' ISK';
+      return formatNumberDefault(value) + ' ISK';
     }
   }
 }

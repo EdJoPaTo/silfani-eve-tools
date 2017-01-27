@@ -8,9 +8,9 @@ import { formatNumberShort, formatNumberDefault } from './number-functions';
 export class VolumePipe implements PipeTransform {
   transform(value: number, short = false): string {
     if (short) {
-      return formatNumberShort(value) + ' m³';
+      return formatNumberShort(value) + ' m³';
     } else {
-      return formatNumberDefault(value) + ' m³';
+      return formatNumberDefault(value) + ' m³';
     }
   }
 }
