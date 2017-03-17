@@ -1,6 +1,6 @@
 import { SilfaniEveToolsPage } from './app.po';
 
-describe('silfani-eve-tools App', function() {
+describe('silfani-eve-tools App', () => {
   let page: SilfaniEveToolsPage;
 
   beforeEach(() => {
