@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 import { SurveyScannerEntry } from './survey-scanner-entry';
 
-const SURVEY_SCANNER_REGEX = /(.+)\s+([.\d]+)\s+([.\d]+ k?)m/;
+const SURVEY_SCANNER_REGEX = /(.+)\s+([,\d]+)\s+([,\d]+) m3\s+([,\d]+ k?)m/;
 
 @Pipe({
   name: 'surveyScannerEntry'
@@ -24,8 +24,9 @@ export class SurveyScannerEntryPipe implements PipeTransform {
     const entry = new SurveyScannerEntry;
 
     entry.name = match[1].trim();
-    entry.amount = Number(match[2].replace('.', ''));
-    entry.distance = Number(match[3].replace('.', '').replace(' ', '').replace('k', '000'));
+    entry.amount = Number(match[2].replace(/,/g, ''));
+    entry.volume = Number(match[3].replace(/,/g, ''));
+    entry.distance = Number(match[4].replace(/,/g, '').replace(/ /g, '').replace('k', '000'));
 
     return entry;
   }

@@ -36,13 +36,13 @@
         {{ entry.distance / 1000 | number: '1.0-1' }} km
       </td>
       <td class="has-text-right">
-        {{ volumeFromEntry(entry) | async | volume: true }}
+        {{ entry.volume | volume: true }}
       </td>
       <td class="has-text-right">
-        {{ cyclesFromEntry(entry, amount) | async | shortnumber }}
+        {{ entry.volume / amount | shortnumber }}
       </td>
       <td class="has-text-right">
-        {{ volumeFromEntry(entry) | async | soloTimeRemaining: amount: cycletime | soloTimeRemainingPrettyFormatted }}
+        {{ entry.volume | soloTimeRemaining: amount: cycletime | soloTimeRemainingPrettyFormatted }}
       </td>
       <td class="has-text-right">
         <a target="_blank" [href]="priceDetailsUrl(id(entry.name) | async, pricearea, isSell)">

@@ -13,20 +13,21 @@ import { SurveyScannerEntry } from './survey-scanner-entry';
   styleUrls: ['./survey.component.scss']
 })
 export class SurveyComponent implements OnInit, OnDestroy {
-  initialContent: string = `Concentrated Veldspar  113.729  14 km
-Concentrated Veldspar  90.271  15 km
-Concentrated Veldspar  121.180  22 km
-Dense Veldspar  54.754  7.790 m
-Dense Veldspar  106.490  28 km
-Pyroxeres  11.548  15 km
-Pyroxeres  5.426  16 km
-Pyroxeres  7.977  17 km
-Pyroxeres  12.449  19 km
-Pyroxeres  12.314  21 km
-Pyroxeres  11.016  23 km
-Pyroxeres  8.226  26 km
-Solid Pyroxeres  11.950  14 km
-Solid Pyroxeres  9.977  18 km`;
+  initialContent = `Concentrated Veldspar  21,069  2,106 m3  4,631 m
+Concentrated Veldspar  23,434  2,343 m3  5,635 m
+Concentrated Veldspar  23,835  2,383 m3  12 km
+Concentrated Veldspar  26,247  2,624 m3  17 km
+Condensed Scordite  10,279  1,541 m3  4,866 m
+Condensed Scordite  5,079  761 m3  16 km
+Condensed Scordite  13,102  1,965 m3  19 km
+Dense Veldspar  24,665  2,466 m3  7,990 m
+Dense Veldspar  18,297  1,829 m3  12 km
+Massive Scordite  9,912  1,486 m3  5,433 m
+Massive Scordite  10,976  1,646 m3  8,845 m
+Scordite  9,921  1,488 m3  15 km
+Scordite  9,885  1,482 m3  18 km
+Veldspar  22,286  2,228 m3  8,794 m
+Veldspar  28,582  2,858 m3  14 km`;
   search = new Subject<string[]>();
   entries: Observable<SurveyScannerEntry[]>;
   pricearea: number;

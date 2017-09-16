@@ -38,7 +38,7 @@ export class ListComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     Observable.from(this.entries)
-      .flatMap(entry => this.volumeFromEntry(entry))
+      .map(entry => entry.volume)
       .reduce((total, add) => total + add)
       .subscribe(volume => this.totalVolume = volume, error =>
         this.error.emit('CREST failed to respond properly.')
@@ -54,26 +54,6 @@ export class ListComponent implements OnInit, OnChanges {
 
   id(name: string): Observable<number> {
     return this.typeIdFromNameService.getId(name);
-  }
-
-  volume(id: number, amount = 1): Observable<number> {
-    if (!id) { return Observable.of(NaN); }
-    return this.itemTypesService.get(id)
-      .map(info => info.volume * amount);
-  }
-
-  volumeFromEntry(entry: SurveyScannerEntry): Observable<number> {
-    return this.id(entry.name)
-      .flatMap(id => this.volume(id, entry.amount));
-  }
-
-  cycles(volume: number, amount: number): number {
-    return volume / amount;
-  }
-
-  cyclesFromEntry(entry: SurveyScannerEntry, amount: number): Observable<number> {
-    return this.volumeFromEntry(entry)
-      .map(volume => volume / amount);
   }
 
   price(id: number, pricearea: number, isSell: boolean, amount = 1): Observable<number> {
