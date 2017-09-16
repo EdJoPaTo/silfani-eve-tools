@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { LineInfo } from './line-info';
 
-const FractionNumberPart = '((?:\\d+(?:\\.\\d{3})*)(?:,\\d+)?)';
+const FractionNumberPart = '((?:\\d+(?:\\,\\d{3})*)(?:.\\d+)?)';
 const ItemNamePart = '(\\S+(?: \\S+)*)\\*?';
-const NumberPart = '(\\d+(?:\\.\\d{3})*)?';
-const RangePart = '((?:\\d+(?:\\.\\d{3})*) k?m|-)';
+const NumberPart = '(\\d+(?:\\,\\d{3})*)?';
+const RangePart = '((?:\\d+(?:\\,\\d{3})*) k?m|-)';
 const SeperatorPart = '(?: |\\t)+';
 const PossibleSingleWordPart = '(?:\\w+' + SeperatorPart + ')?';
 
@@ -70,7 +70,7 @@ export class ParseItemLineService {
     for (let i = 0; i < AmountNameRegexList.length; i++) {
       if (result = AmountNameRegexList[i].exec(line)) {
         const li = new LineInfo();
-        li.amount = Number(result[1].replace('.', ''));
+        li.amount = Number(result[1].replace(/,/g, ''));
         li.name = result[2];
         return [li];
       }
@@ -83,7 +83,7 @@ export class ParseItemLineService {
           // Unpacked Items does not have an amount
           li.amount = 1;
         } else {
-          li.amount = Number(result[2].replace('.', ''));
+          li.amount = Number(result[2].replace(/,/g, ''));
         }
         li.name = result[1];
         return [li];
