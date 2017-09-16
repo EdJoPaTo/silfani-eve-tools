@@ -29,16 +29,16 @@
       <td>
         {{ entry.name }}
       </td>
-      <td class="has-text-right">
+      <td class="has-text-right" [title]="entry.amount | number">
         {{ entry.amount | shortnumber: true }}
       </td>
       <td class="has-text-right distance">
         {{ entry.distance / 1000 | number: '1.0-1' }} km
       </td>
-      <td class="has-text-right">
+      <td class="has-text-right" [title]="entry.volume | volume">
         {{ entry.volume | volume: true }}
       </td>
-      <td class="has-text-right">
+      <td class="has-text-right" [title]="entry.volume / amount | number">
         {{ entry.volume / amount | shortnumber }}
       </td>
       <td class="has-text-right">

@@ -43,7 +43,7 @@
             <div class="level-item has-text-centered">
               <div>
                 <p class="heading">Volume</p>
-                <p class="title">{{ list.totalVolume | volume: true}}</p>
+                <p class="title" [title]="list.totalVolume | volume">{{ list.totalVolume | volume: true }}</p>
               </div>
             </div>
             <div class="level-item has-text-centered">
