@@ -8,7 +8,9 @@
     "build": "ng build --prod --aot",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "pretobetapage": "npm run build",
+    "tobetapage": "rsync -acv --delete-delay dist/ sk1m.de:/usr/share/nginx/de.3t0.beta/www/ | grep -E '^deleting|[^/]$|^$'"
   },
   "private": true,
   "dependencies": {
