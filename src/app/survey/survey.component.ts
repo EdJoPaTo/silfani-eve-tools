@@ -78,4 +78,12 @@ Veldspar  28,582  2,858 m3  14 km`;
     if (Number(this.range) !== 17) { params.range = Number(this.range); }
     this.router.navigate([params]);
   }
+
+  getStations() {
+    return this.fuzzworkMarketService.stations;
+  }
+
+  getRegions() {
+    return this.regionService.get();
+  }
 }

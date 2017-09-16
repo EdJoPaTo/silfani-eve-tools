@@ -30,10 +30,10 @@
               <span class="select">
                 <select [(ngModel)]="pricearea" (click)="updateUrl()">
                   <optgroup label="Market Hubs">
-                    <option *ngFor="let p of fuzzworkMarketService.stations" [value]="p.id">{{ p.name }}</option>
+                    <option *ngFor="let p of getStations()" [value]="p.id">{{ p.name }}</option>
                   </optgroup>
                   <optgroup label="Regions">
-                    <option *ngFor="let p of regionService.get() | async" [value]="p.id">{{ p.name }}</option>
+                    <option *ngFor="let p of getRegions() | async" [value]="p.id">{{ p.name }}</option>
                   </optgroup>
                 </select>
               </span>

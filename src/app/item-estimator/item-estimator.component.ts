@@ -94,4 +94,12 @@ Sisters Core Scanner Probe  8  Scanner Probe  0,80 m3
     return this.typeIdFromNameService.getId(lineinfo.name)
       .map(id => ({ name: lineinfo.name, amount: lineinfo.amount, id: id }));
   }
+
+  getStations() {
+    return this.fuzzworkMarketService.stations;
+  }
+
+  getRegions() {
+    return this.regionService.get();
+  }
 }
