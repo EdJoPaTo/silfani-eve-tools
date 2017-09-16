@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PilotAnalyzerRoutingModule } from './pilot-analyzer-routing.module';
 import { PilotAnalyzerComponent } from './pilot-analyzer.component';
 
+import { EsiModule } from '../api/esi';
 import { EveCrestModule } from '../api/eve-crest';
 import { SharedModule } from '../shared';
 import { ZKillboardModule } from '../api/z-killboard';
@@ -16,6 +17,7 @@ import { PilotListComponent } from './pilot-list';
 @NgModule({
   imports: [
     CommonModule,
+    EsiModule,
     EveCrestModule,
     PilotAnalyzerRoutingModule,
     SharedModule,
