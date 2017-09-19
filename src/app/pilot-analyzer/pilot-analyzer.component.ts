@@ -32,7 +32,7 @@ export class PilotAnalyzerComponent implements OnInit {
     this.characterIDs = this.searchTerms
       .map(lines => { this.nameCount = lines.length; this.idCurrent = 0; this.statsCurrent = 0; return lines; })
       .switchMap(names => Observable.from(names)
-        .flatMap(name => this.searchService.character(name, true).first())
+        .flatMap(name => this.searchService.character(name, true))
         .map(s => { this.idCurrent++; return s; })
         .reduce((cur, add) => cur.concat(add), [])
       )
