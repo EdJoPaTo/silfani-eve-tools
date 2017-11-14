@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { FuzzworkMarketService } from '../../api/fuzzwork';
-import { ItemTypesService } from '../../api/eve-crest';
+import { UniverseTypesService } from '../../api/esi';
 
 import { Item } from '../item';
 
@@ -42,7 +42,7 @@ export class ItemListComponent implements OnInit, OnChanges {
 
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
-    private itemTypesService: ItemTypesService,
+    private universeTypesService: UniverseTypesService,
   ) { }
 
   ngOnInit() {
@@ -93,7 +93,7 @@ export class ItemListComponent implements OnInit, OnChanges {
   }
 
   volume(id: number, amount = 1): Observable<number> {
-    return this.itemTypesService.get(id)
+    return this.universeTypesService.get(id)
       .map(typeinfo => typeinfo.volume)
       .map(single => single * amount);
   }

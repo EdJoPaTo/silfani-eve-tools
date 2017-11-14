@@ -4,6 +4,7 @@ import { ItemEstimatorRoutingModule } from './item-estimator-routing.module';
 import { ItemEstimatorComponent } from './item-estimator.component';
 
 import { SharedModule } from '../shared';
+import { EsiModule } from '../api/esi';
 import { EveCrestModule } from '../api/eve-crest';
 import { FuzzworkModule } from '../api/fuzzwork';
 
@@ -14,6 +15,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 @NgModule({
   imports: [
     CommonModule,
+    EsiModule,
     EveCrestModule,
     FuzzworkModule,
     ItemEstimatorRoutingModule,

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 
 import { SearchService } from './search.service';
+import { UniverseTypesService } from './universe-types.service';
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import { SearchService } from './search.service';
     HttpModule
   ],
   providers: [
-    SearchService
+    SearchService,
+    UniverseTypesService
   ]
 })
 export class EsiModule { }
