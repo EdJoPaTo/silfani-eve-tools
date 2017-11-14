@@ -5,7 +5,7 @@ import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
 import { FuzzworkMarketService, TypeIdFromNameService } from '../api/fuzzwork';
-import { ItemTypesService, RegionService } from '../api/eve-crest';
+import { RegionService } from '../api/eve-crest';
 import { ParseItemLineService } from './parse-item-line.service';
 
 import { LineInfo } from './line-info';
@@ -35,7 +35,6 @@ Sisters Core Scanner Probe  8  Scanner Probe  0.80 m3
 
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
-    private itemTypesService: ItemTypesService,
     private parseItemLineService: ParseItemLineService,
     private regionService: RegionService,
     private route: ActivatedRoute,

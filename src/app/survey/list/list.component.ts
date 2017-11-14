@@ -2,7 +2,6 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angu
 import { Observable } from 'rxjs/Observable';
 
 import { FuzzworkMarketService, TypeIdFromNameService } from '../../api/fuzzwork';
-import { ItemTypesService } from '../../api/eve-crest';
 
 import { SurveyScannerEntry } from '../survey-scanner-entry';
 
@@ -29,7 +28,6 @@ export class ListComponent implements OnInit, OnChanges {
 
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
-    private itemTypesService: ItemTypesService,
     private typeIdFromNameService: TypeIdFromNameService
   ) { }
 
