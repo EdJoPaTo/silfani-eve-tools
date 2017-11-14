@@ -21,8 +21,6 @@ export class SearchService {
       url += '&strict=true';
     }
 
-    console.log('SearchService', url);
-
     return this.http
       .get(url)
       .map((r: Response) => r.json());
