@@ -23,12 +23,12 @@
     [class.small]="characters ? characters.length > 20 : false"
     >
       <td>
-        <img class="icon character" [src]="'//imageserver.eveonline.com/Character/'+ character.id +'_256.jpg'" />
+        <img class="icon character" [src]="'//imageserver.eveonline.com/Character/'+ character.info.id +'_256.jpg'" />
       </td>
       <td>
         {{ character.info.name }}
         <br />
-        <a [href]="'https://zkillboard.com/character/'+ character.id +'/'" target="_blank" title="zKillboard">zK</a>
+        <a [href]="'https://zkillboard.com/character/'+ character.info.id +'/'" target="_blank" title="zKillboard">zK</a>
         <a [href]="'http://eve-hunt.net/hunt/'+ character.info.name +'/'" target="_blank" title="EVE Hunt">Hunt</a>
       </td>
       <td>
