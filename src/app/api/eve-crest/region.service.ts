@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable, ReplaySubject } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { PathsService } from './paths.service';
 import { ItemService } from './item.service';

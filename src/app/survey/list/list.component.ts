@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 import { FuzzworkMarketService, TypeIdFromNameService } from '../../api/fuzzwork';
 import { ItemTypesService } from '../../api/eve-crest';

@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject, Subscription } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 
 import { FuzzworkMarketService, TypeIdFromNameService } from '../api/fuzzwork';
 import { ItemTypesService, RegionService } from '../api/eve-crest';
