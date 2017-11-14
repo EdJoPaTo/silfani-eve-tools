@@ -17,6 +17,7 @@ export class ZKillStats {
     id: number;
     killID: number;
     name: string;
+    ticker: string;
     type: string;
   };
 
@@ -40,6 +41,7 @@ export class ZKillStats {
       id: json.info.id,
       killID: json.info.killID,
       name: json.info.name,
+      ticker: json.info.ticker,
       type: json.info.type
     };
   }

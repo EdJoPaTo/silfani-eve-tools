@@ -4,12 +4,6 @@ img.icon {
   min-width: 64px;
 }
 
-.alliance .icon {
-  height: 44px;
-  width: 44px;
-  min-width: 44px;
-}
-
 table tbody tr td, table thead tr th {
   text-align: center;
   vertical-align: middle;
@@ -43,11 +37,6 @@ tr.samealli:hover {
     width: 44px;
     min-width: 44px;
   }
-  .alliance .icon {
-    height: 24px;
-    width: 24px;
-    min-width: 24px;
-  }
 }
 
 @media (max-width: 979px) {
@@ -55,11 +44,6 @@ tr.samealli:hover {
     height: 44px;
     width: 44px;
     min-width: 44px;
-  }
-  .alliance .icon {
-    height: 24px;
-    width: 24px;
-    min-width: 24px;
   }
   tr {
     font-size: 80%;

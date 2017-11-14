@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { ZKillStats, ZKillStatsService } from '../../api/z-killboard';
-import { AllianceInformationService } from '../../api/eve-crest';
 import { Hovered } from '../hovered';
 
 @Component({
@@ -15,8 +14,7 @@ export class PilotGroupListComponent implements OnInit {
   @Input() hovered: Hovered;
 
   constructor(
-    private zKillStatsService: ZKillStatsService,
-    private allianceInformationService: AllianceInformationService
+    private zKillStatsService: ZKillStatsService
   ) { }
 
   ngOnInit() {
@@ -38,11 +36,12 @@ export class PilotGroupListComponent implements OnInit {
 
   allianceName(allianceID: number): string {
     const stats = this.allianceStats(allianceID);
-    return stats ? stats.info.name : 'loading...';
+    return stats ? stats.info.name : 'loading…';
   }
 
-  allianceTag(allianceID: number): Observable<string> {
-    return this.allianceInformationService.getTag(allianceID);
+  allianceTag(allianceID: number): string {
+    const stats = this.allianceStats(allianceID);
+    return stats ? stats.info.ticker : '…';
   }
 
   corpStats(corporationID: number): ZKillStats {
@@ -51,6 +50,11 @@ export class PilotGroupListComponent implements OnInit {
 
   corpName(corporationID: number): string {
     const stats = this.corpStats(corporationID);
-    return stats ? stats.info.name : 'loading...';
+    return stats ? stats.info.name : 'loading…';
+  }
+
+  corpTag(corporationID: number): string {
+    const stats = this.corpStats(corporationID);
+    return stats ? stats.info.ticker : 'loading…';
   }
 }

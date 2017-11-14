@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { ZKillStats } from '../../api/z-killboard';
-import { AllianceInformationService } from '../../api/eve-crest';
 import { Hovered } from '../hovered';
 
 @Component({
@@ -16,7 +15,6 @@ export class PilotListComponent implements OnInit {
   @Input() hovered: Hovered;
 
   constructor(
-    private allianceInformationService: AllianceInformationService
   ) { }
 
   ngOnInit() {
@@ -30,10 +28,6 @@ export class PilotListComponent implements OnInit {
   mouseleave(character: ZKillStats) {
     this.hovered.corporationID = null;
     this.hovered.allianceID = null;
-  }
-
-  allianceTag(allianceID: number): Observable<string> {
-    return this.allianceInformationService.getTag(allianceID);
   }
 
   sorted(characters: ZKillStats[]): ZKillStats[] {

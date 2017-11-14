@@ -33,11 +33,12 @@
       </td>
       <td>
         <span *ngIf="elem.corporationID">
+          [{{ corpTag(elem.corporationID) }}]
           {{ corpName(elem.corporationID) }}
         </span>
         <span *ngIf="elem.allianceID">
+          [{{ allianceTag(elem.allianceID) }}]
           {{ allianceName(elem.allianceID) }}
-          [{{ allianceTag(elem.allianceID) | async }}]
         </span>
         <br />
         <span *ngIf="elem.corporationID">
