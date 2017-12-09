@@ -1,1 +1,1 @@
-export const BASEURL = '//static.silfani.de/';
+export const BASEURL = '//static.silfani.de';

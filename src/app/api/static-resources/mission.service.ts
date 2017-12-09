@@ -13,7 +13,7 @@ export class MissionService {
 
   get(): Observable<any> {
     return this.http
-      .get(BASEURL + `missions.json`)
+      .get(`${BASEURL}/missions.json`)
       .map((r: Response) => r.json());
   }
 }
