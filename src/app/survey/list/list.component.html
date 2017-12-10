@@ -45,7 +45,7 @@
         {{ entry.volume | soloTimeRemaining: amount: cycletime | soloTimeRemainingPrettyFormatted }}
       </td>
       <td class="has-text-right">
-        <a target="_blank" [href]="priceDetailsUrl(entry.typeID, pricearea, isSell)">
+        <a [href]="priceDetailsUrl(entry.typeID, pricearea, isSell)">
           {{ price(entry.typeID, pricearea, isSell, entry.amount) | async | isk: true }}
         </a>
       </td>

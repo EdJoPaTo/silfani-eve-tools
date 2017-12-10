@@ -34,10 +34,10 @@
           Against Empire!
         </div>
         <div *ngIf="mission.blitz">
-          <a [href]="mission.blitz" target="_blank">Blitz</a>
+          <a [href]="mission.blitz">Blitz</a>
         </div>
         <div *ngFor="let level of [1,2,3,4,5]">
-          <a *ngIf="mission.level[level]" [href]="mission.level[level]" target="_blank">Level {{ level }}</a>
+          <a *ngIf="mission.level[level]" [href]="mission.level[level]">Level {{ level }}</a>
         </div>
       </td>
     </tr>
