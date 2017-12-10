@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -47,6 +48,8 @@ Veldspar  28,582  2,858 m3  14 km`;
   error: string;
 
   totalVolume: Observable<number>;
+
+  private idFromNameCache = {};
 
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
@@ -115,12 +118,19 @@ Veldspar  28,582  2,858 m3  14 km`;
   }
 
   private loadIDIntoEntry(entry: SurveyScannerEntry): Observable<SurveyScannerEntry> {
-    return this.searchService.inventorytype(entry.name, true)
-      .map(array => array[0] || 0)
-      .map(id => {
-        entry.typeID = id;
-        return entry;
-      });
+    if (!this.idFromNameCache[entry.name]) {
+      this.idFromNameCache[entry.name] = new ReplaySubject(1);
+      this.searchService.inventorytype(entry.name, true)
+        .map(array => array[0] || 0)
+        .map(id => {
+          entry.typeID = id;
+          return entry;
+        })
+        .subscribe(data => this.idFromNameCache[entry.name].next(data), err =>
+          this.idFromNameCache[entry.name].error(err), () => this.idFromNameCache[entry.name].complete()
+        );
+    }
+    return this.idFromNameCache[entry.name];
   }
 
   getStations() {
