@@ -46,6 +46,8 @@ Veldspar  28,582  2,858 m3  14 km`;
 
   error: string;
 
+  totalVolume: Observable<number>;
+
   constructor(
     private fuzzworkMarketService: FuzzworkMarketService,
     private regionService: RegionService,
@@ -75,6 +77,11 @@ Veldspar  28,582  2,858 m3  14 km`;
         .flatMap(entry => this.loadIDIntoEntry(entry))
         .reduce((cur, add) => cur.concat(add), [])
       )
+      .share();
+
+    this.totalVolume = this.entries
+      .map(entries => entries.map(o => o.volume))
+      .map(volumes => volumes.reduce((a, b) => a + b, 0))
       .share();
   }
 

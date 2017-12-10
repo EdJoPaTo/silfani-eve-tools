@@ -43,25 +43,25 @@
             <div class="level-item has-text-centered">
               <div>
                 <p class="heading">Volume</p>
-                <p class="title" [title]="list.totalVolume | volume">{{ list.totalVolume | volume: true }}</p>
+                <p class="title" [title]="totalVolume | async | volume">{{ totalVolume | async | volume: true }}</p>
               </div>
             </div>
             <div class="level-item has-text-centered">
               <div>
                 <p class="heading">solo time remaining</p>
-                <p class="title">{{ list.totalVolume | soloTimeRemaining: amount: cycletime: miners | soloTimeRemainingPrettyFormatted }}</p>
+                <p class="title">{{ totalVolume | async | soloTimeRemaining: amount: cycletime: miners | soloTimeRemainingPrettyFormatted }}</p>
               </div>
             </div>
             <div class="level-item has-text-centered">
               <div>
                 <p class="heading">estimated value</p>
-                <p class="title">{{ list.totalPrice | isk: true}}</p>
+                <p class="title">{{ list.totalPrice | async | isk: true}}</p>
               </div>
             </div>
             <div class="level-item has-text-centered">
               <div>
                 <p class="heading">ISK per hour</p>
-                <p class="title">{{ list.totalPrice / ((list.totalVolume | soloTimeRemaining: amount: cycletime: miners) / 3600) | isk: true }}/h</p>
+                <p class="title">{{ (list.totalPrice | async) / ((totalVolume | async | soloTimeRemaining: amount: cycletime: miners) / 3600) | isk: true }}/h</p>
               </div>
             </div>
           </nav>
