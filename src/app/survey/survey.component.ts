@@ -6,8 +6,11 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { FuzzworkMarketService } from '../api/fuzzwork';
 import { RegionService } from '../api/eve-crest';
+import { SearchService } from '../api/esi';
 
 import { SurveyScannerEntry } from './survey-scanner-entry';
+
+const SURVEY_SCANNER_REGEX = /(.+)\s+([,\d]+)\s+([,\d]+) m3\s+([,\d]+ k?)m/;
 
 @Component({
   selector: 'app-survey',
@@ -47,7 +50,8 @@ Veldspar  28,582  2,858 m3  14 km`;
     private fuzzworkMarketService: FuzzworkMarketService,
     private regionService: RegionService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private searchService: SearchService
   ) { }
 
   ngOnInit() {
@@ -64,6 +68,14 @@ Veldspar  28,582  2,858 m3  14 km`;
       this.cycletime = params['cycletime'] || 90;
       this.range = params['range'] || 17;
     });
+
+    this.entries = this.search
+      .switchMap(lines => Observable.from(lines)
+        .map(line => this.transformLine(line))
+        .flatMap(entry => this.loadIDIntoEntry(entry))
+        .reduce((cur, add) => cur.concat(add), [])
+      )
+      .share();
   }
 
   ngOnDestroy() {
@@ -79,6 +91,29 @@ Veldspar  28,582  2,858 m3  14 km`;
     if (Number(this.cycletime) !== 90) { params.cycletime = Number(this.cycletime); }
     if (Number(this.range) !== 17) { params.range = Number(this.range); }
     this.router.navigate([params]);
+  }
+
+  private transformLine(line: string): SurveyScannerEntry {
+    const match = SURVEY_SCANNER_REGEX.exec(line);
+
+    if (!match) { return null; }
+    const entry = new SurveyScannerEntry;
+
+    entry.name = match[1].trim();
+    entry.amount = Number(match[2].replace(/,/g, ''));
+    entry.volume = Number(match[3].replace(/,/g, ''));
+    entry.distance = Number(match[4].replace(/,/g, '').replace(/ /g, '').replace('k', '000'));
+
+    return entry;
+  }
+
+  private loadIDIntoEntry(entry: SurveyScannerEntry): Observable<SurveyScannerEntry> {
+    return this.searchService.inventorytype(entry.name, true)
+      .map(array => array[0] || 0)
+      .map(id => {
+        entry.typeID = id;
+        return entry;
+      });
   }
 
   getStations() {

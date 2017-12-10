@@ -86,7 +86,7 @@
         </div>
       </div>
       <div>
-        <app-list #list [entries]="search | async | surveyScannerEntry" [pricearea]="pricearea" [isSell]="isSell" [amount]="amount" [miners]="miners" [cycletime]="cycletime" [range]="range" (error)="error = $event"></app-list>
+        <app-list #list [entries]="entries | async" [pricearea]="pricearea" [isSell]="isSell" [amount]="amount" [miners]="miners" [cycletime]="cycletime" [range]="range" (error)="error = $event"></app-list>
       </div>
     </div>
   </div>
