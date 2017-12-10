@@ -5,7 +5,6 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class SearchService {
-  private characterCache = {};
 
   constructor(
     private http: Http
@@ -28,7 +27,12 @@ export class SearchService {
   }
 
   character(name: string, strict = false): Observable<number[]> {
-    return this.makeCall(name, [ 'character' ], strict)
+    return this.makeCall(name, ['character'], strict)
       .map(o => o && o.character);
+  }
+
+  inventorytype(name: string, strict = false): Observable<number[]> {
+    return this.makeCall(name, ['inventorytype'], strict)
+      .map(o => o && o.inventorytype);
   }
 }

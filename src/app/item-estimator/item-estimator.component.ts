@@ -4,9 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
-import { FuzzworkMarketService, TypeIdFromNameService } from '../api/fuzzwork';
+import { FuzzworkMarketService } from '../api/fuzzwork';
 import { RegionService } from '../api/eve-crest';
 import { ParseItemLineService } from './parse-item-line.service';
+import { SearchService } from '../api/esi';
 
 import { LineInfo } from './line-info';
 import { Item } from './item';
@@ -39,7 +40,7 @@ Sisters Core Scanner Probe  8  Scanner Probe  0.80 m3
     private regionService: RegionService,
     private route: ActivatedRoute,
     private router: Router,
-    private typeIdFromNameService: TypeIdFromNameService
+    private searchService: SearchService
   ) { }
 
   ngOnInit() {
@@ -92,7 +93,8 @@ Sisters Core Scanner Probe  8  Scanner Probe  0.80 m3
   }
 
   itemFromLineInfo(lineinfo: LineInfo): Observable<Item> {
-    return this.typeIdFromNameService.getId(lineinfo.name)
+    return this.searchService.inventorytype(lineinfo.name, true)
+      .map(array => array[0] || 0)
       .map(id => ({ name: lineinfo.name, amount: lineinfo.amount, id: id }));
   }
 
