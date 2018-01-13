@@ -15,7 +15,7 @@
       <div class="columns">
         <div class="column">
           <app-clipboard-paste-textarea [initialContent]="initialContent" [placeholder]="'pilot names'" [distinctLines]="true" (changed)="search($event)"></app-clipboard-paste-textarea>
-          <progress class="progress is-primary" *ngIf="idCurrent + statsCurrent < 2 * nameCount" [value]="idCurrent + statsCurrent" [max]="2 * nameCount">loading...</progress>
+          <progress class="progress is-primary" *ngIf="idCurrent + statsCurrent < nameCount + idCount" [value]="idCurrent + statsCurrent" [max]="nameCount + idCount">loading...</progress>
 
           <app-pilot-group-list [characters]="characterStats | async" [hovered]="hovered"></app-pilot-group-list>
         </div>

@@ -18,6 +18,7 @@ export class PilotAnalyzerComponent implements OnInit {
   error: string;
   initialContent: string = 'Rell Silfani\nKarnis Delvari\n';
   nameCount: number = 0;
+  idCount: number = 0;
   private searchTerms = new Subject<string[]>();
   hovered: Hovered = new Hovered();
   idCurrent: number = 0;
@@ -41,9 +42,8 @@ export class PilotAnalyzerComponent implements OnInit {
       .share();
 
     this.characterStats = this.characterIDs
-      .map(s => { this.statsCurrent = 0; return s; })
+      .map(ids => { this.idCount = ids.length; this.statsCurrent = 0; return ids; })
       .switchMap(ids => Observable.from(ids)
-        .filter(id => id ? true : false)
         .flatMap(id => this.zKillStatsService.character(id))
         .map(s => { this.statsCurrent++; return s; })
         .filter(o => o != null)
