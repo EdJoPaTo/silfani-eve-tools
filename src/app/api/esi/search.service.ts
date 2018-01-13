@@ -11,6 +11,10 @@ export class SearchService {
   ) { }
 
   private makeCall(search: string, categories: string[], strict = false): Observable<any> {
+    if (search.length < 3) {
+      return Observable.of({});
+    }
+
     let url = 'https://esi.tech.ccp.is/v1/search/?search=';
     url += encodeURIComponent(search);
 
