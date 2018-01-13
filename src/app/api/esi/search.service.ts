@@ -15,7 +15,7 @@ export class SearchService {
       return Observable.of({});
     }
 
-    let url = 'https://esi.tech.ccp.is/v1/search/?search=';
+    let url = 'https://esi.tech.ccp.is/v2/search/?search=';
     url += encodeURIComponent(search);
 
     url += '&categories=';
@@ -36,7 +36,7 @@ export class SearchService {
   }
 
   inventorytype(name: string, strict = false): Observable<number[]> {
-    return this.makeCall(name, ['inventorytype'], strict)
-      .map(o => (o && o.inventorytype) || []);
+    return this.makeCall(name, ['inventory_type'], strict)
+      .map(o => (o && o.inventory_type) || []);
   }
 }
