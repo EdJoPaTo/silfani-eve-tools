@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
+import { EvedumpService } from '../api/static-resources';
 import { FuzzworkMarketService } from '../api/fuzzwork';
-import { RegionService } from '../api/eve-crest';
 import { ParseItemLineService } from './parse-item-line.service';
 import { SearchService } from '../api/esi';
 
@@ -33,11 +33,12 @@ Sisters Core Scanner Probe  8  Scanner Probe  0.80 m3
 
   allStackItems: number = 0;
   currentLoadedStackItems: number = 0;
+  regions: Observable<any[]>;
 
   constructor(
+    private evedumpService: EvedumpService,
     private fuzzworkMarketService: FuzzworkMarketService,
     private parseItemLineService: ParseItemLineService,
-    private regionService: RegionService,
     private route: ActivatedRoute,
     private router: Router,
     private searchService: SearchService
@@ -65,6 +66,9 @@ Sisters Core Scanner Probe  8  Scanner Probe  0.80 m3
         .map((i: Item) => { this.currentLoadedStackItems++; return i; })
         .reduce((cur: Item[], add: Item) => cur.concat(add), [])
       )
+      .share();
+
+    this.regions = this.evedumpService.regionArr()
       .share();
   }
 
@@ -100,9 +104,5 @@ Sisters Core Scanner Probe  8  Scanner Probe  0.80 m3
 
   getStations() {
     return this.fuzzworkMarketService.stations;
-  }
-
-  getRegions() {
-    return this.regionService.get();
   }
 }

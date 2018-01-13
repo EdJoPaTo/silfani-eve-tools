@@ -5,8 +5,8 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
+import { EvedumpService } from '../api/static-resources';
 import { FuzzworkMarketService } from '../api/fuzzwork';
-import { RegionService } from '../api/eve-crest';
 import { SearchService } from '../api/esi';
 
 import { SurveyScannerEntry } from './survey-scanner-entry';
@@ -48,12 +48,13 @@ Veldspar  28,582  2,858 m3  14 km`;
   error: string;
 
   totalVolume: Observable<number>;
+  regions: Observable<any[]>;
 
   private idFromNameCache = {};
 
   constructor(
+    private evedumpService: EvedumpService,
     private fuzzworkMarketService: FuzzworkMarketService,
-    private regionService: RegionService,
     private route: ActivatedRoute,
     private router: Router,
     private searchService: SearchService
@@ -85,6 +86,9 @@ Veldspar  28,582  2,858 m3  14 km`;
     this.totalVolume = this.entries
       .map(entries => entries.map(o => o.volume))
       .map(volumes => volumes.reduce((a, b) => a + b, 0))
+      .share();
+
+    this.regions = this.evedumpService.regionArr()
       .share();
   }
 
@@ -135,9 +139,5 @@ Veldspar  28,582  2,858 m3  14 km`;
 
   getStations() {
     return this.fuzzworkMarketService.stations;
-  }
-
-  getRegions() {
-    return this.regionService.get();
   }
 }

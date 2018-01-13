@@ -31,7 +31,7 @@
                     <option *ngFor="let p of getStations()" [value]="p.id">{{ p.name }}</option>
                   </optgroup>
                   <optgroup label="Regions">
-                    <option *ngFor="let p of getRegions() | async" [value]="p.id">{{ p.name }}</option>
+                    <option *ngFor="let p of regions | async" [value]="p.id">{{ p.name }}<span *ngIf="p.factionName"> ({{ p.factionName }})</span></option>
                   </optgroup>
                 </select>
               </span>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 
+import { EvedumpService } from './evedump.service';
 import { MissionService } from './mission.service';
 
 @NgModule({
@@ -10,6 +11,7 @@ import { MissionService } from './mission.service';
     HttpModule
   ],
   providers: [
+    EvedumpService,
     MissionService
   ]
 })
