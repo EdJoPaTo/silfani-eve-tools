@@ -28,11 +28,11 @@ export class SearchService {
 
   character(name: string, strict = false): Observable<number[]> {
     return this.makeCall(name, ['character'], strict)
-      .map(o => o && o.character);
+      .map(o => (o && o.character) || []);
   }
 
   inventorytype(name: string, strict = false): Observable<number[]> {
     return this.makeCall(name, ['inventorytype'], strict)
-      .map(o => o && o.inventorytype);
+      .map(o => (o && o.inventorytype) || []);
   }
 }
