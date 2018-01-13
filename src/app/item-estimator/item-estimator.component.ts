@@ -55,7 +55,7 @@ Sisters Core Scanner Probe  8  Scanner Probe  0.80 m3
     });
 
     this.items = this.search
-      .map(line => { this.currentLoadedStackItems = 0; this.allStackItems = 0; return line; })
+      .map(lines => { this.currentLoadedStackItems = 0; this.allStackItems = 0; return lines; })
       .switchMap(lines => Observable.from(lines)
         .map(line => this.parseItemLineService.parse(line))
         .reduce(this.stackItems)
