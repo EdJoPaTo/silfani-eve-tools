@@ -85,6 +85,10 @@ export class ItemListComponent implements OnInit, OnChanges {
     return this.fuzzworkMarketService.detailsUrl(id, area, isSell);
   }
 
+  panedenUrl(id: number, isSell: boolean): string {
+    return `https://www.paneden.com/types/${id}#${isSell ? 'sell' : 'buy'}`;
+  }
+
   price(id: number, area: number, isSell: boolean, amount = 1): Observable<number> {
     return this.fuzzworkMarketService.getSingle(id, area)
       .map(data => data[isSell ? 'sell' : 'buy'])
