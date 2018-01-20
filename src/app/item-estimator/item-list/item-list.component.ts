@@ -81,7 +81,7 @@ export class ItemListComponent implements OnInit, OnChanges {
     }
   }
 
-  detailsUrl(id: number, area: number, isSell: boolean): string {
+  fuzzworkMarketUrl(id: number, area: number, isSell: boolean): string {
     return this.fuzzworkMarketService.detailsUrl(id, area, isSell);
   }
 

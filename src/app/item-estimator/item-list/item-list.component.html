@@ -19,7 +19,7 @@
       <td>
         {{ item.name }}
         <div *ngIf="item.id">
-          <a [href]="detailsUrl(item.id, pricearea, isSell)">Fuzzwork Market</a>
+          <a [href]="fuzzworkMarketUrl(item.id, pricearea, isSell)">Fuzzwork Market</a>
         </div>
         <span *ngIf="!item.id" class="tag is-warning">Item does not exist!</span>
       </td>
