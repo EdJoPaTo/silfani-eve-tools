@@ -15,7 +15,7 @@ export class SearchService {
       return Observable.of({});
     }
 
-    let url = 'https://esi.tech.ccp.is/v2/search/?search=';
+    let url = 'https://esi.evetech.net/v2/search/?search=';
     url += encodeURIComponent(search);
 
     url += '&categories=';

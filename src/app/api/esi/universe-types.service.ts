@@ -14,7 +14,7 @@ export class UniverseTypesService {
   get(itemID: number): Observable<any> {
     if (!this.cache[itemID]) {
       this.cache[itemID] = new ReplaySubject(1);
-      const url = `https://esi.tech.ccp.is/v3/universe/types/${itemID}/`;
+      const url = `https://esi.evetech.net/v3/universe/types/${itemID}/`;
 
       this.http
         .get(url)
